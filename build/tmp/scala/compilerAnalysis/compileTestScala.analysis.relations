@@ -1,40 +1,36 @@
 products:
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\CreateStepDefinitions$$anonfun$1.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\CreateStepDefinitions$$anonfun$2.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\CreateStepDefinitions$$anonfun$3.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\CreateStepDefinitions$$anonfun$4.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\CreateStepDefinitions.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\steps\TestRunner.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\BaseValidator.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\validators\BaseValidator.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\validators\GrammarValidator$.class
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> D:\DEVELOPMENT\cypher-test\build\classes\test\validators\GrammarValidator.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\calculator\ResultCalculator$.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\calculator\ResultCalculator.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\CreateStepDefinitions$$anonfun$1.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\CreateStepDefinitions$$anonfun$2.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\CreateStepDefinitions$$anonfun$3.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\CreateStepDefinitions$$anonfun$4.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\CreateStepDefinitions.class
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\build\classes\test\steps\TestRunner.class
 binary dependencies:
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\21.0\3a3d111be1be1b745edfa7d91678a12d7ed38709\guava-21.0.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-core\1.2.4\72790b1da44d8d3d2764c6aef29865ee228bbeb1\cucumber-core-1.2.4.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-scala_2.11\1.2.4\55ae108a7c682fc62a6e5623dbd039ba88c6d431\cucumber-scala_2.11-1.2.4.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.neo4j.driver\neo4j-java-driver\1.1.2\d8aefa394992b858d5dffbd8fbb268ec6639b73d\neo4j-java-driver-1.1.2.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.neo4j\neo4j-graphdb-api\3.1.1\69b0d3898ec93c4e937c7c256bb949c288881fc9\neo4j-graphdb-api-3.1.1.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.scala-lang\scala-library\2.11.8\ddd5a8bced249bedd86fb4578a39b9fb71480573\scala-library-2.11.8.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.m2\repository\neo4j-reactive-driver\neo4j-reactive-driver\0.0.1-SNAPSHOT\neo4j-reactive-driver-0.0.1-SNAPSHOT.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-core\1.2.4\72790b1da44d8d3d2764c6aef29865ee228bbeb1\cucumber-core-1.2.4.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-junit\1.2.4\8a57b68486cff4da4f10019cb9c62c597a6d2861\cucumber-junit-1.2.4.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\BaseValidator.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\BaseValidator.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.scala-lang\scala-library\2.11.8\ddd5a8bced249bedd86fb4578a39b9fb71480573\scala-library-2.11.8.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.scala-lang\scala-library\2.11.8\ddd5a8bced249bedd86fb4578a39b9fb71480573\scala-library-2.11.8.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.scala-lang\scala-library\2.11.8\ddd5a8bced249bedd86fb4578a39b9fb71480573\scala-library-2.11.8.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> C:\Users\Andras Zsamboki\.m2\repository\neo4j-reactive-driver\neo4j-reactive-driver\0.0.1-SNAPSHOT\neo4j-reactive-driver-0.0.1-SNAPSHOT.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\21.0\3a3d111be1be1b745edfa7d91678a12d7ed38709\guava-21.0.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-core\1.2.4\72790b1da44d8d3d2764c6aef29865ee228bbeb1\cucumber-core-1.2.4.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-scala_2.11\1.2.4\55ae108a7c682fc62a6e5623dbd039ba88c6d431\cucumber-scala_2.11-1.2.4.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.neo4j.driver\neo4j-java-driver\1.1.2\d8aefa394992b858d5dffbd8fbb268ec6639b73d\neo4j-java-driver-1.1.2.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.neo4j\neo4j-graphdb-api\3.1.1\69b0d3898ec93c4e937c7c256bb949c288881fc9\neo4j-graphdb-api-3.1.1.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\org.scala-lang\scala-library\2.11.8\ddd5a8bced249bedd86fb4578a39b9fb71480573\scala-library-2.11.8.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> C:\Users\Andras Zsamboki\.m2\repository\neo4j-reactive-driver\neo4j-reactive-driver\0.0.1-SNAPSHOT\neo4j-reactive-driver-0.0.1-SNAPSHOT.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-core\1.2.4\72790b1da44d8d3d2764c6aef29865ee228bbeb1\cucumber-core-1.2.4.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\info.cukes\cucumber-junit\1.2.4\8a57b68486cff4da4f10019cb9c62c597a6d2861\cucumber-junit-1.2.4.jar
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> C:\Users\Andras Zsamboki\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar
 source dependencies:
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> D:\DEVELOPMENT\cypher-test\src\test\scala\validators\BaseValidator.scala
 external dependencies:
 class names:
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$1
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$2
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$3
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$4
-   D:\DEVELOPMENT\cypher-test\src\test\scala\steps\TestRunner.scala -> steps.TestRunner
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\BaseValidator.scala -> validators.BaseValidator
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> validators.GrammarValidator
-   D:\DEVELOPMENT\cypher-test\src\test\scala\validators\GrammarValidator.scala -> validators.GrammarValidator$
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> calculator.ResultCalculator
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\calculator\ResultCalculator.scala -> calculator.ResultCalculator$
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$1
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$2
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$3
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\CreateStepDefinitions.scala -> steps.CreateStepDefinitions$$anonfun$4
+   D:\DEVELOPMENT\cypher-test\zsamboki-andras-onlab\src\test\scala\steps\TestRunner.scala -> steps.TestRunner

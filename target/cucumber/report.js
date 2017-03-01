@@ -52,28 +52,23 @@ formatter.match({
   "location": "CreateStepDefinitions.scala:17"
 });
 formatter.result({
-  "duration": 1905289344,
+  "duration": 3016552312,
   "status": "passed"
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:21"
 });
 formatter.result({
-  "duration": 2377628517,
+  "duration": 2899198749,
   "status": "passed"
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:31"
 });
 formatter.result({
-  "duration": 142409,
+  "duration": 15233858,
   "status": "passed"
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:34"
-});
-formatter.result({
-  "duration": 3889078,
-  "status": "passed"
-});
 });

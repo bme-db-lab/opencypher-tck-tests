@@ -6,7 +6,7 @@ current> []
 new....> []
 current> []
 new....> []
-summary : null
+summary : neo4j.driver.reactive.data.Neo4jReactiveStatementResult@3df15bff
 current> []
 new....> [Record<{n: node<0>}>]
 1
@@ -23,7 +23,7 @@ new....> [Record<{n: node<0>}>]
 
 1 Scenarios (1 passed)
 4 Steps (4 passed)
-0m4.287s
+0m5.152s
 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
