@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.neo4j:neo4j-codegen:3.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-codegen/3.1.1/302f7c88aa73f932b4060d7d467339551ca50bf5/neo4j-codegen-3.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-codegen/3.1.1/44d8ff31df3dfb55402441e2eeddc69baa6d5065/neo4j-codegen-3.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

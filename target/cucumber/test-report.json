@@ -1,0 +1,84 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "Creating a node",
+        "description": "",
+        "id": "create;creating-a-node",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1905289344,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "any graph",
+            "match": {
+              "location": "CreateStepDefinitions.scala:17"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2377628517,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "executing query:",
+            "match": {
+              "location": "CreateStepDefinitions.scala:21"
+            },
+            "keyword": "When ",
+            "doc_string": {
+              "content_type": "",
+              "line": 6,
+              "value": "CREATE ()"
+            }
+          },
+          {
+            "result": {
+              "duration": 142409,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the result should be empty",
+            "match": {
+              "location": "CreateStepDefinitions.scala:31"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 3889078,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the side effects should be:",
+            "match": {
+              "location": "CreateStepDefinitions.scala:34"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "+nodes",
+                  "1"
+                ],
+                "line": 11
+              }
+            ],
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "Create",
+    "description": "",
+    "id": "create",
+    "keyword": "Feature",
+    "uri": "features/Create.feature"
+  }
+]
