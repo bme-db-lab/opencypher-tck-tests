@@ -23,7 +23,7 @@ object QueryCalculator {
         sideEffects += diff
       }
     }
-    return new DatabaseResult(null, sideEffects)
+    return DatabaseResult(null, sideEffects)
 
   }
 
