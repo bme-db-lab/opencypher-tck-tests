@@ -3,27 +3,35 @@
   <properties/>
   <system-out><![CDATA[Feature: Create
 current> []
-new....> []
+new....> [Record<{count: 0}>]
 current> []
-new....> []
-summary : neo4j.driver.reactive.data.Neo4jReactiveStatementResult@3df15bff
+new....> [Record<{count: 0}>]
 current> []
-new....> [Record<{n: node<0>}>]
-1
-0
+new....> [Record<{count: 0}>]
+current> []
+new....> [Record<{count: 0}>]
+current> [Record<{count: 0}>]
+new....> [Record<{count: 1}>]
+current> [Record<{count: 0}>]
+new....> [Record<{count: 0}>]
+current> [Record<{count: 0}>]
+new....> [Record<{count: 0}>]
+current> [Record<{count: 0}>]
+new....> [Record<{count: 1}>]
 
   Scenario: Creating a node         # features/Create.feature:3
-    Given any graph                 # CreateStepDefinitions.scala:17
-    When executing query:           # CreateStepDefinitions.scala:21
+    Given any graph                 # CreateStepDefinitions.scala:14
+    When executing query:           # CreateStepDefinitions.scala:18
       """
-      CREATE ()
+       CREATE (n {prop: 'foo'})
+       RETURN n.prop AS p
       """
-    Then the result should be empty # CreateStepDefinitions.scala:31
-    And the side effects should be: # CreateStepDefinitions.scala:34
+    Then the result should be empty # CreateStepDefinitions.scala:21
+    And the side effects should be: # CreateStepDefinitions.scala:24
 
 1 Scenarios (1 passed)
 4 Steps (4 passed)
-0m5.152s
+0m39.018s
 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

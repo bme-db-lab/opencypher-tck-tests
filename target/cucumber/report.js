@@ -26,16 +26,16 @@ formatter.step({
   "doc_string": {
     "content_type": "",
     "line": 6,
-    "value": "CREATE ()"
+    "value": " CREATE (n {prop: \u0027foo\u0027})\r\n RETURN n.prop AS p"
   }
 });
 formatter.step({
-  "line": 9,
+  "line": 10,
   "name": "the result should be empty",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 10,
+  "line": 11,
   "name": "the side effects should be:",
   "rows": [
     {
@@ -43,32 +43,44 @@ formatter.step({
         "+nodes",
         "1"
       ],
-      "line": 11
+      "line": 12
+    },
+    {
+      "cells": [
+        "+properties",
+        "1"
+      ],
+      "line": 13
     }
   ],
   "keyword": "And "
 });
 formatter.match({
-  "location": "CreateStepDefinitions.scala:17"
+  "location": "CreateStepDefinitions.scala:14"
 });
 formatter.result({
-  "duration": 3016552312,
+  "duration": 2626094576,
+  "status": "passed"
+});
+formatter.match({
+  "location": "CreateStepDefinitions.scala:18"
+});
+formatter.result({
+  "duration": 3243506955,
   "status": "passed"
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:21"
 });
 formatter.result({
-  "duration": 2899198749,
+  "duration": 117177,
   "status": "passed"
 });
 formatter.match({
-  "location": "CreateStepDefinitions.scala:31"
+  "location": "CreateStepDefinitions.scala:24"
 });
 formatter.result({
-  "duration": 15233858,
+  "duration": 33147841125,
   "status": "passed"
 });
-formatter.match({
-  "location": "CreateStepDefinitions.scala:34"
 });

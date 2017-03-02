@@ -4,8 +4,10 @@ Feature: Create
     Given any graph
     When executing query:
       """
-      CREATE ()
+       CREATE (n {prop: 'foo'})
+       RETURN n.prop AS p
       """
     Then the result should be empty
     And the side effects should be:
-      | +nodes | 1 |
+          | +nodes      | 1 |
+          | +properties | 1 |
