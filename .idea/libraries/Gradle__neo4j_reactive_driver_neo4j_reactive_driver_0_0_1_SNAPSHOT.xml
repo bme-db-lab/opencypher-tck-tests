@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: neo4j-reactive-driver:neo4j-reactive-driver:0.0.1-SNAPSHOT">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/neo4j-reactive-driver/neo4j-reactive-driver/0.0.1-SNAPSHOT/neo4j-reactive-driver-0.0.1-SNAPSHOT.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

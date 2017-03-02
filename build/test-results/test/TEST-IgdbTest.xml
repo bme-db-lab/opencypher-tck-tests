@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IgdbTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-02-23T17:53:50" hostname="zsamboki-HP" time="5.051">
-  <properties/>
-  <testcase name="test1" classname="IgdbTest" time="5.051"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
