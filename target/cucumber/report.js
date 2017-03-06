@@ -8,9 +8,9 @@ formatter.feature({
 });
 formatter.scenario({
   "line": 3,
-  "name": "Creating a node",
+  "name": "`toBoolean()` on valid literal string",
   "description": "",
-  "id": "create;creating-a-node",
+  "id": "create;`toboolean()`-on-valid-literal-string",
   "type": "scenario",
   "keyword": "Scenario"
 });
@@ -26,61 +26,61 @@ formatter.step({
   "doc_string": {
     "content_type": "",
     "line": 6,
-    "value": " CREATE (n {prop: \u0027foo\u0027})\r\n RETURN n.prop AS p"
+    "value": "RETURN toBoolean(\u0027true\u0027) AS b"
   }
 });
 formatter.step({
-  "line": 10,
-  "name": "the result should be empty",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 11,
-  "name": "the side effects should be:",
+  "line": 9,
+  "name": "the result should be:",
   "rows": [
     {
       "cells": [
-        "+nodes",
-        "1"
+        "foo",
+        "empty"
       ],
-      "line": 12
+      "line": 10
     },
     {
       "cells": [
-        "+properties",
-        "1"
+        "null",
+        "null"
       ],
-      "line": 13
+      "line": 11
     }
   ],
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 12,
+  "name": "no side effects",
   "keyword": "And "
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:14"
 });
 formatter.result({
-  "duration": 2626094576,
+  "duration": 2742780801,
   "status": "passed"
 });
 formatter.match({
   "location": "CreateStepDefinitions.scala:18"
 });
 formatter.result({
-  "duration": 3243506955,
+  "duration": 3585550996,
   "status": "passed"
 });
 formatter.match({
-  "location": "CreateStepDefinitions.scala:21"
+  "location": "CreateStepDefinitions.scala:28"
 });
 formatter.result({
-  "duration": 117177,
+  "duration": 25105331,
   "status": "passed"
 });
 formatter.match({
-  "location": "CreateStepDefinitions.scala:24"
+  "location": "CreateStepDefinitions.scala:32"
 });
 formatter.result({
-  "duration": 33147841125,
+  "duration": 144118,
   "status": "passed"
 });
 });

@@ -16,12 +16,20 @@ class CreateStepDefinitions extends ScalaDsl with EN {
   }
 
   When("""^executing query:$""") { (query: String) =>
-    result = QueryCalculator.calculateSideEffects(driver.session,query)
+    result = QueryCalculator.calculateSideEffects(driver.session, query)
   }
   Then("""^the result should be empty$""") { () =>
     //assert(result.queryResult.isEmpty)
   }
   Then("""^the side effects should be:$""") { (dataTable: DataTable) =>
-    assert(QueryCalculator.checkSideEffectsEquality(result,dataTable))
+    assert(QueryCalculator.checkSideEffectsEquality(result, dataTable))
+  }
+
+  Then("""^the result should be:$""") { (dataTable: DataTable) =>
+
+  assert(QueryCalculator.checkResultEqualiy(result, dataTable))
+  }
+  Then("""^no side effects$""") { () =>
+   // assert(!QueryCalculator.checkSideEffectsEquality(result, dataTable))
   }
 }

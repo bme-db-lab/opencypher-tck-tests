@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="39.01756">
-<testcase classname="Create" name="Creating a node" time="39.01756">
+<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="6.353581">
+<testcase classname="Create" name="`toBoolean()` on valid literal string" time="6.353581">
 <system-out><![CDATA[Given any graph.............................................................passed
 When executing query:.......................................................passed
-Then the result should be empty.............................................passed
-And the side effects should be:.............................................passed
+Then the result should be:..................................................passed
+And no side effects.........................................................passed
 ]]></system-out>
 </testcase>
 </testsuite>
