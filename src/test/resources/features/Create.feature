@@ -1,12 +1,19 @@
 Feature: Create
 
-      Scenario: `toBoolean()` on valid literal string
-            Given any graph
-            When executing query:
+  Background:
+    Given an empty graph
+    And having executed:
       """
-      RETURN toBoolean('true') AS b
+      CREATE ()
       """
-            Then the result should be:
-                  | foo  | empty |
-                  | null | null  |
-            And no side effects
+
+  Scenario: Keeping used expression 1
+    When executing query:
+      """
+      MATCH (n)
+      RETURN cOuNt( * )
+      """
+    Then the result should be:
+      | cOuNt( * ) |
+      | 1          |
+    And no side effects

@@ -15,6 +15,12 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     driver = new Neo4jReactiveDriver
   }
 
+  Given("""^an empty graph$""") { () =>
+    driver = new Neo4jReactiveDriver
+  }
+  Given("""^having executed:$""") { (query: String) =>
+    driver.session.run(query)
+  }
   When("""^executing query:$""") { (query: String) =>
     result = QueryCalculator.calculateSideEffects(driver.session, query)
   }
@@ -22,14 +28,16 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     //assert(result.queryResult.isEmpty)
   }
   Then("""^the side effects should be:$""") { (dataTable: DataTable) =>
-    assert(QueryCalculator.checkSideEffectsEquality(result, dataTable))
+    assert(QueryCalculator.checkSideEffectsEquality(result, Option(dataTable)))
   }
 
   Then("""^the result should be:$""") { (dataTable: DataTable) =>
-
-  assert(QueryCalculator.checkResultEqualiy(result, dataTable))
+    assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
   Then("""^no side effects$""") { () =>
-   // assert(!QueryCalculator.checkSideEffectsEquality(result, dataTable))
+     assert(QueryCalculator.checkSideEffectsEquality(result, None))
+  }
+  Then("""^the result should be, in order:$"""){ (dataTable:DataTable) =>
+    assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
 }

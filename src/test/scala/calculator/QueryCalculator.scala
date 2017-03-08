@@ -18,13 +18,18 @@ object QueryCalculator {
     session.registerQuery("relationships", "MATCH ()-[r]-() RETURN count(DISTINCT r) AS count")
     session.registerQuery("labels", "MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count")
     session.registerQuery("properties", "MATCH (n) RETURN count(properties(n)) AS count")
+    session.beginTransaction()
     val sessionResult = session.run(query)
     var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
     var queryResults = ListBuffer[ListBuffer[String]]()
+    if (unProcessedQueryResultsBuffer(0).keys() != null) {
+      var tmp = ListBuffer[String]()
+      tmp ++= unProcessedQueryResultsBuffer(0).keys()
+      queryResults += tmp
+    }
     for (i <- 0 until unProcessedQueryResultsBuffer.size) {
       var tmp = ListBuffer[String]()
-      tmp ++= unProcessedQueryResultsBuffer(i).keys()
-      var valueBuffer = ListBuffer[String]();
+      var valueBuffer = ListBuffer[String]()
       for (value <- unProcessedQueryResultsBuffer(i).values()) {
         valueBuffer += value.toString.toLowerCase
         //TODO lowercase check
@@ -55,27 +60,36 @@ object QueryCalculator {
 
   def checkResultEqualiy(result: DatabaseResult, dataTable: DataTable): Boolean = {
     var expectedResult = ListBuffer[ListBuffer[String]]()
-    for (result <- result.queryResult) {
-      println(result)
-    }
     for (rows <- dataTable.getGherkinRows) {
       var tmp = ListBuffer[String]()
       for (elem <- rows.getCells) {
-        tmp += elem
+        tmp += elem.toLowerCase.replace(''', '"')
       }
       expectedResult += tmp
     }
+    println("EXPECTED RESULT: ")
     expectedResult.foreach(println)
-    true
-  }
-
-
-  def checkSideEffectsEquality(result: DatabaseResult, expectedResult: DataTable): Boolean = {
-    var expectedResultMap = collection.mutable.Map[String, Int]()
-    for (i <- 0 until expectedResult.raw().size()) {
-      expectedResultMap += (expectedResult.raw.get(i).get(0) -> expectedResult.raw().get(i).get(1).toInt)
+    println("QUERY RESULT: ")
+    result.queryResult.foreach(println)
+    var isSame = true;
+    for (i <- 0 until expectedResult.length) {
+      isSame = expectedResult(i) sameElements result.queryResult(i)
     }
-    return result.sideEffect.containsAll(expectedResultMap)
+    return isSame
   }
+
+
+  def checkSideEffectsEquality(result: DatabaseResult, expectedResult: Option[DataTable]): Boolean = {
+    var expectedResultMap = collection.mutable.Map[String, Int]()
+    expectedResult match {
+      case Some(x) =>
+        for (i <- 0 until x.raw().size()) {
+          expectedResultMap += (x.raw.get(i).get(0) -> x.raw().get(i).get(1).toInt)
+        }
+        result.sideEffect.containsAll(expectedResultMap)
+      case None => result.sideEffect.isEmpty
+    }
+  }
+
 
 }
