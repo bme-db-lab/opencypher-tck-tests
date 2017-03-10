@@ -1,19 +1,15 @@
-Feature: Create
+Feature: UnionAcceptance
 
-  Background:
+  Scenario: Two elements, both unique, distinct
     Given an empty graph
-    And having executed:
-      """
-      CREATE ()
-      """
-
-  Scenario: Keeping used expression 1
     When executing query:
       """
-      MATCH (n)
-      RETURN cOuNt( * )
+      RETURN 1 AS x
+      UNION
+      RETURN 2 AS x
       """
     Then the result should be:
-      | cOuNt( * ) |
-      | 1          |
+      | x |
+      | 1 |
+      | 2 |
     And no side effects

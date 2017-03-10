@@ -22,7 +22,8 @@ object QueryCalculator {
     val sessionResult = session.run(query)
     var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
     var queryResults = ListBuffer[ListBuffer[String]]()
-    if (unProcessedQueryResultsBuffer(0).keys() != null) {
+
+    if (!unProcessedQueryResultsBuffer.isEmpty) {
       var tmp = ListBuffer[String]()
       tmp ++= unProcessedQueryResultsBuffer(0).keys()
       queryResults += tmp
@@ -31,7 +32,7 @@ object QueryCalculator {
       var tmp = ListBuffer[String]()
       var valueBuffer = ListBuffer[String]()
       for (value <- unProcessedQueryResultsBuffer(i).values()) {
-        valueBuffer += value.toString.toLowerCase
+        valueBuffer += value.toString
         //TODO lowercase check
       }
       tmp ++= valueBuffer
@@ -63,7 +64,7 @@ object QueryCalculator {
     for (rows <- dataTable.getGherkinRows) {
       var tmp = ListBuffer[String]()
       for (elem <- rows.getCells) {
-        tmp += elem.toLowerCase.replace(''', '"')
+        tmp += elem.replace(''', '"')
       }
       expectedResult += tmp
     }
@@ -81,11 +82,15 @@ object QueryCalculator {
 
   def checkSideEffectsEquality(result: DatabaseResult, expectedResult: Option[DataTable]): Boolean = {
     var expectedResultMap = collection.mutable.Map[String, Int]()
+    println("result: ")
+    result.sideEffect.foreach(println)
     expectedResult match {
       case Some(x) =>
         for (i <- 0 until x.raw().size()) {
           expectedResultMap += (x.raw.get(i).get(0) -> x.raw().get(i).get(1).toInt)
         }
+        println("expected result: ")
+        expectedResultMap.foreach(println)
         result.sideEffect.containsAll(expectedResultMap)
       case None => result.sideEffect.isEmpty
     }

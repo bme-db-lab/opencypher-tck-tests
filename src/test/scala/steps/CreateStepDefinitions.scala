@@ -25,7 +25,7 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     result = QueryCalculator.calculateSideEffects(driver.session, query)
   }
   Then("""^the result should be empty$""") { () =>
-    //assert(result.queryResult.isEmpty)
+    assert(result.queryResult.isEmpty)
   }
   Then("""^the side effects should be:$""") { (dataTable: DataTable) =>
     assert(QueryCalculator.checkSideEffectsEquality(result, Option(dataTable)))
