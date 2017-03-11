@@ -3,6 +3,7 @@
  */
 package ingraph.cucumber.featureresult.featureResults;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,6 @@ package ingraph.cucumber.featureresult.featureResults;
  * @model
  * @generated
  */
-public interface PropertyValue extends KeyValuePair
+public interface PropertyValue extends EObject
 {
 } // PropertyValue

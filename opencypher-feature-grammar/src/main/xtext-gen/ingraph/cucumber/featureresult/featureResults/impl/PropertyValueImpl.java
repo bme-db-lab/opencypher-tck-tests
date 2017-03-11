@@ -8,6 +8,8 @@ import ingraph.cucumber.featureresult.featureResults.PropertyValue;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Property Value</b></em>'.
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PropertyValueImpl extends KeyValuePairImpl implements PropertyValue
+public class PropertyValueImpl extends MinimalEObjectImpl.Container implements PropertyValue
 {
   /**
    * <!-- begin-user-doc -->

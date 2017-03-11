@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationship <em>Relationship</em>}</li>
+ *   <li>{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationshipDesc <em>Relationship Desc</em>}</li>
  * </ul>
  *
  * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getDirectedRelationship()
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface DirectedRelationship extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Relationship</b></em>' containment reference.
+   * Returns the value of the '<em><b>Relationship Desc</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Relationship</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Relationship Desc</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Relationship</em>' containment reference.
-   * @see #setRelationship(EObject)
-   * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getDirectedRelationship_Relationship()
+   * @return the value of the '<em>Relationship Desc</em>' containment reference.
+   * @see #setRelationshipDesc(RelationshipDesc)
+   * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getDirectedRelationship_RelationshipDesc()
    * @model containment="true"
    * @generated
    */
-  EObject getRelationship();
+  RelationshipDesc getRelationshipDesc();
 
   /**
-   * Sets the value of the '{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationship <em>Relationship</em>}' containment reference.
+   * Sets the value of the '{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationshipDesc <em>Relationship Desc</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Relationship</em>' containment reference.
-   * @see #getRelationship()
+   * @param value the new value of the '<em>Relationship Desc</em>' containment reference.
+   * @see #getRelationshipDesc()
    * @generated
    */
-  void setRelationship(EObject value);
+  void setRelationshipDesc(RelationshipDesc value);
 
 } // DirectedRelationship

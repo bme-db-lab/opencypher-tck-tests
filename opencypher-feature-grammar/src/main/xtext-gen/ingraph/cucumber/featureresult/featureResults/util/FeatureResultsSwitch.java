@@ -7,7 +7,6 @@ import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
-import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -102,7 +101,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         T result = caseValue(value);
         if (result == null) result = caseListElement(value);
         if (result == null) result = casePropertyValue(value);
-        if (result == null) result = caseKeyValuePair(value);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -113,7 +111,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(node);
         if (result == null) result = caseListElement(node);
         if (result == null) result = casePropertyValue(node);
-        if (result == null) result = caseKeyValuePair(node);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,7 +122,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(nodeDesc);
         if (result == null) result = caseListElement(nodeDesc);
         if (result == null) result = casePropertyValue(nodeDesc);
-        if (result == null) result = caseKeyValuePair(nodeDesc);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -136,7 +132,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(relationship);
         if (result == null) result = caseListElement(relationship);
         if (result == null) result = casePropertyValue(relationship);
-        if (result == null) result = caseKeyValuePair(relationship);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -148,7 +143,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(relationshipDesc);
         if (result == null) result = caseListElement(relationshipDesc);
         if (result == null) result = casePropertyValue(relationshipDesc);
-        if (result == null) result = caseKeyValuePair(relationshipDesc);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -159,7 +153,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(path);
         if (result == null) result = caseListElement(path);
         if (result == null) result = casePropertyValue(path);
-        if (result == null) result = caseKeyValuePair(path);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,7 +164,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(pathBody);
         if (result == null) result = caseListElement(pathBody);
         if (result == null) result = casePropertyValue(pathBody);
-        if (result == null) result = caseKeyValuePair(pathBody);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -193,6 +185,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         ForwardsRelationship forwardsRelationship = (ForwardsRelationship)theEObject;
         T result = caseForwardsRelationship(forwardsRelationship);
+        if (result == null) result = caseDirectedRelationship(forwardsRelationship);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -200,28 +193,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         BackwardsRelationship backwardsRelationship = (BackwardsRelationship)theEObject;
         T result = caseBackwardsRelationship(backwardsRelationship);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case FeatureResultsPackage.INTEGER:
-      {
-        ingraph.cucumber.featureresult.featureResults.Integer integer = (ingraph.cucumber.featureresult.featureResults.Integer)theEObject;
-        T result = caseInteger(integer);
-        if (result == null) result = caseValue(integer);
-        if (result == null) result = caseListElement(integer);
-        if (result == null) result = casePropertyValue(integer);
-        if (result == null) result = caseKeyValuePair(integer);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case FeatureResultsPackage.FLOATING_POINT:
-      {
-        FloatingPoint floatingPoint = (FloatingPoint)theEObject;
-        T result = caseFloatingPoint(floatingPoint);
-        if (result == null) result = caseValue(floatingPoint);
-        if (result == null) result = caseListElement(floatingPoint);
-        if (result == null) result = casePropertyValue(floatingPoint);
-        if (result == null) result = caseKeyValuePair(floatingPoint);
+        if (result == null) result = caseDirectedRelationship(backwardsRelationship);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -232,7 +204,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(bool);
         if (result == null) result = caseListElement(bool);
         if (result == null) result = casePropertyValue(bool);
-        if (result == null) result = caseKeyValuePair(bool);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -243,7 +214,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(nullValue);
         if (result == null) result = caseListElement(nullValue);
         if (result == null) result = casePropertyValue(nullValue);
-        if (result == null) result = caseKeyValuePair(nullValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -254,7 +224,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(list);
         if (result == null) result = caseListElement(list);
         if (result == null) result = casePropertyValue(list);
-        if (result == null) result = caseKeyValuePair(list);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -279,7 +248,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(map);
         if (result == null) result = caseListElement(map);
         if (result == null) result = casePropertyValue(map);
-        if (result == null) result = caseKeyValuePair(map);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -291,7 +259,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(propertyMap);
         if (result == null) result = caseListElement(propertyMap);
         if (result == null) result = casePropertyValue(propertyMap);
-        if (result == null) result = caseKeyValuePair(propertyMap);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -313,7 +280,16 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         PropertyValue propertyValue = (PropertyValue)theEObject;
         T result = casePropertyValue(propertyValue);
-        if (result == null) result = caseKeyValuePair(propertyValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FeatureResultsPackage.INTEGER:
+      {
+        ingraph.cucumber.featureresult.featureResults.Integer integer = (ingraph.cucumber.featureresult.featureResults.Integer)theEObject;
+        T result = caseInteger(integer);
+        if (result == null) result = caseValue(integer);
+        if (result == null) result = caseListElement(integer);
+        if (result == null) result = casePropertyValue(integer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -324,7 +300,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         if (result == null) result = caseValue(myString);
         if (result == null) result = caseListElement(myString);
         if (result == null) result = casePropertyValue(myString);
-        if (result == null) result = caseKeyValuePair(myString);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -509,38 +484,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Integer</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Integer</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInteger(ingraph.cucumber.featureresult.featureResults.Integer object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Floating Point</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Floating Point</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFloatingPoint(FloatingPoint object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Bool</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -696,6 +639,22 @@ public class FeatureResultsSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePropertyValue(PropertyValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInteger(ingraph.cucumber.featureresult.featureResults.Integer object)
   {
     return null;
   }

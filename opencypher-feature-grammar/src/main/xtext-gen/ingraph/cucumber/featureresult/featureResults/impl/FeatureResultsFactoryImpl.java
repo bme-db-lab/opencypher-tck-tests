@@ -8,7 +8,6 @@ import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
-import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -100,8 +99,6 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
       case FeatureResultsPackage.DIRECTED_RELATIONSHIP: return createDirectedRelationship();
       case FeatureResultsPackage.FORWARDS_RELATIONSHIP: return createForwardsRelationship();
       case FeatureResultsPackage.BACKWARDS_RELATIONSHIP: return createBackwardsRelationship();
-      case FeatureResultsPackage.INTEGER: return createInteger();
-      case FeatureResultsPackage.FLOATING_POINT: return createFloatingPoint();
       case FeatureResultsPackage.BOOL: return createBool();
       case FeatureResultsPackage.NULL_VALUE: return createNullValue();
       case FeatureResultsPackage.LIST: return createList();
@@ -112,6 +109,7 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
       case FeatureResultsPackage.MAP_CONTENTS: return createMapContents();
       case FeatureResultsPackage.KEY_VALUE_PAIR: return createKeyValuePair();
       case FeatureResultsPackage.PROPERTY_VALUE: return createPropertyValue();
+      case FeatureResultsPackage.INTEGER: return createInteger();
       case FeatureResultsPackage.MY_STRING: return createMyString();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -244,28 +242,6 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
-  public ingraph.cucumber.featureresult.featureResults.Integer createInteger()
-  {
-    IntegerImpl integer = new IntegerImpl();
-    return integer;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FloatingPoint createFloatingPoint()
-  {
-    FloatingPointImpl floatingPoint = new FloatingPointImpl();
-    return floatingPoint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Bool createBool()
   {
     BoolImpl bool = new BoolImpl();
@@ -369,6 +345,17 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
   {
     PropertyValueImpl propertyValue = new PropertyValueImpl();
     return propertyValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ingraph.cucumber.featureresult.featureResults.Integer createInteger()
+  {
+    IntegerImpl integer = new IntegerImpl();
+    return integer;
   }
 
   /**

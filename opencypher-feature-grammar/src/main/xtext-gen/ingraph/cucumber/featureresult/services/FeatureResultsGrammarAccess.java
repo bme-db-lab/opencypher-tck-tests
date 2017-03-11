@@ -292,34 +292,22 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class DirectedRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.DirectedRelationship");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cDirectedRelationshipAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cRelationshipAlternatives_1_0 = (Alternatives)cRelationshipAssignment_1.eContents().get(0);
-		private final RuleCall cRelationshipForwardsRelationshipParserRuleCall_1_0_0 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(0);
-		private final RuleCall cRelationshipBackwardsRelationshipParserRuleCall_1_0_1 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cForwardsRelationshipParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cBackwardsRelationshipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//DirectedRelationship:
-		//	{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship);
+		//	ForwardsRelationship | BackwardsRelationship;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship)
-		public Group getGroup() { return cGroup; }
-		
-		//{DirectedRelationship}
-		public Action getDirectedRelationshipAction_0() { return cDirectedRelationshipAction_0; }
-		
-		//relationship=(ForwardsRelationship | BackwardsRelationship)
-		public Assignment getRelationshipAssignment_1() { return cRelationshipAssignment_1; }
-		
-		//(ForwardsRelationship | BackwardsRelationship)
-		public Alternatives getRelationshipAlternatives_1_0() { return cRelationshipAlternatives_1_0; }
+		//ForwardsRelationship | BackwardsRelationship
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ForwardsRelationship
-		public RuleCall getRelationshipForwardsRelationshipParserRuleCall_1_0_0() { return cRelationshipForwardsRelationshipParserRuleCall_1_0_0; }
+		public RuleCall getForwardsRelationshipParserRuleCall_0() { return cForwardsRelationshipParserRuleCall_0; }
 		
 		//BackwardsRelationship
-		public RuleCall getRelationshipBackwardsRelationshipParserRuleCall_1_0_1() { return cRelationshipBackwardsRelationshipParserRuleCall_1_0_1; }
+		public RuleCall getBackwardsRelationshipParserRuleCall_1() { return cBackwardsRelationshipParserRuleCall_1; }
 	}
 	public class ForwardsRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.ForwardsRelationship");
@@ -387,56 +375,26 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//'-'
 		public Keyword getHyphenMinusKeyword_3() { return cHyphenMinusKeyword_3; }
 	}
-	public class IntegerElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Integer");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cIntegerAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		
-		/// *
-		// * integer : INTEGER_LITERAL ;
-		// * / Integer:
-		//	{Integer} INT;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{Integer} INT
-		public Group getGroup() { return cGroup; }
-		
-		//{Integer}
-		public Action getIntegerAction_0() { return cIntegerAction_0; }
-		
-		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
-	}
 	public class FloatingPointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.FloatingPoint");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cFloatingPointAction_0 = (Action)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final RuleCall cINFINITYTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cINFINITYTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//FloatingPoint:
-		//	{FloatingPoint} (INT // TODO
-		//	| INFINITY);
+		//	INT // TODO
+		//	| INFINITY;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FloatingPoint} (INT // TODO
-		//| INFINITY)
-		public Group getGroup() { return cGroup; }
-		
-		//{FloatingPoint}
-		public Action getFloatingPointAction_0() { return cFloatingPointAction_0; }
-		
-		//(INT // TODO
-		//| INFINITY)
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//INT // TODO
+		//| INFINITY
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//INT
-		public RuleCall getINTTerminalRuleCall_1_0() { return cINTTerminalRuleCall_1_0; }
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
 		
 		//INFINITY
-		public RuleCall getINFINITYTerminalRuleCall_1_1() { return cINFINITYTerminalRuleCall_1_1; }
+		public RuleCall getINFINITYTerminalRuleCall_1() { return cINFINITYTerminalRuleCall_1; }
 	}
 	public class BoolElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Bool");
@@ -659,27 +617,35 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	public class KeyValuePairElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.KeyValuePair");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPropertyKeyParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cKeyAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cKeyPropertyKeyParserRuleCall_0_0 = (RuleCall)cKeyAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cPropertyValueParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValuePropertyValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		/// *
 		// * keyValuePair: propertyKey ':' WS? propertyValue ;
 		// * / KeyValuePair:
-		//	PropertyKey ':' PropertyValue;
+		//	key=PropertyKey ':' value=PropertyValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PropertyKey ':' PropertyValue
+		//key=PropertyKey ':' value=PropertyValue
 		public Group getGroup() { return cGroup; }
 		
+		//key=PropertyKey
+		public Assignment getKeyAssignment_0() { return cKeyAssignment_0; }
+		
 		//PropertyKey
-		public RuleCall getPropertyKeyParserRuleCall_0() { return cPropertyKeyParserRuleCall_0; }
+		public RuleCall getKeyPropertyKeyParserRuleCall_0_0() { return cKeyPropertyKeyParserRuleCall_0_0; }
 		
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
+		//value=PropertyValue
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		
 		//PropertyValue
-		public RuleCall getPropertyValueParserRuleCall_2() { return cPropertyValueParserRuleCall_2; }
+		public RuleCall getValuePropertyValueParserRuleCall_2_0() { return cValuePropertyValueParserRuleCall_2_0; }
 	}
 	public class PropertyKeyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.PropertyKey");
@@ -774,6 +740,35 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SYMBOLIC_NAME
 		public RuleCall getSYMBOLIC_NAMEParserRuleCall() { return cSYMBOLIC_NAMEParserRuleCall; }
+	}
+	public class IntegerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Integer");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		/// *
+		// * integer : INTEGER_LITERAL ;
+		// *
+		// * INTEGER_LITERAL : ('-')? DECIMAL_LITERAL ;
+		// *
+		// * DECIMAL_LITERAL : '0'
+		// *                 | NONZERODIGIT DIGIT*
+		// *                 ;
+		// *
+		// * DIGIT : '0'
+		// *       | NONZERODIGIT
+		// *       ;
+		// *
+		// * NONZERODIGIT : [1-9] ;
+		// * / Integer:
+		//	value=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 	public class EXPONENTPARTElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.EXPONENTPART");
@@ -873,7 +868,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	private final DirectedRelationshipElements pDirectedRelationship;
 	private final ForwardsRelationshipElements pForwardsRelationship;
 	private final BackwardsRelationshipElements pBackwardsRelationship;
-	private final IntegerElements pInteger;
 	private final FloatingPointElements pFloatingPoint;
 	private final BoolElements pBool;
 	private final NullValueElements pNullValue;
@@ -890,7 +884,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	private final RelationshipTypeNameElements pRelationshipTypeName;
 	private final LabelElements pLabel;
 	private final LabelNameElements pLabelName;
-	private final TerminalRule tINTEGER_LITERAL;
+	private final IntegerElements pInteger;
 	private final TerminalRule tINFINITY;
 	private final EXPONENTPARTElements pEXPONENTPART;
 	private final SYMBOLIC_NAMEElements pSYMBOLIC_NAME;
@@ -920,7 +914,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDirectedRelationship = new DirectedRelationshipElements();
 		this.pForwardsRelationship = new ForwardsRelationshipElements();
 		this.pBackwardsRelationship = new BackwardsRelationshipElements();
-		this.pInteger = new IntegerElements();
 		this.pFloatingPoint = new FloatingPointElements();
 		this.pBool = new BoolElements();
 		this.pNullValue = new NullValueElements();
@@ -937,7 +930,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRelationshipTypeName = new RelationshipTypeNameElements();
 		this.pLabel = new LabelElements();
 		this.pLabelName = new LabelNameElements();
-		this.tINTEGER_LITERAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.INTEGER_LITERAL");
+		this.pInteger = new IntegerElements();
 		this.tINFINITY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.INFINITY");
 		this.pEXPONENTPART = new EXPONENTPARTElements();
 		this.pSYMBOLIC_NAME = new SYMBOLIC_NAMEElements();
@@ -1091,7 +1084,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DirectedRelationship:
-	//	{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship);
+	//	ForwardsRelationship | BackwardsRelationship;
 	public DirectedRelationshipElements getDirectedRelationshipAccess() {
 		return pDirectedRelationship;
 	}
@@ -1124,21 +1117,9 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		return getBackwardsRelationshipAccess().getRule();
 	}
 	
-	/// *
-	// * integer : INTEGER_LITERAL ;
-	// * / Integer:
-	//	{Integer} INT;
-	public IntegerElements getIntegerAccess() {
-		return pInteger;
-	}
-	
-	public ParserRule getIntegerRule() {
-		return getIntegerAccess().getRule();
-	}
-	
 	//FloatingPoint:
-	//	{FloatingPoint} (INT // TODO
-	//	| INFINITY);
+	//	INT // TODO
+	//	| INFINITY;
 	public FloatingPointElements getFloatingPointAccess() {
 		return pFloatingPoint;
 	}
@@ -1248,7 +1229,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * keyValuePair: propertyKey ':' WS? propertyValue ;
 	// * / KeyValuePair:
-	//	PropertyKey ':' PropertyValue;
+	//	key=PropertyKey ':' value=PropertyValue;
 	public KeyValuePairElements getKeyValuePairAccess() {
 		return pKeyValuePair;
 	}
@@ -1329,10 +1310,28 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		return getLabelNameAccess().getRule();
 	}
 	
-	//terminal INTEGER_LITERAL:
-	//	INT;
-	public TerminalRule getINTEGER_LITERALRule() {
-		return tINTEGER_LITERAL;
+	/// *
+	// * integer : INTEGER_LITERAL ;
+	// *
+	// * INTEGER_LITERAL : ('-')? DECIMAL_LITERAL ;
+	// *
+	// * DECIMAL_LITERAL : '0'
+	// *                 | NONZERODIGIT DIGIT*
+	// *                 ;
+	// *
+	// * DIGIT : '0'
+	// *       | NONZERODIGIT
+	// *       ;
+	// *
+	// * NONZERODIGIT : [1-9] ;
+	// * / Integer:
+	//	value=INT;
+	public IntegerElements getIntegerAccess() {
+		return pInteger;
+	}
+	
+	public ParserRule getIntegerRule() {
+		return getIntegerAccess().getRule();
 	}
 	
 	//terminal INFINITY:

@@ -5,12 +5,12 @@ package ingraph.cucumber.featureresult.featureResults.impl;
 
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl#getRelationship <em>Relationship</em>}</li>
+ *   <li>{@link ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl#getRelationshipDesc <em>Relationship Desc</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container implements DirectedRelationship
 {
   /**
-   * The cached value of the '{@link #getRelationship() <em>Relationship</em>}' containment reference.
+   * The cached value of the '{@link #getRelationshipDesc() <em>Relationship Desc</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRelationship()
+   * @see #getRelationshipDesc()
    * @generated
    * @ordered
    */
-  protected EObject relationship;
+  protected RelationshipDesc relationshipDesc;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getRelationship()
+  public RelationshipDesc getRelationshipDesc()
   {
-    return relationship;
+    return relationshipDesc;
   }
 
   /**
@@ -77,13 +77,13 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRelationship(EObject newRelationship, NotificationChain msgs)
+  public NotificationChain basicSetRelationshipDesc(RelationshipDesc newRelationshipDesc, NotificationChain msgs)
   {
-    EObject oldRelationship = relationship;
-    relationship = newRelationship;
+    RelationshipDesc oldRelationshipDesc = relationshipDesc;
+    relationshipDesc = newRelationshipDesc;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, oldRelationship, newRelationship);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC, oldRelationshipDesc, newRelationshipDesc);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelationship(EObject newRelationship)
+  public void setRelationshipDesc(RelationshipDesc newRelationshipDesc)
   {
-    if (newRelationship != relationship)
+    if (newRelationshipDesc != relationshipDesc)
     {
       NotificationChain msgs = null;
-      if (relationship != null)
-        msgs = ((InternalEObject)relationship).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, null, msgs);
-      if (newRelationship != null)
-        msgs = ((InternalEObject)newRelationship).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, null, msgs);
-      msgs = basicSetRelationship(newRelationship, msgs);
+      if (relationshipDesc != null)
+        msgs = ((InternalEObject)relationshipDesc).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC, null, msgs);
+      if (newRelationshipDesc != null)
+        msgs = ((InternalEObject)newRelationshipDesc).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC, null, msgs);
+      msgs = basicSetRelationshipDesc(newRelationshipDesc, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, newRelationship, newRelationship));
+      eNotify(new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC, newRelationshipDesc, newRelationshipDesc));
   }
 
   /**
@@ -120,8 +120,8 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
-        return basicSetRelationship(null, msgs);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC:
+        return basicSetRelationshipDesc(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
-        return getRelationship();
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC:
+        return getRelationshipDesc();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
-        setRelationship((EObject)newValue);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC:
+        setRelationshipDesc((RelationshipDesc)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
-        setRelationship((EObject)null);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC:
+        setRelationshipDesc((RelationshipDesc)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +186,8 @@ public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
-        return relationship != null;
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP_DESC:
+        return relationshipDesc != null;
     }
     return super.eIsSet(featureID);
   }

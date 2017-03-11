@@ -5,24 +5,31 @@ import ingraph.cucumber.featureresult.featureResults.Node
 import ingraph.cucumber.featureresult.featureResults.Relationship
 import ingraph.cucumber.featureresult.featureResults.PathBody
 
-import Conversions._
+import util.EmfConversions._
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship
+import org.eclipse.emf.ecore.EObject
+import ingraph.cucumber.featureresult.featureResults.Integer
 
 class Compiler {
 
-  def compile(value: Value): Unit = {
-    value match {
+  def compile(v: Any): Unit = {
+    v match {
       case x: PathBody => c(x)
       case x: NodeDesc => c(x)
       case x: RelationshipDesc => c(x)
-      case x: DirectedRelationshipDesc => c(x)
+      case x: Integer => c(x)
     }
+  }
+
+  def c(integer: Integer) = {
+    println(integer.getValue)
   }
 
   def c(pathBody: PathBody) = {
     compile(pathBody.getNode)
     
     for (pathLink <- pathBody.getPathLinks) {
-      compile(pathLink.getRelationship)
+      compile(pathLink.getRelationship.getRelationshipDesc)
       compile(pathLink.getNode)
     }
   }

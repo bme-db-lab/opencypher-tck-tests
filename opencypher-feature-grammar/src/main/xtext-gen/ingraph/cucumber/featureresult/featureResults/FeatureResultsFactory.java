@@ -123,24 +123,6 @@ public interface FeatureResultsFactory extends EFactory
   BackwardsRelationship createBackwardsRelationship();
 
   /**
-   * Returns a new object of class '<em>Integer</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Integer</em>'.
-   * @generated
-   */
-  Integer createInteger();
-
-  /**
-   * Returns a new object of class '<em>Floating Point</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Floating Point</em>'.
-   * @generated
-   */
-  FloatingPoint createFloatingPoint();
-
-  /**
    * Returns a new object of class '<em>Bool</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -229,6 +211,15 @@ public interface FeatureResultsFactory extends EFactory
    * @generated
    */
   PropertyValue createPropertyValue();
+
+  /**
+   * Returns a new object of class '<em>Integer</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Integer</em>'.
+   * @generated
+   */
+  Integer createInteger();
 
   /**
    * Returns a new object of class '<em>My String</em>'.

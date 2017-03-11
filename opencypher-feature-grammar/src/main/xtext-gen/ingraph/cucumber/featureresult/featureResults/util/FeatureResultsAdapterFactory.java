@@ -7,7 +7,6 @@ import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
-import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -154,16 +153,6 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
         return createBackwardsRelationshipAdapter();
       }
       @Override
-      public Adapter caseInteger(ingraph.cucumber.featureresult.featureResults.Integer object)
-      {
-        return createIntegerAdapter();
-      }
-      @Override
-      public Adapter caseFloatingPoint(FloatingPoint object)
-      {
-        return createFloatingPointAdapter();
-      }
-      @Override
       public Adapter caseBool(Bool object)
       {
         return createBoolAdapter();
@@ -212,6 +201,11 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
       public Adapter casePropertyValue(PropertyValue object)
       {
         return createPropertyValueAdapter();
+      }
+      @Override
+      public Adapter caseInteger(ingraph.cucumber.featureresult.featureResults.Integer object)
+      {
+        return createIntegerAdapter();
       }
       @Override
       public Adapter caseMyString(MyString object)
@@ -406,36 +400,6 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.Integer <em>Integer</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ingraph.cucumber.featureresult.featureResults.Integer
-   * @generated
-   */
-  public Adapter createIntegerAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.FloatingPoint <em>Floating Point</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see ingraph.cucumber.featureresult.featureResults.FloatingPoint
-   * @generated
-   */
-  public Adapter createFloatingPointAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.Bool <em>Bool</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -581,6 +545,21 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.Integer <em>Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ingraph.cucumber.featureresult.featureResults.Integer
+   * @generated
+   */
+  public Adapter createIntegerAdapter()
   {
     return null;
   }

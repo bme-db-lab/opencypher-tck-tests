@@ -115,9 +115,8 @@ ruleValue returns [EObject current=null]
 		{
 			newCompositeNode(grammarAccess.getValueAccess().getFloatingPointParserRuleCall_4());
 		}
-		this_FloatingPoint_4=ruleFloatingPoint
+		ruleFloatingPoint
 		{
-			$current = $this_FloatingPoint_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -534,50 +533,23 @@ ruleDirectedRelationship returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getDirectedRelationshipAccess().getDirectedRelationshipAction_0(),
-					$current);
-			}
-		)
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getRelationshipForwardsRelationshipParserRuleCall_1_0_0());
-					}
-					lv_relationship_1_1=ruleForwardsRelationship
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getDirectedRelationshipRule());
-						}
-						set(
-							$current,
-							"relationship",
-							lv_relationship_1_1,
-							"ingraph.cucumber.featureresult.FeatureResults.ForwardsRelationship");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getRelationshipBackwardsRelationshipParserRuleCall_1_0_1());
-					}
-					lv_relationship_1_2=ruleBackwardsRelationship
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getDirectedRelationshipRule());
-						}
-						set(
-							$current,
-							"relationship",
-							lv_relationship_1_2,
-							"ingraph.cucumber.featureresult.FeatureResults.BackwardsRelationship");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
+		{
+			newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getForwardsRelationshipParserRuleCall_0());
+		}
+		this_ForwardsRelationship_0=ruleForwardsRelationship
+		{
+			$current = $this_ForwardsRelationship_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getBackwardsRelationshipParserRuleCall_1());
+		}
+		this_BackwardsRelationship_1=ruleBackwardsRelationship
+		{
+			$current = $this_BackwardsRelationship_1.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -687,45 +659,15 @@ ruleBackwardsRelationship returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInteger
-entryRuleInteger returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getIntegerRule()); }
-	iv_ruleInteger=ruleInteger
-	{ $current=$iv_ruleInteger.current; }
-	EOF;
-
-// Rule Integer
-ruleInteger returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getIntegerAccess().getIntegerAction_0(),
-					$current);
-			}
-		)
-		this_INT_1=RULE_INT
-		{
-			newLeafNode(this_INT_1, grammarAccess.getIntegerAccess().getINTTerminalRuleCall_1());
-		}
-	)
-;
-
 // Entry rule entryRuleFloatingPoint
-entryRuleFloatingPoint returns [EObject current=null]:
+entryRuleFloatingPoint returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getFloatingPointRule()); }
 	iv_ruleFloatingPoint=ruleFloatingPoint
-	{ $current=$iv_ruleFloatingPoint.current; }
+	{ $current=$iv_ruleFloatingPoint.current.getText(); }
 	EOF;
 
 // Rule FloatingPoint
-ruleFloatingPoint returns [EObject current=null]
+ruleFloatingPoint returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 @init {
 	enterRule();
 }
@@ -733,24 +675,21 @@ ruleFloatingPoint returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getFloatingPointAccess().getFloatingPointAction_0(),
-					$current);
-			}
-		)
-		(
-			this_INT_1=RULE_INT
-			{
-				newLeafNode(this_INT_1, grammarAccess.getFloatingPointAccess().getINTTerminalRuleCall_1_0());
-			}
-			    |
-			this_INFINITY_2=RULE_INFINITY
-			{
-				newLeafNode(this_INFINITY_2, grammarAccess.getFloatingPointAccess().getINFINITYTerminalRuleCall_1_1());
-			}
-		)
+		this_INT_0=RULE_INT
+		{
+			$current.merge(this_INT_0);
+		}
+		{
+			newLeafNode(this_INT_0, grammarAccess.getFloatingPointAccess().getINTTerminalRuleCall_0());
+		}
+		    |
+		this_INFINITY_1=RULE_INFINITY
+		{
+			$current.merge(this_INFINITY_1);
+		}
+		{
+			newLeafNode(this_INFINITY_1, grammarAccess.getFloatingPointAccess().getINFINITYTerminalRuleCall_1());
+		}
 	)
 ;
 
@@ -1119,25 +1058,48 @@ ruleKeyValuePair returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getKeyValuePairAccess().getPropertyKeyParserRuleCall_0());
-		}
-		rulePropertyKey
-		{
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getKeyValuePairAccess().getKeyPropertyKeyParserRuleCall_0_0());
+				}
+				lv_key_0_0=rulePropertyKey
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getKeyValuePairRule());
+					}
+					set(
+						$current,
+						"key",
+						lv_key_0_0,
+						"ingraph.cucumber.featureresult.FeatureResults.PropertyKey");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		otherlv_1=':'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getKeyValuePairAccess().getColonKeyword_1());
 		}
-		{
-			newCompositeNode(grammarAccess.getKeyValuePairAccess().getPropertyValueParserRuleCall_2());
-		}
-		this_PropertyValue_2=rulePropertyValue
-		{
-			$current = $this_PropertyValue_2.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getKeyValuePairAccess().getValuePropertyValueParserRuleCall_2_0());
+				}
+				lv_value_2_0=rulePropertyValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getKeyValuePairRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"ingraph.cucumber.featureresult.FeatureResults.PropertyValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -1315,6 +1277,41 @@ ruleLabelName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	}
 ;
 
+// Entry rule entryRuleInteger
+entryRuleInteger returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIntegerRule()); }
+	iv_ruleInteger=ruleInteger
+	{ $current=$iv_ruleInteger.current; }
+	EOF;
+
+// Rule Integer
+ruleInteger returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_value_0_0=RULE_INT
+			{
+				newLeafNode(lv_value_0_0, grammarAccess.getIntegerAccess().getValueINTTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getIntegerRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"value",
+					lv_value_0_0,
+					"org.eclipse.xtext.common.Terminals.INT");
+			}
+		)
+	)
+;
+
 // Entry rule entryRuleSYMBOLIC_NAME
 entryRuleSYMBOLIC_NAME returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getSYMBOLIC_NAMERule()); }
@@ -1368,8 +1365,6 @@ ruleMyString returns [EObject current=null]
 		}
 	)
 ;
-
-RULE_INTEGER_LITERAL : RULE_INT;
 
 RULE_INFINITY : '-'? 'Inf';
 

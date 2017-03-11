@@ -22,52 +22,29 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 
 	protected FeatureResultsGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Bool_FalseKeyword_1_1_or_TrueKeyword_1_0;
-	protected AbstractElementAlias match_FloatingPoint_INFINITYTerminalRuleCall_1_1_or_INTTerminalRuleCall_1_0;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (FeatureResultsGrammarAccess) access;
 		match_Bool_FalseKeyword_1_1_or_TrueKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getBoolAccess().getFalseKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getBoolAccess().getTrueKeyword_1_0()));
-		match_FloatingPoint_INFINITYTerminalRuleCall_1_1_or_INTTerminalRuleCall_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFloatingPointAccess().getINFINITYTerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getFloatingPointAccess().getINTTerminalRuleCall_1_0()));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getINFINITYRule())
-			return getINFINITYToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getINTRule())
-			return getINTToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getPropertyKeyRule())
-			return getPropertyKeyToken(semanticObject, ruleCall, node);
+		if (ruleCall.getRule() == grammarAccess.getFloatingPointRule())
+			return getFloatingPointToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSTRING_LITERALRule())
 			return getSTRING_LITERALToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
 	/**
-	 * terminal INFINITY : '-'? 'Inf';
-	 */
-	protected String getINFINITYToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "Inf";
-	}
-	
-	/**
-	 * terminal INT returns ecore::EInt: ('0'..'9')+;
-	 */
-	protected String getINTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
-	}
-	
-	/**
-	 * PropertyKey :
-	 * 	SYMBOLIC_NAME
+	 * FloatingPoint:
+	 *   ( INT   | INFINITY
+	 *   )
 	 * ;
 	 */
-	protected String getPropertyKeyToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getFloatingPointToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "";
@@ -75,7 +52,7 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 	
 	/**
 	 * terminal STRING_LITERAL:
-	 * 	'\'' STRING_BODY* '\'';
+	 *   '\'' STRING_BODY* '\'';
 	 */
 	protected String getSTRING_LITERALToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
@@ -91,8 +68,6 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_Bool_FalseKeyword_1_1_or_TrueKeyword_1_0.equals(syntax))
 				emit_Bool_FalseKeyword_1_1_or_TrueKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FloatingPoint_INFINITYTerminalRuleCall_1_1_or_INTTerminalRuleCall_1_0.equals(syntax))
-				emit_FloatingPoint_INFINITYTerminalRuleCall_1_1_or_INTTerminalRuleCall_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -103,21 +78,8 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) PropertyKey ':' (ambiguity) (rule start)
 	 */
 	protected void emit_Bool_FalseKeyword_1_1_or_TrueKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     INT | INFINITY
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) PropertyKey ':' (ambiguity) (rule start)
-	 */
-	protected void emit_FloatingPoint_INFINITYTerminalRuleCall_1_1_or_INTTerminalRuleCall_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -1,11 +1,11 @@
-package parser
+package util
 
 import com.google.common.collect.ImmutableMap
 import org.eclipse.emf.common.util.EList
 
 import scala.collection.mutable
 
-object Conversions {
+object EmfConversions {
   implicit def emf[E](list: EList[E]): Vector[E] = {
     val l = for (v <- 0 until list.size)
       yield list.get(v)
