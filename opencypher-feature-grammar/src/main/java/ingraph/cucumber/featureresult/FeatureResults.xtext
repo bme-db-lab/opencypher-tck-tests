@@ -238,7 +238,9 @@ terminal IDENTIFIER:
 /*
  * string : STRING_LITERAL ;
  */
-MyString: {MyString} STRING_LITERAL;
+MyString:
+  value = STRING_LITERAL
+;
 
 /*
  * STRING_LITERAL : '\'' STRING_BODY* '\'' ;

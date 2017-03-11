@@ -648,13 +648,22 @@ public interface FeatureResultsPackage extends EPackage
   int MY_STRING = 22;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MY_STRING__VALUE = VALUE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>My String</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MY_STRING_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int MY_STRING_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
 
   /**
@@ -1064,6 +1073,17 @@ public interface FeatureResultsPackage extends EPackage
   EClass getMyString();
 
   /**
+   * Returns the meta object for the attribute '{@link ingraph.cucumber.featureresult.featureResults.MyString#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.MyString#getValue()
+   * @see #getMyString()
+   * @generated
+   */
+  EAttribute getMyString_Value();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1443,6 +1463,14 @@ public interface FeatureResultsPackage extends EPackage
      * @generated
      */
     EClass MY_STRING = eINSTANCE.getMyString();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MY_STRING__VALUE = eINSTANCE.getMyString_Value();
 
   }
 

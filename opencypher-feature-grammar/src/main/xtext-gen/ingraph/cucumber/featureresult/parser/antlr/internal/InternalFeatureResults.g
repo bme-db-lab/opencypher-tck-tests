@@ -1353,16 +1353,21 @@ ruleMyString returns [EObject current=null]
 }:
 	(
 		(
+			lv_value_0_0=RULE_STRING_LITERAL
 			{
-				$current = forceCreateModelElement(
-					grammarAccess.getMyStringAccess().getMyStringAction_0(),
-					$current);
+				newLeafNode(lv_value_0_0, grammarAccess.getMyStringAccess().getValueSTRING_LITERALTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getMyStringRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"value",
+					lv_value_0_0,
+					"ingraph.cucumber.featureresult.FeatureResults.STRING_LITERAL");
 			}
 		)
-		this_STRING_LITERAL_1=RULE_STRING_LITERAL
-		{
-			newLeafNode(this_STRING_LITERAL_1, grammarAccess.getMyStringAccess().getSTRING_LITERALTerminalRuleCall_1());
-		}
 	)
 ;
 

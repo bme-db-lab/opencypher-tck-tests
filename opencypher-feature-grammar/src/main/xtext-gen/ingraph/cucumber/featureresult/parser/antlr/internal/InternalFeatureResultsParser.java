@@ -3673,37 +3673,42 @@ public class InternalFeatureResultsParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMyString"
-    // InternalFeatureResults.g:1347:1: ruleMyString returns [EObject current=null] : ( () this_STRING_LITERAL_1= RULE_STRING_LITERAL ) ;
+    // InternalFeatureResults.g:1347:1: ruleMyString returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING_LITERAL ) ) ;
     public final EObject ruleMyString() throws RecognitionException {
         EObject current = null;
 
-        Token this_STRING_LITERAL_1=null;
+        Token lv_value_0_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalFeatureResults.g:1353:2: ( ( () this_STRING_LITERAL_1= RULE_STRING_LITERAL ) )
-            // InternalFeatureResults.g:1354:2: ( () this_STRING_LITERAL_1= RULE_STRING_LITERAL )
+            // InternalFeatureResults.g:1353:2: ( ( (lv_value_0_0= RULE_STRING_LITERAL ) ) )
+            // InternalFeatureResults.g:1354:2: ( (lv_value_0_0= RULE_STRING_LITERAL ) )
             {
-            // InternalFeatureResults.g:1354:2: ( () this_STRING_LITERAL_1= RULE_STRING_LITERAL )
-            // InternalFeatureResults.g:1355:3: () this_STRING_LITERAL_1= RULE_STRING_LITERAL
+            // InternalFeatureResults.g:1354:2: ( (lv_value_0_0= RULE_STRING_LITERAL ) )
+            // InternalFeatureResults.g:1355:3: (lv_value_0_0= RULE_STRING_LITERAL )
             {
-            // InternalFeatureResults.g:1355:3: ()
-            // InternalFeatureResults.g:1356:4: 
+            // InternalFeatureResults.g:1355:3: (lv_value_0_0= RULE_STRING_LITERAL )
+            // InternalFeatureResults.g:1356:4: lv_value_0_0= RULE_STRING_LITERAL
             {
+            lv_value_0_0=(Token)match(input,RULE_STRING_LITERAL,FOLLOW_2); 
 
-            				current = forceCreateModelElement(
-            					grammarAccess.getMyStringAccess().getMyStringAction_0(),
-            					current);
+            				newLeafNode(lv_value_0_0, grammarAccess.getMyStringAccess().getValueSTRING_LITERALTerminalRuleCall_0());
+            			
+
+            				if (current==null) {
+            					current = createModelElement(grammarAccess.getMyStringRule());
+            				}
+            				setWithLastConsumed(
+            					current,
+            					"value",
+            					lv_value_0_0,
+            					"ingraph.cucumber.featureresult.FeatureResults.STRING_LITERAL");
             			
 
             }
 
-            this_STRING_LITERAL_1=(Token)match(input,RULE_STRING_LITERAL,FOLLOW_2); 
-
-            			newLeafNode(this_STRING_LITERAL_1, grammarAccess.getMyStringAccess().getSTRING_LITERALTerminalRuleCall_1());
-            		
 
             }
 

@@ -237,10 +237,16 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     MyString returns MyString
 	 *
 	 * Constraint:
-	 *     {MyString}
+	 *     value=STRING_LITERAL
 	 */
 	protected void sequence_MyString(ISerializationContext context, MyString semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FeatureResultsPackage.Literals.MY_STRING__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeatureResultsPackage.Literals.MY_STRING__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMyStringAccess().getValueSTRING_LITERALTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

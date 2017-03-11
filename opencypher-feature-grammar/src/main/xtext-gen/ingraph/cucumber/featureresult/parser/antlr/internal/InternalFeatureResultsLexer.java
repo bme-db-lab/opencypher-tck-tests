@@ -385,10 +385,10 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_INFINITY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1369:15: ( ( '-' )? 'Inf' )
-            // InternalFeatureResults.g:1369:17: ( '-' )? 'Inf'
+            // InternalFeatureResults.g:1374:15: ( ( '-' )? 'Inf' )
+            // InternalFeatureResults.g:1374:17: ( '-' )? 'Inf'
             {
-            // InternalFeatureResults.g:1369:17: ( '-' )?
+            // InternalFeatureResults.g:1374:17: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -397,7 +397,7 @@ public class InternalFeatureResultsLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalFeatureResults.g:1369:17: '-'
+                    // InternalFeatureResults.g:1374:17: '-'
                     {
                     match('-'); 
 
@@ -424,8 +424,8 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1371:17: ( RULE_ID )
-            // InternalFeatureResults.g:1371:19: RULE_ID
+            // InternalFeatureResults.g:1376:17: ( RULE_ID )
+            // InternalFeatureResults.g:1376:19: RULE_ID
             {
             mRULE_ID(); 
 
@@ -444,11 +444,11 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1373:21: ( '\\'' ( RULE_STRING_BODY )* '\\'' )
-            // InternalFeatureResults.g:1373:23: '\\'' ( RULE_STRING_BODY )* '\\''
+            // InternalFeatureResults.g:1378:21: ( '\\'' ( RULE_STRING_BODY )* '\\'' )
+            // InternalFeatureResults.g:1378:23: '\\'' ( RULE_STRING_BODY )* '\\''
             {
             match('\''); 
-            // InternalFeatureResults.g:1373:28: ( RULE_STRING_BODY )*
+            // InternalFeatureResults.g:1378:28: ( RULE_STRING_BODY )*
             loop2:
             do {
                 int alt2=2;
@@ -461,7 +461,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalFeatureResults.g:1373:28: RULE_STRING_BODY
+            	    // InternalFeatureResults.g:1378:28: RULE_STRING_BODY
             	    {
             	    mRULE_STRING_BODY(); 
 
@@ -488,10 +488,10 @@ public class InternalFeatureResultsLexer extends Lexer {
     // $ANTLR start "RULE_STRING_BODY"
     public final void mRULE_STRING_BODY() throws RecognitionException {
         try {
-            // InternalFeatureResults.g:1375:27: ( ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE ) )
-            // InternalFeatureResults.g:1375:29: ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE )
+            // InternalFeatureResults.g:1380:27: ( ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE ) )
+            // InternalFeatureResults.g:1380:29: ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE )
             {
-            // InternalFeatureResults.g:1375:29: ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE )
+            // InternalFeatureResults.g:1380:29: ( '\\u0000' .. '&' | '(' .. '\\u01FF' | RULE_ESCAPED_APOSTROPHE )
             int alt3=3;
             int LA3_0 = input.LA(1);
 
@@ -518,21 +518,21 @@ public class InternalFeatureResultsLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalFeatureResults.g:1375:30: '\\u0000' .. '&'
+                    // InternalFeatureResults.g:1380:30: '\\u0000' .. '&'
                     {
                     matchRange('\u0000','&'); 
 
                     }
                     break;
                 case 2 :
-                    // InternalFeatureResults.g:1375:44: '(' .. '\\u01FF'
+                    // InternalFeatureResults.g:1380:44: '(' .. '\\u01FF'
                     {
                     matchRange('(','\u01FF'); 
 
                     }
                     break;
                 case 3 :
-                    // InternalFeatureResults.g:1375:58: RULE_ESCAPED_APOSTROPHE
+                    // InternalFeatureResults.g:1380:58: RULE_ESCAPED_APOSTROPHE
                     {
                     mRULE_ESCAPED_APOSTROPHE(); 
 
@@ -553,8 +553,8 @@ public class InternalFeatureResultsLexer extends Lexer {
     // $ANTLR start "RULE_ESCAPED_APOSTROPHE"
     public final void mRULE_ESCAPED_APOSTROPHE() throws RecognitionException {
         try {
-            // InternalFeatureResults.g:1377:34: ( '\\\\\\'' )
-            // InternalFeatureResults.g:1377:36: '\\\\\\''
+            // InternalFeatureResults.g:1382:34: ( '\\\\\\'' )
+            // InternalFeatureResults.g:1382:36: '\\\\\\''
             {
             match("\\'"); 
 
@@ -570,10 +570,10 @@ public class InternalFeatureResultsLexer extends Lexer {
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
-            // InternalFeatureResults.g:1379:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalFeatureResults.g:1379:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalFeatureResults.g:1384:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalFeatureResults.g:1384:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalFeatureResults.g:1379:20: ( '^' )?
+            // InternalFeatureResults.g:1384:20: ( '^' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -582,7 +582,7 @@ public class InternalFeatureResultsLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalFeatureResults.g:1379:20: '^'
+                    // InternalFeatureResults.g:1384:20: '^'
                     {
                     match('^'); 
 
@@ -600,7 +600,7 @@ public class InternalFeatureResultsLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalFeatureResults.g:1379:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalFeatureResults.g:1384:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -647,10 +647,10 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1381:10: ( ( '0' .. '9' )+ )
-            // InternalFeatureResults.g:1381:12: ( '0' .. '9' )+
+            // InternalFeatureResults.g:1386:10: ( ( '0' .. '9' )+ )
+            // InternalFeatureResults.g:1386:12: ( '0' .. '9' )+
             {
-            // InternalFeatureResults.g:1381:12: ( '0' .. '9' )+
+            // InternalFeatureResults.g:1386:12: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -664,7 +664,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalFeatureResults.g:1381:13: '0' .. '9'
+            	    // InternalFeatureResults.g:1386:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -696,10 +696,10 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1383:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalFeatureResults.g:1383:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalFeatureResults.g:1388:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalFeatureResults.g:1388:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalFeatureResults.g:1383:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalFeatureResults.g:1388:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -717,10 +717,10 @@ public class InternalFeatureResultsLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalFeatureResults.g:1383:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalFeatureResults.g:1388:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalFeatureResults.g:1383:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalFeatureResults.g:1388:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -736,7 +736,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // InternalFeatureResults.g:1383:21: '\\\\' .
+                    	    // InternalFeatureResults.g:1388:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -744,7 +744,7 @@ public class InternalFeatureResultsLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalFeatureResults.g:1383:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalFeatureResults.g:1388:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -769,10 +769,10 @@ public class InternalFeatureResultsLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalFeatureResults.g:1383:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalFeatureResults.g:1388:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalFeatureResults.g:1383:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalFeatureResults.g:1388:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop8:
                     do {
                         int alt8=3;
@@ -788,7 +788,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // InternalFeatureResults.g:1383:54: '\\\\' .
+                    	    // InternalFeatureResults.g:1388:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -796,7 +796,7 @@ public class InternalFeatureResultsLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalFeatureResults.g:1383:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalFeatureResults.g:1388:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -839,12 +839,12 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1385:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalFeatureResults.g:1385:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalFeatureResults.g:1390:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalFeatureResults.g:1390:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalFeatureResults.g:1385:24: ( options {greedy=false; } : . )*
+            // InternalFeatureResults.g:1390:24: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -869,7 +869,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalFeatureResults.g:1385:52: .
+            	    // InternalFeatureResults.g:1390:52: .
             	    {
             	    matchAny(); 
 
@@ -899,12 +899,12 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1387:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalFeatureResults.g:1387:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalFeatureResults.g:1392:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalFeatureResults.g:1392:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalFeatureResults.g:1387:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalFeatureResults.g:1392:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop11:
             do {
                 int alt11=2;
@@ -917,7 +917,7 @@ public class InternalFeatureResultsLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // InternalFeatureResults.g:1387:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalFeatureResults.g:1392:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -937,7 +937,7 @@ public class InternalFeatureResultsLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalFeatureResults.g:1387:40: ( ( '\\r' )? '\\n' )?
+            // InternalFeatureResults.g:1392:40: ( ( '\\r' )? '\\n' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -946,9 +946,9 @@ public class InternalFeatureResultsLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalFeatureResults.g:1387:41: ( '\\r' )? '\\n'
+                    // InternalFeatureResults.g:1392:41: ( '\\r' )? '\\n'
                     {
-                    // InternalFeatureResults.g:1387:41: ( '\\r' )?
+                    // InternalFeatureResults.g:1392:41: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -957,7 +957,7 @@ public class InternalFeatureResultsLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // InternalFeatureResults.g:1387:41: '\\r'
+                            // InternalFeatureResults.g:1392:41: '\\r'
                             {
                             match('\r'); 
 
@@ -989,10 +989,10 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1389:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalFeatureResults.g:1389:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalFeatureResults.g:1394:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalFeatureResults.g:1394:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalFeatureResults.g:1389:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalFeatureResults.g:1394:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt14=0;
             loop14:
             do {
@@ -1046,8 +1046,8 @@ public class InternalFeatureResultsLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFeatureResults.g:1391:16: ( . )
-            // InternalFeatureResults.g:1391:18: .
+            // InternalFeatureResults.g:1396:16: ( . )
+            // InternalFeatureResults.g:1396:18: .
             {
             matchAny(); 
 

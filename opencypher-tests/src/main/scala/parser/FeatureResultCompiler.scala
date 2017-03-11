@@ -9,6 +9,9 @@ import util.EmfConversions._
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship
 import org.eclipse.emf.ecore.EObject
 import ingraph.cucumber.featureresult.featureResults.Integer
+import ingraph.cucumber.featureresult.featureResults.PropertyMap
+import ingraph.cucumber.featureresult.featureResults.PropertyValue
+import ingraph.cucumber.featureresult.featureResults.MyString
 
 class Compiler {
 
@@ -18,6 +21,8 @@ class Compiler {
       case x: NodeDesc => c(x)
       case x: RelationshipDesc => c(x)
       case x: Integer => c(x)
+      case x: PropertyMap => c(x)
+      case x: MyString => c(x)
     }
   }
 
@@ -37,11 +42,25 @@ class Compiler {
   def c(node: NodeDesc): Unit = {
     println(s"node $node")
     println(node.getLabels)
+    compile(node.getPropertyMap)
   }
 
   def c(relationship: RelationshipDesc): Unit = {
     println(s"relationship $relationship")
     println(relationship.getType)
+    compile(relationship.getPropertyMap)
+  }
+  
+  def c(propertyMap: PropertyMap): Unit = {
+    print("propertyMap with values: ")
+    println( 
+        propertyMap.getMapContents.getKeyValuePairs.map { x => x.getKey + "=" + compile(x.getValue) }.toVector.mkString(", ")
+    )
+//    compile()
+  }
+  
+  def c(myString: MyString): Unit = {
+    println(">" + myString.getValue)
   }
 
 }

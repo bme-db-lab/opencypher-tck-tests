@@ -33,8 +33,6 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getFloatingPointRule())
 			return getFloatingPointToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getSTRING_LITERALRule())
-			return getSTRING_LITERALToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -48,16 +46,6 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 		if (node != null)
 			return getTokenText(node);
 		return "";
-	}
-	
-	/**
-	 * terminal STRING_LITERAL:
-	 *   '\'' STRING_BODY* '\'';
-	 */
-	protected String getSTRING_LITERALToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "\'\'";
 	}
 	
 	@Override

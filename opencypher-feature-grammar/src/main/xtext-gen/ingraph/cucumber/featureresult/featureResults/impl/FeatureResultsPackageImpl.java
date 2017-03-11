@@ -662,6 +662,16 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getMyString_Value()
+  {
+    return (EAttribute)myStringEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FeatureResultsFactory getFeatureResultsFactory()
   {
     return (FeatureResultsFactory)getEFactoryInstance();
@@ -748,6 +758,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     createEAttribute(integerEClass, INTEGER__VALUE);
 
     myStringEClass = createEClass(MY_STRING);
+    createEAttribute(myStringEClass, MY_STRING__VALUE);
   }
 
   /**
@@ -859,6 +870,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     initEAttribute(getInteger_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ingraph.cucumber.featureresult.featureResults.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myStringEClass, MyString.class, "MyString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMyString_Value(), ecorePackage.getEString(), "value", null, 0, 1, MyString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

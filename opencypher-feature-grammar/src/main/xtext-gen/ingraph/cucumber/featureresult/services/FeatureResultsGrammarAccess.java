@@ -833,9 +833,8 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class MyStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.MyString");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cMyStringAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cSTRING_LITERALTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRING_LITERALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//// The string rule should ideally not include the apostrophes in the parsed value,
 		//// but a lexer rule may not match the empty string, so I haven't found a way
@@ -843,17 +842,14 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		// * string : STRING_LITERAL ;
 		// * / MyString:
-		//	{MyString} STRING_LITERAL;
+		//	value=STRING_LITERAL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{MyString} STRING_LITERAL
-		public Group getGroup() { return cGroup; }
-		
-		//{MyString}
-		public Action getMyStringAction_0() { return cMyStringAction_0; }
+		//value=STRING_LITERAL
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
 		//STRING_LITERAL
-		public RuleCall getSTRING_LITERALTerminalRuleCall_1() { return cSTRING_LITERALTerminalRuleCall_1; }
+		public RuleCall getValueSTRING_LITERALTerminalRuleCall_0() { return cValueSTRING_LITERALTerminalRuleCall_0; }
 	}
 	
 	
@@ -1383,7 +1379,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * string : STRING_LITERAL ;
 	// * / MyString:
-	//	{MyString} STRING_LITERAL;
+	//	value=STRING_LITERAL;
 	public MyStringElements getMyStringAccess() {
 		return pMyString;
 	}
