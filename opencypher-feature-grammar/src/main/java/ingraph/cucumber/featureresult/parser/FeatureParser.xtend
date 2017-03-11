@@ -1,20 +1,20 @@
 package ingraph.cucumber.featureresult.parser
 
-import ingraph.cucumber.featureresult.featureResults.Value
 import ingraph.cucumber.featureresult.FeatureResultsStandaloneSetup
+import ingraph.cucumber.featureresult.featureResults.FeatureValue
 import java.io.ByteArrayInputStream
 import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.xtext.resource.XtextResource
-import org.eclipse.xtext.validation.CheckMode
-import org.eclipse.xtext.util.CancelIndicator
-import org.eclipse.xtext.validation.Issue
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.diagnostics.Severity
+import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.util.CancelIndicator
+import org.eclipse.xtext.validation.CheckMode
+import org.eclipse.xtext.validation.Issue
 
 class FeatureParser {
 
-    def static Value parseString(String queryString) {
+    def static FeatureValue parseString(String queryString) {
         // https://wiki.eclipse.org/Xtext/FAQ
         val injector = new FeatureResultsStandaloneSetup().createInjectorAndDoEMFRegistration()
         val resourceSet = injector.getInstance(XtextResourceSet)
@@ -22,7 +22,7 @@ class FeatureParser {
         val in = new ByteArrayInputStream(queryString.getBytes())
         resource.load(in, resourceSet.getLoadOptions())
         validateAndThrowError(resource)
-        return resource.contents.get(0) as Value
+        return resource.contents.get(0) as FeatureValue
     }
 
     def protected static validateAndThrowError(Resource resource) {
