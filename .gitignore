@@ -37,6 +37,6 @@ bin/
 target/
 out/
 xtend-gen/
-#xtext-gen/
+xtext-gen/
 .cache*
 generated/

@@ -17,9 +17,9 @@ import org.junit.runner.RunWith
 class FeatureResultsParsingTest{
 
 	@Inject
-	ParseHelper<Value> parseHelper
+	ParseHelper<FeatureValue> parseHelper
 
-	@Test 
+	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
 			(:Label {name: 'hello'})
