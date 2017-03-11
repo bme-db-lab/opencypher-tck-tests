@@ -5,6 +5,7 @@ jar {
 }
 
 dependencies {
+  compile project(':opencypher-feature-grammar')
   compile group: 'org.scala-lang', name: 'scala-library', version: scalaLongVersion
   compile group: 'org.neo4j', name: 'neo4j-cypher', version: neo4jVersion
   compile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion
