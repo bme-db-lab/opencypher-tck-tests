@@ -19,7 +19,7 @@ Value : Node
 	    | Relationship
 	    | Path
 	    | Integer
-	    | FloatingPoint
+	    //| FloatingPoint
 	    | MyString
 	    | Bool
 	    | NullValue

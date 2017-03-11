@@ -7,8 +7,9 @@ object FeatureMain {
   def main(args: Array[String]): Unit = {
     val s1 = "<({weight: 3})-[:REL {something: 'ab'}]->(:Label2:Label3 {name: 'hello'})>"
     val s2 = "2"
+    val s3 = "[(:Label2:Label3 {name: 'hello'})]"
     
-    compileValue(s1)
+    compileValue(s3)
   }
   
   def compileValue(featureString : String) {
