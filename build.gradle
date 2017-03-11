@@ -7,6 +7,7 @@ subprojects {
   repositories {
     mavenLocal()
     jcenter()
+    maven { url 'http://docs.inf.mit.bme.hu/ingraph-deps' }
   }
 }
 
