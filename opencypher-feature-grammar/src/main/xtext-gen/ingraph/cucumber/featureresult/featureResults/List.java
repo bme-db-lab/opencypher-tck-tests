@@ -3,7 +3,6 @@
  */
 package ingraph.cucumber.featureresult.featureResults;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,19 +23,29 @@ import org.eclipse.emf.common.util.EList;
 public interface List extends FeatureValue
 {
   /**
-   * Returns the value of the '<em><b>List Contents</b></em>' containment reference list.
-   * The list contents are of type {@link ingraph.cucumber.featureresult.featureResults.ListContents}.
+   * Returns the value of the '<em><b>List Contents</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>List Contents</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>List Contents</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>List Contents</em>' containment reference list.
+   * @return the value of the '<em>List Contents</em>' containment reference.
+   * @see #setListContents(ListContents)
    * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getList_ListContents()
    * @model containment="true"
    * @generated
    */
-  EList<ListContents> getListContents();
+  ListContents getListContents();
+
+  /**
+   * Sets the value of the '{@link ingraph.cucumber.featureresult.featureResults.List#getListContents <em>List Contents</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>List Contents</em>' containment reference.
+   * @see #getListContents()
+   * @generated
+   */
+  void setListContents(ListContents value);
 
 } // List

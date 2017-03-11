@@ -98,7 +98,7 @@ NullValue: {NullValue} 'null';
 /*
  * list : '[' (listContents)? ']' ;
  */
-List: {List} '[' listContents+=ListContents? ']' ;
+List: {List} '[' listContents=ListContents? ']' ;
 
 /*
  * listContents : listElement (', ' listElement)* ;

@@ -462,10 +462,10 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		// * list : '[' (listContents)? ']' ;
 		// * / List:
-		//	{List} '[' listContents+=ListContents? ']';
+		//	{List} '[' listContents=ListContents? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{List} '[' listContents+=ListContents? ']'
+		//{List} '[' listContents=ListContents? ']'
 		public Group getGroup() { return cGroup; }
 		
 		//{List}
@@ -474,7 +474,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//listContents+=ListContents?
+		//listContents=ListContents?
 		public Assignment getListContentsAssignment_2() { return cListContentsAssignment_2; }
 		
 		//ListContents
@@ -1156,7 +1156,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * list : '[' (listContents)? ']' ;
 	// * / List:
-	//	{List} '[' listContents+=ListContents? ']';
+	//	{List} '[' listContents=ListContents? ']';
 	public ListElements getListAccess() {
 		return pList;
 	}

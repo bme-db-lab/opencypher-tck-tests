@@ -9,14 +9,15 @@ object FeatureMain {
     val s2 = "2"
     val s3 = "[(:Label2:Label3 {name: 'hello'})]"
     val s4 = "['a', ['b']]"
+    val s5 = "(:LABEL {attr: ['a', ['b']]})"
+    val s6 = "<()-[:R1]->()>"
     
-    compileValue(s4)
+    println(FeatureResultCompiler.parseAndCompile(s1).getClass())
+    println(FeatureResultCompiler.parseAndCompile(s2).getClass())
+    println(FeatureResultCompiler.parseAndCompile(s3).getClass())
+    println(FeatureResultCompiler.parseAndCompile(s4).getClass())
+    println(FeatureResultCompiler.parseAndCompile(s5).getClass())
+    println(FeatureResultCompiler.parseAndCompile(s6).getClass())
   }
   
-  def compileValue(featureString : String) {
-    val value = FeatureParser.parseString(featureString)
-    val compiler = new Compiler
-    compiler.compile(value)
-  }
-
 }

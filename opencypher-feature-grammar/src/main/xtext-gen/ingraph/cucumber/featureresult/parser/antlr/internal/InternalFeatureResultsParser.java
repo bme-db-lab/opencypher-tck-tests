@@ -2002,7 +2002,7 @@ public class InternalFeatureResultsParser extends AbstractInternalAntlrParser {
                     					if (current==null) {
                     						current = createModelElementForParent(grammarAccess.getListRule());
                     					}
-                    					add(
+                    					set(
                     						current,
                     						"listContents",
                     						lv_listContents_2_0,

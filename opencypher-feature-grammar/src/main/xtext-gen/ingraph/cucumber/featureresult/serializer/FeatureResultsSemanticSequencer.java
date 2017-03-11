@@ -210,7 +210,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     PropertyValue returns List
 	 *
 	 * Constraint:
-	 *     listContents+=ListContents?
+	 *     listContents=ListContents?
 	 */
 	protected void sequence_List(ISerializationContext context, List semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

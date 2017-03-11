@@ -442,7 +442,7 @@ public interface FeatureResultsPackage extends EPackage
   int LIST = 13;
 
   /**
-   * The feature id for the '<em><b>List Contents</b></em>' containment reference list.
+   * The feature id for the '<em><b>List Contents</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -926,10 +926,10 @@ public interface FeatureResultsPackage extends EPackage
   EClass getList();
 
   /**
-   * Returns the meta object for the containment reference list '{@link ingraph.cucumber.featureresult.featureResults.List#getListContents <em>List Contents</em>}'.
+   * Returns the meta object for the containment reference '{@link ingraph.cucumber.featureresult.featureResults.List#getListContents <em>List Contents</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>List Contents</em>'.
+   * @return the meta object for the containment reference '<em>List Contents</em>'.
    * @see ingraph.cucumber.featureresult.featureResults.List#getListContents()
    * @see #getList()
    * @generated
@@ -1347,7 +1347,7 @@ public interface FeatureResultsPackage extends EPackage
     EClass LIST = eINSTANCE.getList();
 
     /**
-     * The meta object literal for the '<em><b>List Contents</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>List Contents</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

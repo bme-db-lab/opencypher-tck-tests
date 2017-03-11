@@ -7,17 +7,13 @@ import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.List;
 import ingraph.cucumber.featureresult.featureResults.ListContents;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,14 +31,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ListImpl extends FeatureValueImpl implements List
 {
   /**
-   * The cached value of the '{@link #getListContents() <em>List Contents</em>}' containment reference list.
+   * The cached value of the '{@link #getListContents() <em>List Contents</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getListContents()
    * @generated
    * @ordered
    */
-  protected EList<ListContents> listContents;
+  protected ListContents listContents;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,13 +66,47 @@ public class ListImpl extends FeatureValueImpl implements List
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ListContents> getListContents()
+  public ListContents getListContents()
   {
-    if (listContents == null)
-    {
-      listContents = new EObjectContainmentEList<ListContents>(ListContents.class, this, FeatureResultsPackage.LIST__LIST_CONTENTS);
-    }
     return listContents;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetListContents(ListContents newListContents, NotificationChain msgs)
+  {
+    ListContents oldListContents = listContents;
+    listContents = newListContents;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.LIST__LIST_CONTENTS, oldListContents, newListContents);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setListContents(ListContents newListContents)
+  {
+    if (newListContents != listContents)
+    {
+      NotificationChain msgs = null;
+      if (listContents != null)
+        msgs = ((InternalEObject)listContents).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.LIST__LIST_CONTENTS, null, msgs);
+      if (newListContents != null)
+        msgs = ((InternalEObject)newListContents).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.LIST__LIST_CONTENTS, null, msgs);
+      msgs = basicSetListContents(newListContents, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.LIST__LIST_CONTENTS, newListContents, newListContents));
   }
 
   /**
@@ -90,7 +120,7 @@ public class ListImpl extends FeatureValueImpl implements List
     switch (featureID)
     {
       case FeatureResultsPackage.LIST__LIST_CONTENTS:
-        return ((InternalEList<?>)getListContents()).basicRemove(otherEnd, msgs);
+        return basicSetListContents(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -116,15 +146,13 @@ public class ListImpl extends FeatureValueImpl implements List
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case FeatureResultsPackage.LIST__LIST_CONTENTS:
-        getListContents().clear();
-        getListContents().addAll((Collection<? extends ListContents>)newValue);
+        setListContents((ListContents)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,7 +169,7 @@ public class ListImpl extends FeatureValueImpl implements List
     switch (featureID)
     {
       case FeatureResultsPackage.LIST__LIST_CONTENTS:
-        getListContents().clear();
+        setListContents((ListContents)null);
         return;
     }
     super.eUnset(featureID);
@@ -158,7 +186,7 @@ public class ListImpl extends FeatureValueImpl implements List
     switch (featureID)
     {
       case FeatureResultsPackage.LIST__LIST_CONTENTS:
-        return listContents != null && !listContents.isEmpty();
+        return listContents != null;
     }
     return super.eIsSet(featureID);
   }

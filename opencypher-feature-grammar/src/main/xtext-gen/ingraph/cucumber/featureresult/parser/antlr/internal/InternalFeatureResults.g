@@ -771,7 +771,7 @@ ruleList returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getListRule());
 					}
-					add(
+					set(
 						$current,
 						"listContents",
 						lv_listContents_2_0,
