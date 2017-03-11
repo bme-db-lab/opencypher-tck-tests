@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RelationshipImpl extends ValueImpl implements Relationship
+public class RelationshipImpl extends FeatureValueImpl implements Relationship
 {
   /**
    * <!-- begin-user-doc -->

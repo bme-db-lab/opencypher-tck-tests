@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MapImpl extends ValueImpl implements Map
+public class MapImpl extends FeatureValueImpl implements Map
 {
   /**
    * <!-- begin-user-doc -->

@@ -15,7 +15,8 @@ generate featureResults "http://www.cucumber.ingraph/featureresult/FeatureResult
  *  | map
  *  ;
  */
-Value : Node
+// renamed 'Value' to 'FeatureValue' to disambiguate it from the Neo4j driver's org.neo4j.driver.v1.Value class
+FeatureValue : Node
 	    | Relationship
 	    | Path
 	    | Integer
@@ -87,7 +88,7 @@ FloatingPoint:
  *      | 'false'
  *      ;
  */
-Bool: {Bool} ('true' | 'false');
+Bool: {Bool} value=('true' | 'false');
 
 /*
  * nullValue : 'null' ;
@@ -107,7 +108,7 @@ ListContents : listContents+=ListElement (',' listContents+=ListElement)* ;
 /*
  * listElement : value ;
  */
-ListElement : Value ;
+ListElement : FeatureValue ;
 
 /*
  * map : propertyMap ;
@@ -147,7 +148,7 @@ PropertyKey :
  * propertyValue : value ;
  */
 PropertyValue :
-  Value
+  FeatureValue
 ;
 
 /*

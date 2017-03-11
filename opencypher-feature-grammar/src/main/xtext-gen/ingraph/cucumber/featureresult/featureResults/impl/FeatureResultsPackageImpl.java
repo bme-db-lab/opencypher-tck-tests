@@ -8,6 +8,7 @@ import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.FeatureValue;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -26,7 +27,6 @@ import ingraph.cucumber.featureresult.featureResults.PropertyMap;
 import ingraph.cucumber.featureresult.featureResults.PropertyValue;
 import ingraph.cucumber.featureresult.featureResults.Relationship;
 import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
-import ingraph.cucumber.featureresult.featureResults.Value;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -48,7 +48,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass valueEClass = null;
+  private EClass featureValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -272,9 +272,9 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValue()
+  public EClass getFeatureValue()
   {
-    return valueEClass;
+    return featureValueEClass;
   }
 
   /**
@@ -475,6 +475,16 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
   public EClass getBool()
   {
     return boolEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBool_Value()
+  {
+    return (EAttribute)boolEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -697,7 +707,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     isCreated = true;
 
     // Create classes and their features
-    valueEClass = createEClass(VALUE);
+    featureValueEClass = createEClass(FEATURE_VALUE);
 
     nodeEClass = createEClass(NODE);
 
@@ -729,6 +739,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     backwardsRelationshipEClass = createEClass(BACKWARDS_RELATIONSHIP);
 
     boolEClass = createEClass(BOOL);
+    createEAttribute(boolEClass, BOOL__VALUE);
 
     nullValueEClass = createEClass(NULL_VALUE);
 
@@ -790,26 +801,26 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    valueEClass.getESuperTypes().add(this.getListElement());
-    valueEClass.getESuperTypes().add(this.getPropertyValue());
-    nodeEClass.getESuperTypes().add(this.getValue());
+    featureValueEClass.getESuperTypes().add(this.getListElement());
+    featureValueEClass.getESuperTypes().add(this.getPropertyValue());
+    nodeEClass.getESuperTypes().add(this.getFeatureValue());
     nodeDescEClass.getESuperTypes().add(this.getNode());
-    relationshipEClass.getESuperTypes().add(this.getValue());
+    relationshipEClass.getESuperTypes().add(this.getFeatureValue());
     relationshipDescEClass.getESuperTypes().add(this.getRelationship());
-    pathEClass.getESuperTypes().add(this.getValue());
+    pathEClass.getESuperTypes().add(this.getFeatureValue());
     pathBodyEClass.getESuperTypes().add(this.getPath());
     forwardsRelationshipEClass.getESuperTypes().add(this.getDirectedRelationship());
     backwardsRelationshipEClass.getESuperTypes().add(this.getDirectedRelationship());
-    boolEClass.getESuperTypes().add(this.getValue());
-    nullValueEClass.getESuperTypes().add(this.getValue());
-    listEClass.getESuperTypes().add(this.getValue());
-    mapEClass.getESuperTypes().add(this.getValue());
+    boolEClass.getESuperTypes().add(this.getFeatureValue());
+    nullValueEClass.getESuperTypes().add(this.getFeatureValue());
+    listEClass.getESuperTypes().add(this.getFeatureValue());
+    mapEClass.getESuperTypes().add(this.getFeatureValue());
     propertyMapEClass.getESuperTypes().add(this.getMap());
-    integerEClass.getESuperTypes().add(this.getValue());
-    myStringEClass.getESuperTypes().add(this.getValue());
+    integerEClass.getESuperTypes().add(this.getFeatureValue());
+    myStringEClass.getESuperTypes().add(this.getFeatureValue());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(featureValueEClass, FeatureValue.class, "FeatureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -841,6 +852,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     initEClass(backwardsRelationshipEClass, BackwardsRelationship.class, "BackwardsRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(boolEClass, Bool.class, "Bool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBool_Value(), ecorePackage.getEString(), "value", null, 0, 1, Bool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nullValueEClass, NullValue.class, "NullValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

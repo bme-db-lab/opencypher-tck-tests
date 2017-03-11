@@ -24,13 +24,13 @@ public interface FeatureResultsFactory extends EFactory
   FeatureResultsFactory eINSTANCE = ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
+   * Returns a new object of class '<em>Feature Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
+   * @return a new object of class '<em>Feature Value</em>'.
    * @generated
    */
-  Value createValue();
+  FeatureValue createFeatureValue();
 
   /**
    * Returns a new object of class '<em>Node</em>'.

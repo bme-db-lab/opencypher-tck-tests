@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PathImpl extends ValueImpl implements Path
+public class PathImpl extends FeatureValueImpl implements Path
 {
   /**
    * <!-- begin-user-doc -->

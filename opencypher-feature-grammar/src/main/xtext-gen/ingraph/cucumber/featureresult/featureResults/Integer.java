@@ -20,7 +20,7 @@ package ingraph.cucumber.featureresult.featureResults;
  * @model
  * @generated
  */
-public interface Integer extends Value
+public interface Integer extends FeatureValue
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

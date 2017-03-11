@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NodeImpl extends ValueImpl implements Node
+public class NodeImpl extends FeatureValueImpl implements Node
 {
   /**
    * <!-- begin-user-doc -->

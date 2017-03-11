@@ -7,6 +7,7 @@ import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.FeatureValue;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -25,7 +26,6 @@ import ingraph.cucumber.featureresult.featureResults.PropertyMap;
 import ingraph.cucumber.featureresult.featureResults.PropertyValue;
 import ingraph.cucumber.featureresult.featureResults.Relationship;
 import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
-import ingraph.cucumber.featureresult.featureResults.Value;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -98,9 +98,9 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
     new FeatureResultsSwitch<Adapter>()
     {
       @Override
-      public Adapter caseValue(Value object)
+      public Adapter caseFeatureValue(FeatureValue object)
       {
-        return createValueAdapter();
+        return createFeatureValueAdapter();
       }
       @Override
       public Adapter caseNode(Node object)
@@ -235,16 +235,16 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.Value <em>Value</em>}'.
+   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.FeatureValue <em>Feature Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see ingraph.cucumber.featureresult.featureResults.Value
+   * @see ingraph.cucumber.featureresult.featureResults.FeatureValue
    * @generated
    */
-  public Adapter createValueAdapter()
+  public Adapter createFeatureValueAdapter()
   {
     return null;
   }

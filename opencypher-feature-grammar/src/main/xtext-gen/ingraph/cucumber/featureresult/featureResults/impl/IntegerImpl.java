@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class IntegerImpl extends ValueImpl implements ingraph.cucumber.featureresult.featureResults.Integer
+public class IntegerImpl extends FeatureValueImpl implements ingraph.cucumber.featureresult.featureResults.Integer
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

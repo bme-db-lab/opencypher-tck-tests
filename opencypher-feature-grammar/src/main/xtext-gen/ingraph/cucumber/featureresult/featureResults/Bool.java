@@ -9,11 +9,43 @@ package ingraph.cucumber.featureresult.featureResults;
  * A representation of the model object '<em><b>Bool</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ingraph.cucumber.featureresult.featureResults.Bool#getValue <em>Value</em>}</li>
+ * </ul>
  *
  * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getBool()
  * @model
  * @generated
  */
-public interface Bool extends Value
+public interface Bool extends FeatureValue
 {
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getBool_Value()
+   * @model
+   * @generated
+   */
+  String getValue();
+
+  /**
+   * Sets the value of the '{@link ingraph.cucumber.featureresult.featureResults.Bool#getValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(String value);
+
 } // Bool

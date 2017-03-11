@@ -14,6 +14,6 @@ package ingraph.cucumber.featureresult.featureResults;
  * @model
  * @generated
  */
-public interface Node extends Value
+public interface Node extends FeatureValue
 {
 } // Node

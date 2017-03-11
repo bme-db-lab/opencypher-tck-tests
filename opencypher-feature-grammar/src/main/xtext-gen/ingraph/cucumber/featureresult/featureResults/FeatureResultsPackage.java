@@ -77,23 +77,23 @@ public interface FeatureResultsPackage extends EPackage
   int LIST_ELEMENT_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ValueImpl <em>Value</em>}' class.
+   * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.FeatureValueImpl <em>Feature Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see ingraph.cucumber.featureresult.featureResults.impl.ValueImpl
-   * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getValue()
+   * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureValueImpl
+   * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getFeatureValue()
    * @generated
    */
-  int VALUE = 0;
+  int FEATURE_VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Value</em>' class.
+   * The number of structural features of the '<em>Feature Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VALUE_FEATURE_COUNT = LIST_ELEMENT_FEATURE_COUNT + 0;
+  int FEATURE_VALUE_FEATURE_COUNT = LIST_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.NodeImpl <em>Node</em>}' class.
@@ -112,7 +112,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NODE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int NODE_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.NodeDescImpl <em>Node Desc</em>}' class.
@@ -168,7 +168,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int RELATIONSHIP_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.RelationshipDescImpl <em>Relationship Desc</em>}' class.
@@ -224,7 +224,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATH_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int PATH_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.PathBodyImpl <em>Path Body</em>}' class.
@@ -395,13 +395,22 @@ public interface FeatureResultsPackage extends EPackage
   int BOOL = 11;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL__VALUE = FEATURE_VALUE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Bool</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BOOL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int BOOL_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.NullValueImpl <em>Null Value</em>}' class.
@@ -420,7 +429,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NULL_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int NULL_VALUE_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ListImpl <em>List</em>}' class.
@@ -439,7 +448,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST__LIST_CONTENTS = VALUE_FEATURE_COUNT + 0;
+  int LIST__LIST_CONTENTS = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>List</em>' class.
@@ -448,7 +457,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+  int LIST_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ListContentsImpl <em>List Contents</em>}' class.
@@ -495,7 +504,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAP_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+  int MAP_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.PropertyMapImpl <em>Property Map</em>}' class.
@@ -626,7 +635,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER__VALUE = VALUE_FEATURE_COUNT + 0;
+  int INTEGER__VALUE = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Integer</em>' class.
@@ -635,7 +644,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+  int INTEGER_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.MyStringImpl <em>My String</em>}' class.
@@ -654,7 +663,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_STRING__VALUE = VALUE_FEATURE_COUNT + 0;
+  int MY_STRING__VALUE = FEATURE_VALUE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>My String</em>' class.
@@ -663,18 +672,18 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_STRING_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+  int MY_STRING_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 1;
 
 
   /**
-   * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.Value <em>Value</em>}'.
+   * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.FeatureValue <em>Feature Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Value</em>'.
-   * @see ingraph.cucumber.featureresult.featureResults.Value
+   * @return the meta object for class '<em>Feature Value</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.FeatureValue
    * @generated
    */
-  EClass getValue();
+  EClass getFeatureValue();
 
   /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.Node <em>Node</em>}'.
@@ -884,6 +893,17 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    */
   EClass getBool();
+
+  /**
+   * Returns the meta object for the attribute '{@link ingraph.cucumber.featureresult.featureResults.Bool#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.Bool#getValue()
+   * @see #getBool()
+   * @generated
+   */
+  EAttribute getBool_Value();
 
   /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.NullValue <em>Null Value</em>}'.
@@ -1107,14 +1127,14 @@ public interface FeatureResultsPackage extends EPackage
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ValueImpl <em>Value</em>}' class.
+     * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.FeatureValueImpl <em>Feature Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see ingraph.cucumber.featureresult.featureResults.impl.ValueImpl
-     * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getValue()
+     * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureValueImpl
+     * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getFeatureValue()
      * @generated
      */
-    EClass VALUE = eINSTANCE.getValue();
+    EClass FEATURE_VALUE = eINSTANCE.getFeatureValue();
 
     /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.NodeImpl <em>Node</em>}' class.
@@ -1297,6 +1317,14 @@ public interface FeatureResultsPackage extends EPackage
      * @generated
      */
     EClass BOOL = eINSTANCE.getBool();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BOOL__VALUE = eINSTANCE.getBool_Value();
 
     /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.NullValueImpl <em>Null Value</em>}' class.

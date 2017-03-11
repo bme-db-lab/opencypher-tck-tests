@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class MyStringImpl extends ValueImpl implements MyString
+public class MyStringImpl extends FeatureValueImpl implements MyString
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

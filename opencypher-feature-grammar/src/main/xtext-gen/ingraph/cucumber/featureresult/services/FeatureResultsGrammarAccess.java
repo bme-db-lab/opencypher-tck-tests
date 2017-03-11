@@ -23,19 +23,18 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	
-	public class ValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Value");
+	public class FeatureValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.FeatureValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNodeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRelationshipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPathParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cIntegerParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cFloatingPointParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cMyStringParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cBoolParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cNullValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cListParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cMapParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cMyStringParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cBoolParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cNullValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cListParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cMapParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		/// *
 		// * value : node
@@ -49,12 +48,13 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		// *  | list
 		// *  | map
 		// *  ;
-		// * / Value:
+		// * / // renamed 'Value' to 'FeatureValue' to disambiguate it from the Neo4j driver's org.neo4j.driver.v1.Value class
+		//FeatureValue:
 		//	Node
 		//	| Relationship
 		//	| Path
 		//	| Integer
-		//	| FloatingPoint
+		//	//| FloatingPoint
 		//	| MyString
 		//	| Bool
 		//	| NullValue
@@ -62,7 +62,8 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//	| Map;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Node | Relationship | Path | Integer | FloatingPoint | MyString | Bool | NullValue | List | Map
+		//Node | Relationship | Path | Integer //| FloatingPoint
+		//| MyString | Bool | NullValue | List | Map
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Node
@@ -77,23 +78,20 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//Integer
 		public RuleCall getIntegerParserRuleCall_3() { return cIntegerParserRuleCall_3; }
 		
-		//FloatingPoint
-		public RuleCall getFloatingPointParserRuleCall_4() { return cFloatingPointParserRuleCall_4; }
-		
 		//MyString
-		public RuleCall getMyStringParserRuleCall_5() { return cMyStringParserRuleCall_5; }
+		public RuleCall getMyStringParserRuleCall_4() { return cMyStringParserRuleCall_4; }
 		
 		//Bool
-		public RuleCall getBoolParserRuleCall_6() { return cBoolParserRuleCall_6; }
+		public RuleCall getBoolParserRuleCall_5() { return cBoolParserRuleCall_5; }
 		
 		//NullValue
-		public RuleCall getNullValueParserRuleCall_7() { return cNullValueParserRuleCall_7; }
+		public RuleCall getNullValueParserRuleCall_6() { return cNullValueParserRuleCall_6; }
 		
 		//List
-		public RuleCall getListParserRuleCall_8() { return cListParserRuleCall_8; }
+		public RuleCall getListParserRuleCall_7() { return cListParserRuleCall_7; }
 		
 		//Map
-		public RuleCall getMapParserRuleCall_9() { return cMapParserRuleCall_9; }
+		public RuleCall getMapParserRuleCall_8() { return cMapParserRuleCall_8; }
 	}
 	public class NodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Node");
@@ -400,32 +398,36 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Bool");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBoolAction_0 = (Action)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cTrueKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cFalseKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cValueAlternatives_1_0 = (Alternatives)cValueAssignment_1.eContents().get(0);
+		private final Keyword cValueTrueKeyword_1_0_0 = (Keyword)cValueAlternatives_1_0.eContents().get(0);
+		private final Keyword cValueFalseKeyword_1_0_1 = (Keyword)cValueAlternatives_1_0.eContents().get(1);
 		
 		/// *
 		// * bool : 'true'
 		// *      | 'false'
 		// *      ;
 		// * / Bool:
-		//	{Bool} ('true' | 'false');
+		//	{Bool} value=('true' | 'false');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Bool} ('true' | 'false')
+		//{Bool} value=('true' | 'false')
 		public Group getGroup() { return cGroup; }
 		
 		//{Bool}
 		public Action getBoolAction_0() { return cBoolAction_0; }
 		
+		//value=('true' | 'false')
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
 		//('true' | 'false')
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		public Alternatives getValueAlternatives_1_0() { return cValueAlternatives_1_0; }
 		
 		//'true'
-		public Keyword getTrueKeyword_1_0() { return cTrueKeyword_1_0; }
+		public Keyword getValueTrueKeyword_1_0_0() { return cValueTrueKeyword_1_0_0; }
 		
 		//'false'
-		public Keyword getFalseKeyword_1_1() { return cFalseKeyword_1_1; }
+		public Keyword getValueFalseKeyword_1_0_1() { return cValueFalseKeyword_1_0_1; }
 	}
 	public class NullValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.NullValue");
@@ -520,16 +522,16 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class ListElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.ListElement");
-		private final RuleCall cValueParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final RuleCall cFeatureValueParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		/// *
 		// * listElement : value ;
 		// * / ListElement:
-		//	Value;
+		//	FeatureValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Value
-		public RuleCall getValueParserRuleCall() { return cValueParserRuleCall; }
+		//FeatureValue
+		public RuleCall getFeatureValueParserRuleCall() { return cFeatureValueParserRuleCall; }
 	}
 	public class MapElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Map");
@@ -662,16 +664,16 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class PropertyValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.PropertyValue");
-		private final RuleCall cValueParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final RuleCall cFeatureValueParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		/// *
 		// * propertyValue : value ;
 		// * / PropertyValue:
-		//	Value;
+		//	FeatureValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Value
-		public RuleCall getValueParserRuleCall() { return cValueParserRuleCall; }
+		//FeatureValue
+		public RuleCall getFeatureValueParserRuleCall() { return cFeatureValueParserRuleCall; }
 	}
 	public class RelationshipTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.RelationshipType");
@@ -853,7 +855,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private final ValueElements pValue;
+	private final FeatureValueElements pFeatureValue;
 	private final NodeElements pNode;
 	private final NodeDescElements pNodeDesc;
 	private final RelationshipElements pRelationship;
@@ -899,7 +901,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
-		this.pValue = new ValueElements();
+		this.pFeatureValue = new FeatureValueElements();
 		this.pNode = new NodeElements();
 		this.pNodeDesc = new NodeDescElements();
 		this.pRelationship = new RelationshipElements();
@@ -976,23 +978,24 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	// *  | list
 	// *  | map
 	// *  ;
-	// * / Value:
+	// * / // renamed 'Value' to 'FeatureValue' to disambiguate it from the Neo4j driver's org.neo4j.driver.v1.Value class
+	//FeatureValue:
 	//	Node
 	//	| Relationship
 	//	| Path
 	//	| Integer
-	//	| FloatingPoint
+	//	//| FloatingPoint
 	//	| MyString
 	//	| Bool
 	//	| NullValue
 	//	| List
 	//	| Map;
-	public ValueElements getValueAccess() {
-		return pValue;
+	public FeatureValueElements getFeatureValueAccess() {
+		return pFeatureValue;
 	}
 	
-	public ParserRule getValueRule() {
-		return getValueAccess().getRule();
+	public ParserRule getFeatureValueRule() {
+		return getFeatureValueAccess().getRule();
 	}
 	
 	/// *
@@ -1129,7 +1132,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	// *      | 'false'
 	// *      ;
 	// * / Bool:
-	//	{Bool} ('true' | 'false');
+	//	{Bool} value=('true' | 'false');
 	public BoolElements getBoolAccess() {
 		return pBool;
 	}
@@ -1177,7 +1180,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * listElement : value ;
 	// * / ListElement:
-	//	Value;
+	//	FeatureValue;
 	public ListElementElements getListElementAccess() {
 		return pListElement;
 	}
@@ -1249,7 +1252,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * propertyValue : value ;
 	// * / PropertyValue:
-	//	Value;
+	//	FeatureValue;
 	public PropertyValueElements getPropertyValueAccess() {
 		return pPropertyValue;
 	}

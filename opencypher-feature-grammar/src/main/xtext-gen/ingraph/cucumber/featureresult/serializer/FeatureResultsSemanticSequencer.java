@@ -116,13 +116,13 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns Bool
+	 *     FeatureValue returns Bool
 	 *     Bool returns Bool
 	 *     ListElement returns Bool
 	 *     PropertyValue returns Bool
 	 *
 	 * Constraint:
-	 *     {Bool}
+	 *     (value='true' | value='false')
 	 */
 	protected void sequence_Bool(ISerializationContext context, Bool semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -150,7 +150,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns Integer
+	 *     FeatureValue returns Integer
 	 *     ListElement returns Integer
 	 *     PropertyValue returns Integer
 	 *     Integer returns Integer
@@ -204,7 +204,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns List
+	 *     FeatureValue returns List
 	 *     List returns List
 	 *     ListElement returns List
 	 *     PropertyValue returns List
@@ -231,7 +231,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns MyString
+	 *     FeatureValue returns MyString
 	 *     ListElement returns MyString
 	 *     PropertyValue returns MyString
 	 *     MyString returns MyString
@@ -252,7 +252,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns NodeDesc
+	 *     FeatureValue returns NodeDesc
 	 *     Node returns NodeDesc
 	 *     NodeDesc returns NodeDesc
 	 *     ListElement returns NodeDesc
@@ -268,7 +268,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns NullValue
+	 *     FeatureValue returns NullValue
 	 *     NullValue returns NullValue
 	 *     ListElement returns NullValue
 	 *     PropertyValue returns NullValue
@@ -283,7 +283,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns PathBody
+	 *     FeatureValue returns PathBody
 	 *     Path returns PathBody
 	 *     PathBody returns PathBody
 	 *     ListElement returns PathBody
@@ -320,7 +320,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns PropertyMap
+	 *     FeatureValue returns PropertyMap
 	 *     ListElement returns PropertyMap
 	 *     Map returns PropertyMap
 	 *     PropertyMap returns PropertyMap
@@ -336,7 +336,7 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
-	 *     Value returns RelationshipDesc
+	 *     FeatureValue returns RelationshipDesc
 	 *     Relationship returns RelationshipDesc
 	 *     RelationshipDesc returns RelationshipDesc
 	 *     ListElement returns RelationshipDesc

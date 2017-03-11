@@ -14,6 +14,6 @@ package ingraph.cucumber.featureresult.featureResults;
  * @model
  * @generated
  */
-public interface NullValue extends Value
+public interface NullValue extends FeatureValue
 {
 } // NullValue

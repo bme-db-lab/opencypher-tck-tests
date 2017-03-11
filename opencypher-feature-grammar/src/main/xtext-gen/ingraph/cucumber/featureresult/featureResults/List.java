@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface List extends Value
+public interface List extends FeatureValue
 {
   /**
    * Returns the value of the '<em><b>List Contents</b></em>' containment reference list.

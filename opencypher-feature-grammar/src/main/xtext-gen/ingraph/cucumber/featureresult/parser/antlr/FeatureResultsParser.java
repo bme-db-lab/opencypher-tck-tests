@@ -27,7 +27,7 @@ public class FeatureResultsParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Value";
+		return "FeatureValue";
 	}
 
 	public FeatureResultsGrammarAccess getGrammarAccess() {

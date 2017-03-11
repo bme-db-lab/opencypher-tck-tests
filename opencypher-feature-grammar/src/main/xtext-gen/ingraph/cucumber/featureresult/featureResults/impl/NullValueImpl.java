@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class NullValueImpl extends ValueImpl implements NullValue
+public class NullValueImpl extends FeatureValueImpl implements NullValue
 {
   /**
    * <!-- begin-user-doc -->

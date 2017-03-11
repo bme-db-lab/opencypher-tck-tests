@@ -4,25 +4,25 @@
 package ingraph.cucumber.featureresult.featureResults.impl;
 
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
-import ingraph.cucumber.featureresult.featureResults.Value;
+import ingraph.cucumber.featureresult.featureResults.FeatureValue;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value</b></em>'.
+ * An implementation of the model object '<em><b>Feature Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ValueImpl extends ListElementImpl implements Value
+public class FeatureValueImpl extends ListElementImpl implements FeatureValue
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ValueImpl()
+  protected FeatureValueImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class ValueImpl extends ListElementImpl implements Value
   @Override
   protected EClass eStaticClass()
   {
-    return FeatureResultsPackage.Literals.VALUE;
+    return FeatureResultsPackage.Literals.FEATURE_VALUE;
   }
 
-} //ValueImpl
+} //FeatureValueImpl

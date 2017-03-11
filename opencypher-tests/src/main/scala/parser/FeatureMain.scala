@@ -8,8 +8,9 @@ object FeatureMain {
     val s1 = "<({weight: 3})-[:REL {something: 'ab'}]->(:Label2:Label3 {name: 'hello'})>"
     val s2 = "2"
     val s3 = "[(:Label2:Label3 {name: 'hello'})]"
+    val s4 = "['a', ['b']]"
     
-    compileValue(s3)
+    compileValue(s4)
   }
   
   def compileValue(featureString : String) {

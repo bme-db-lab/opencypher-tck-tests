@@ -7,6 +7,7 @@ import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.FeatureValue;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -25,7 +26,6 @@ import ingraph.cucumber.featureresult.featureResults.PropertyMap;
 import ingraph.cucumber.featureresult.featureResults.PropertyValue;
 import ingraph.cucumber.featureresult.featureResults.Relationship;
 import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
-import ingraph.cucumber.featureresult.featureResults.Value;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -95,12 +95,12 @@ public class FeatureResultsSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case FeatureResultsPackage.VALUE:
+      case FeatureResultsPackage.FEATURE_VALUE:
       {
-        Value value = (Value)theEObject;
-        T result = caseValue(value);
-        if (result == null) result = caseListElement(value);
-        if (result == null) result = casePropertyValue(value);
+        FeatureValue featureValue = (FeatureValue)theEObject;
+        T result = caseFeatureValue(featureValue);
+        if (result == null) result = caseListElement(featureValue);
+        if (result == null) result = casePropertyValue(featureValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -108,7 +108,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         Node node = (Node)theEObject;
         T result = caseNode(node);
-        if (result == null) result = caseValue(node);
+        if (result == null) result = caseFeatureValue(node);
         if (result == null) result = caseListElement(node);
         if (result == null) result = casePropertyValue(node);
         if (result == null) result = defaultCase(theEObject);
@@ -119,7 +119,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         NodeDesc nodeDesc = (NodeDesc)theEObject;
         T result = caseNodeDesc(nodeDesc);
         if (result == null) result = caseNode(nodeDesc);
-        if (result == null) result = caseValue(nodeDesc);
+        if (result == null) result = caseFeatureValue(nodeDesc);
         if (result == null) result = caseListElement(nodeDesc);
         if (result == null) result = casePropertyValue(nodeDesc);
         if (result == null) result = defaultCase(theEObject);
@@ -129,7 +129,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         Relationship relationship = (Relationship)theEObject;
         T result = caseRelationship(relationship);
-        if (result == null) result = caseValue(relationship);
+        if (result == null) result = caseFeatureValue(relationship);
         if (result == null) result = caseListElement(relationship);
         if (result == null) result = casePropertyValue(relationship);
         if (result == null) result = defaultCase(theEObject);
@@ -140,7 +140,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         RelationshipDesc relationshipDesc = (RelationshipDesc)theEObject;
         T result = caseRelationshipDesc(relationshipDesc);
         if (result == null) result = caseRelationship(relationshipDesc);
-        if (result == null) result = caseValue(relationshipDesc);
+        if (result == null) result = caseFeatureValue(relationshipDesc);
         if (result == null) result = caseListElement(relationshipDesc);
         if (result == null) result = casePropertyValue(relationshipDesc);
         if (result == null) result = defaultCase(theEObject);
@@ -150,7 +150,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         Path path = (Path)theEObject;
         T result = casePath(path);
-        if (result == null) result = caseValue(path);
+        if (result == null) result = caseFeatureValue(path);
         if (result == null) result = caseListElement(path);
         if (result == null) result = casePropertyValue(path);
         if (result == null) result = defaultCase(theEObject);
@@ -161,7 +161,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         PathBody pathBody = (PathBody)theEObject;
         T result = casePathBody(pathBody);
         if (result == null) result = casePath(pathBody);
-        if (result == null) result = caseValue(pathBody);
+        if (result == null) result = caseFeatureValue(pathBody);
         if (result == null) result = caseListElement(pathBody);
         if (result == null) result = casePropertyValue(pathBody);
         if (result == null) result = defaultCase(theEObject);
@@ -201,7 +201,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         Bool bool = (Bool)theEObject;
         T result = caseBool(bool);
-        if (result == null) result = caseValue(bool);
+        if (result == null) result = caseFeatureValue(bool);
         if (result == null) result = caseListElement(bool);
         if (result == null) result = casePropertyValue(bool);
         if (result == null) result = defaultCase(theEObject);
@@ -211,7 +211,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         NullValue nullValue = (NullValue)theEObject;
         T result = caseNullValue(nullValue);
-        if (result == null) result = caseValue(nullValue);
+        if (result == null) result = caseFeatureValue(nullValue);
         if (result == null) result = caseListElement(nullValue);
         if (result == null) result = casePropertyValue(nullValue);
         if (result == null) result = defaultCase(theEObject);
@@ -221,7 +221,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         List list = (List)theEObject;
         T result = caseList(list);
-        if (result == null) result = caseValue(list);
+        if (result == null) result = caseFeatureValue(list);
         if (result == null) result = caseListElement(list);
         if (result == null) result = casePropertyValue(list);
         if (result == null) result = defaultCase(theEObject);
@@ -245,7 +245,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         Map map = (Map)theEObject;
         T result = caseMap(map);
-        if (result == null) result = caseValue(map);
+        if (result == null) result = caseFeatureValue(map);
         if (result == null) result = caseListElement(map);
         if (result == null) result = casePropertyValue(map);
         if (result == null) result = defaultCase(theEObject);
@@ -256,7 +256,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         PropertyMap propertyMap = (PropertyMap)theEObject;
         T result = casePropertyMap(propertyMap);
         if (result == null) result = caseMap(propertyMap);
-        if (result == null) result = caseValue(propertyMap);
+        if (result == null) result = caseFeatureValue(propertyMap);
         if (result == null) result = caseListElement(propertyMap);
         if (result == null) result = casePropertyValue(propertyMap);
         if (result == null) result = defaultCase(theEObject);
@@ -287,7 +287,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         ingraph.cucumber.featureresult.featureResults.Integer integer = (ingraph.cucumber.featureresult.featureResults.Integer)theEObject;
         T result = caseInteger(integer);
-        if (result == null) result = caseValue(integer);
+        if (result == null) result = caseFeatureValue(integer);
         if (result == null) result = caseListElement(integer);
         if (result == null) result = casePropertyValue(integer);
         if (result == null) result = defaultCase(theEObject);
@@ -297,7 +297,7 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         MyString myString = (MyString)theEObject;
         T result = caseMyString(myString);
-        if (result == null) result = caseValue(myString);
+        if (result == null) result = caseFeatureValue(myString);
         if (result == null) result = caseListElement(myString);
         if (result == null) result = casePropertyValue(myString);
         if (result == null) result = defaultCase(theEObject);
@@ -308,17 +308,17 @@ public class FeatureResultsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Feature Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Feature Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValue(Value object)
+  public T caseFeatureValue(FeatureValue object)
   {
     return null;
   }

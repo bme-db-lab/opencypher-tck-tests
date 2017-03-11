@@ -8,6 +8,7 @@ import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.FeatureValue;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.List;
@@ -26,7 +27,6 @@ import ingraph.cucumber.featureresult.featureResults.PropertyMap;
 import ingraph.cucumber.featureresult.featureResults.PropertyValue;
 import ingraph.cucumber.featureresult.featureResults.Relationship;
 import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
-import ingraph.cucumber.featureresult.featureResults.Value;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -88,7 +88,7 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
   {
     switch (eClass.getClassifierID())
     {
-      case FeatureResultsPackage.VALUE: return createValue();
+      case FeatureResultsPackage.FEATURE_VALUE: return createFeatureValue();
       case FeatureResultsPackage.NODE: return createNode();
       case FeatureResultsPackage.NODE_DESC: return createNodeDesc();
       case FeatureResultsPackage.RELATIONSHIP: return createRelationship();
@@ -121,10 +121,10 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value createValue()
+  public FeatureValue createFeatureValue()
   {
-    ValueImpl value = new ValueImpl();
-    return value;
+    FeatureValueImpl featureValue = new FeatureValueImpl();
+    return featureValue;
   }
 
   /**
