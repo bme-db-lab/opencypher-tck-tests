@@ -1,0 +1,265 @@
+grammar ingraph.cucumber.featureresult.FeatureResults with org.eclipse.xtext.common.Terminals hidden(WS)
+
+generate featureResults "http://www.cucumber.ingraph/featureresult/FeatureResults"
+
+/*
+ * value : node
+ *  | relationship
+ *  | path
+ *  | integer
+ *  | floatingPoint
+ *  | string
+ *  | bool
+ *  | nullValue
+ *  | list
+ *  | map
+ *  ;
+ */
+Value : Node
+	    | Relationship
+	    | Path
+	    | Integer
+	    | FloatingPoint
+	    | MyString
+	    | Bool
+	    | NullValue
+	    | List
+	    | Map
+	    ;
+
+/*
+ * node : nodeDesc ;
+ */
+Node: NodeDesc;
+
+/*
+ * nodeDesc : '(' (label)* WS? (propertyMap)? ')' ;
+ */
+NodeDesc : {NodeDesc} '(' labels+=Label* propertyMap=PropertyMap? ')' ;
+
+/*
+ * relationship : relationshipDesc ;
+ */
+Relationship: RelationshipDesc;
+
+/*
+ * relationshipDesc : '[' relationshipType (WS propertyMap)* ']' ;
+ */
+RelationshipDesc : {RelationshipDesc} '[' type=RelationshipType propertyMap=PropertyMap? ']' ;
+
+/*
+ * path : '<' pathBody '>' ;
+ */
+Path: '<' PathBody '>';
+
+/*
+ * pathBody : nodeDesc (pathLink)* ;
+ */
+PathBody : node=NodeDesc (pathLinks+=PathLink)* ;
+
+/*
+ * pathLink : (forwardsRelationship | backwardsRelationship) nodeDesc ;
+ */
+PathLink : relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc ;
+
+/*
+ * forwardsRelationship : '-' relationshipDesc '->' ;
+ */
+ForwardsRelationship : '-' RelationshipDesc '->' ;
+
+/*
+ * backwardsRelationship : '<-' relationshipDesc '-' ;
+ */
+BackwardsRelationship : '<-' RelationshipDesc '-' ;
+
+/*
+ * integer : INTEGER_LITERAL ;
+ */
+Integer: {Integer} INT;
+
+
+FloatingPoint: {FloatingPoint}
+	( INT // TODO
+	| INFINITY
+	)
+;
+
+/*
+ * bool : 'true'
+ *      | 'false'
+ *      ;
+ */
+Bool: {Bool} ('true' | 'false');
+
+/*
+ * nullValue : 'null' ;
+ */
+NullValue: {NullValue} 'null';
+
+/*
+ * list : '[' (listContents)? ']' ;
+ */
+List: {List} '[' listContents+=ListContents? ']' ;
+
+/*
+ * listContents : listElement (', ' listElement)* ;
+ */
+ListContents : listContents+=ListElement (',' listContents+=ListElement)* ;
+
+/*
+ * listElement : value ;
+ */
+ListElement : Value ;
+
+/*
+ * map : propertyMap ;
+ */
+Map :
+	PropertyMap
+;
+
+/*
+ * propertyMap : '{' (mapContents)? '}' ;
+ */
+PropertyMap :
+	{PropertyMap} '{' mapContents=MapContents? '}' ;
+
+/*
+ * mapContents : keyValuePair (', ' keyValuePair)* ;
+ */
+MapContents :
+	keyValuePairs+=KeyValuePair (',' keyValuePairs+=KeyValuePair)*
+;
+
+/*
+ * keyValuePair: propertyKey ':' WS? propertyValue ;
+ */
+KeyValuePair:
+	PropertyKey ':' PropertyValue
+;
+
+/*
+ * propertyKey : SYMBOLIC_NAME ;
+ */
+PropertyKey :
+	SYMBOLIC_NAME
+;
+
+/*
+ * propertyValue : value ;
+ */
+PropertyValue :
+	Value
+;
+
+/*
+ * relationshipType : ':' relationshipTypeName ;
+ */
+RelationshipType :
+	':' RelationshipTypeName ;
+
+/*
+ * relationshipTypeName : SYMBOLIC_NAME ;
+ */
+RelationshipTypeName :
+	SYMBOLIC_NAME
+;
+
+/*
+ * label : ':' labelName ;
+ */
+Label:
+	':' LabelName;
+
+/*
+ * labelName : SYMBOLIC_NAME ;
+ */
+LabelName :
+	SYMBOLIC_NAME
+;
+
+/*
+ * INTEGER_LITERAL : ('-')? DECIMAL_LITERAL ;
+ *
+ * DECIMAL_LITERAL : '0'
+ *                 | NONZERODIGIT DIGIT*
+ *                 ;
+ *
+ * DIGIT : '0'
+ *       | NONZERODIGIT
+ *       ;
+ *
+ * NONZERODIGIT : [1-9] ;
+ */
+terminal INTEGER_LITERAL:
+	INT
+;
+
+/*
+ * INFINITY : '-'? 'Inf' ;
+ */
+terminal INFINITY : '-'? 'Inf';
+
+/*
+ * FLOAT_LITERAL : '-'? FLOAT_REPR ;
+ *
+ * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+ *            | '.' DIGIT+ EXPONENTPART?
+ *            | DIGIT EXPONENTPART
+ *            | DIGIT+ EXPONENTPART?
+ *            ;
+ */
+
+/*
+ * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
+ */
+EXPONENTPART :  ('E' | 'e') ('+' | '-')? INT ;
+
+//SYMBOLIC_NAME : IDENTIFIER ;
+SYMBOLIC_NAME :
+	IDENTIFIER
+;
+
+/*
+ * WS : ' ' ;
+ */
+// omitted from Xtext grammar
+
+/*
+ * IDENTIFIER : [a-zA-Z0-9$_]+ ;
+ */
+terminal IDENTIFIER:
+	 ID;
+
+// The string rule should ideally not include the apostrophes in the parsed value,
+// but a lexer rule may not match the empty string, so I haven't found a way
+// to define that quite well yet.
+
+/*
+ * string : STRING_LITERAL ;
+ */
+MyString: {MyString} STRING_LITERAL;
+
+/*
+ * STRING_LITERAL : '\'' STRING_BODY* '\'' ;
+ */
+terminal STRING_LITERAL:
+	'\'' STRING_BODY* '\'';
+
+/*
+ * STRING_BODY : '\u0000' .. '\u0026' // \u0027 is the string delimiter character (')
+ *             | '\u0028' .. '\u01FF'
+ *             | ESCAPED_APOSTROPHE
+ *             ;
+ */
+terminal STRING_BODY:
+	  '\u0000' .. '\u0026' // \u0027 is the string delimiter character (')
+  | '\u0028' .. '\u01FF'
+  | ESCAPED_APOSTROPHE
+  ;
+
+/*
+ * ESCAPED_APOSTROPHE : '\\\'' ;
+ */
+terminal ESCAPED_APOSTROPHE:
+	'\\\'';

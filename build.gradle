@@ -4,6 +4,8 @@ allprojects {
 }
 
 subprojects {
+  configurations.all { exclude group: 'asm' }
+
   repositories {
     mavenLocal()
     jcenter()
