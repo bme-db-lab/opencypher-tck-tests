@@ -1,8 +1,8 @@
-package parser
+package compiler
 
 import ingraph.cucumber.featureresult.parser.FeatureParser
 
-object FeatureMain {
+object FeatureResultCompilerMain {
 
   def main(args: Array[String]): Unit = {
     val s1 = "<({weight: 3})-[:REL {something: 'ab'}]->(:Label2:Label3 {name: 'hello'})>"
