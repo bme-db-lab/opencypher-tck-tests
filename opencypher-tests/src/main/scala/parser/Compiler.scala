@@ -14,6 +14,7 @@ class Compiler {
       case x: PathBody => c(x)
       case x: NodeDesc => c(x)
       case x: RelationshipDesc => c(x)
+      case x: DirectedRelationshipDesc => c(x)
     }
   }
 
@@ -21,7 +22,7 @@ class Compiler {
     compile(pathBody.getNode)
     
     for (pathLink <- pathBody.getPathLinks) {
-//      compile(pathLink.getRelationship)
+      compile(pathLink.getRelationship)
       compile(pathLink.getNode)
     }
   }

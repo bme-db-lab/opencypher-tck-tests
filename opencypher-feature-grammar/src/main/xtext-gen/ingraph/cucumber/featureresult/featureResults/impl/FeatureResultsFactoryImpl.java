@@ -5,6 +5,7 @@ package ingraph.cucumber.featureresult.featureResults.impl;
 
 import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
@@ -96,6 +97,7 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
       case FeatureResultsPackage.PATH: return createPath();
       case FeatureResultsPackage.PATH_BODY: return createPathBody();
       case FeatureResultsPackage.PATH_LINK: return createPathLink();
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP: return createDirectedRelationship();
       case FeatureResultsPackage.FORWARDS_RELATIONSHIP: return createForwardsRelationship();
       case FeatureResultsPackage.BACKWARDS_RELATIONSHIP: return createBackwardsRelationship();
       case FeatureResultsPackage.INTEGER: return createInteger();
@@ -202,6 +204,17 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
   {
     PathLinkImpl pathLink = new PathLinkImpl();
     return pathLink;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DirectedRelationship createDirectedRelationship()
+  {
+    DirectedRelationshipImpl directedRelationship = new DirectedRelationshipImpl();
+    return directedRelationship;
   }
 
   /**

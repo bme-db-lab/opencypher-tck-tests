@@ -33,12 +33,12 @@ public interface PathLink extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Relationship</em>' containment reference.
-   * @see #setRelationship(EObject)
+   * @see #setRelationship(DirectedRelationship)
    * @see ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage#getPathLink_Relationship()
    * @model containment="true"
    * @generated
    */
-  EObject getRelationship();
+  DirectedRelationship getRelationship();
 
   /**
    * Sets the value of the '{@link ingraph.cucumber.featureresult.featureResults.PathLink#getRelationship <em>Relationship</em>}' containment reference.
@@ -48,7 +48,7 @@ public interface PathLink extends EObject
    * @see #getRelationship()
    * @generated
    */
-  void setRelationship(EObject value);
+  void setRelationship(DirectedRelationship value);
 
   /**
    * Returns the value of the '<em><b>Node</b></em>' containment reference.

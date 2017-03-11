@@ -21,7 +21,7 @@ package ingraph.cucumber.featureresult.featureResults;
  * @model
  * @generated
  */
-public interface RelationshipDesc extends Relationship, ForwardsRelationship, BackwardsRelationship
+public interface RelationshipDesc extends Relationship
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

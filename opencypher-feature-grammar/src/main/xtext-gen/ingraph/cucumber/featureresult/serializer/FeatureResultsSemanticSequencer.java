@@ -4,9 +4,12 @@
 package ingraph.cucumber.featureresult.serializer;
 
 import com.google.inject.Inject;
+import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
+import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.List;
 import ingraph.cucumber.featureresult.featureResults.ListContents;
 import ingraph.cucumber.featureresult.featureResults.MapContents;
@@ -25,7 +28,9 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -41,11 +46,20 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == FeatureResultsPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case FeatureResultsPackage.BACKWARDS_RELATIONSHIP:
+				sequence_BackwardsRelationship(context, (BackwardsRelationship) semanticObject); 
+				return; 
 			case FeatureResultsPackage.BOOL:
 				sequence_Bool(context, (Bool) semanticObject); 
 				return; 
+			case FeatureResultsPackage.DIRECTED_RELATIONSHIP:
+				sequence_DirectedRelationship(context, (DirectedRelationship) semanticObject); 
+				return; 
 			case FeatureResultsPackage.FLOATING_POINT:
 				sequence_FloatingPoint(context, (FloatingPoint) semanticObject); 
+				return; 
+			case FeatureResultsPackage.FORWARDS_RELATIONSHIP:
+				sequence_ForwardsRelationship(context, (ForwardsRelationship) semanticObject); 
 				return; 
 			case FeatureResultsPackage.INTEGER:
 				sequence_Integer(context, (ingraph.cucumber.featureresult.featureResults.Integer) semanticObject); 
@@ -87,6 +101,24 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Contexts:
+	 *     BackwardsRelationship returns BackwardsRelationship
+	 *
+	 * Constraint:
+	 *     relationshipDesc=RelationshipDesc
+	 */
+	protected void sequence_BackwardsRelationship(ISerializationContext context, BackwardsRelationship semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FeatureResultsPackage.Literals.BACKWARDS_RELATIONSHIP__RELATIONSHIP_DESC) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeatureResultsPackage.Literals.BACKWARDS_RELATIONSHIP__RELATIONSHIP_DESC));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBackwardsRelationshipAccess().getRelationshipDescRelationshipDescParserRuleCall_2_0(), semanticObject.getRelationshipDesc());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Value returns Bool
 	 *     Bool returns Bool
 	 *     ListElement returns Bool
@@ -97,6 +129,18 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     {Bool}
 	 */
 	protected void sequence_Bool(ISerializationContext context, Bool semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DirectedRelationship returns DirectedRelationship
+	 *
+	 * Constraint:
+	 *     (relationship=ForwardsRelationship | relationship=BackwardsRelationship)
+	 */
+	protected void sequence_DirectedRelationship(ISerializationContext context, DirectedRelationship semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -114,6 +158,24 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 */
 	protected void sequence_FloatingPoint(ISerializationContext context, FloatingPoint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ForwardsRelationship returns ForwardsRelationship
+	 *
+	 * Constraint:
+	 *     relationshipDesc=RelationshipDesc
+	 */
+	protected void sequence_ForwardsRelationship(ISerializationContext context, ForwardsRelationship semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FeatureResultsPackage.Literals.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeatureResultsPackage.Literals.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getForwardsRelationshipAccess().getRelationshipDescRelationshipDescParserRuleCall_2_0(), semanticObject.getRelationshipDesc());
+		feeder.finish();
 	}
 	
 	
@@ -244,10 +306,19 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     PathLink returns PathLink
 	 *
 	 * Constraint:
-	 *     ((relationship=ForwardsRelationship | relationship=BackwardsRelationship) node=NodeDesc)
+	 *     (relationship=DirectedRelationship node=NodeDesc)
 	 */
 	protected void sequence_PathLink(ISerializationContext context, PathLink semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FeatureResultsPackage.Literals.PATH_LINK__RELATIONSHIP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeatureResultsPackage.Literals.PATH_LINK__RELATIONSHIP));
+			if (transientValues.isValueTransient(semanticObject, FeatureResultsPackage.Literals.PATH_LINK__NODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FeatureResultsPackage.Literals.PATH_LINK__NODE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPathLinkAccess().getRelationshipDirectedRelationshipParserRuleCall_1_0(), semanticObject.getRelationship());
+		feeder.accept(grammarAccess.getPathLinkAccess().getNodeNodeDescParserRuleCall_2_0(), semanticObject.getNode());
+		feeder.finish();
 	}
 	
 	
@@ -273,8 +344,6 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     Value returns RelationshipDesc
 	 *     Relationship returns RelationshipDesc
 	 *     RelationshipDesc returns RelationshipDesc
-	 *     ForwardsRelationship returns RelationshipDesc
-	 *     BackwardsRelationship returns RelationshipDesc
 	 *     ListElement returns RelationshipDesc
 	 *     KeyValuePair returns RelationshipDesc
 	 *     PropertyValue returns RelationshipDesc

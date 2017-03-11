@@ -60,17 +60,21 @@ PathBody : node=NodeDesc (pathLinks+=PathLink)* ;
 /*
  * pathLink : (forwardsRelationship | backwardsRelationship) nodeDesc ;
  */
-PathLink : {PathLink} relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc ;
+PathLink : {PathLink} relationship=DirectedRelationship node=NodeDesc ;
+
+DirectedRelationship:
+	{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship)
+;
 
 /*
  * forwardsRelationship : '-' relationshipDesc '->' ;
  */
-ForwardsRelationship : '-' RelationshipDesc '->' ;
+ForwardsRelationship : {ForwardsRelationship} '-' relationshipDesc=RelationshipDesc '->' ;
 
 /*
  * backwardsRelationship : '<-' relationshipDesc '-' ;
  */
-BackwardsRelationship : '<-' RelationshipDesc '-' ;
+BackwardsRelationship : {BackwardsRelationship} '<-' relationshipDesc=RelationshipDesc '-' ;
 
 /*
  * integer : INTEGER_LITERAL ;

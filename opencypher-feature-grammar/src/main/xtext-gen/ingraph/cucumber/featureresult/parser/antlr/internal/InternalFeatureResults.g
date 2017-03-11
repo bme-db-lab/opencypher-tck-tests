@@ -479,39 +479,21 @@ rulePathLink returns [EObject current=null]
 		)
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getPathLinkAccess().getRelationshipForwardsRelationshipParserRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getPathLinkAccess().getRelationshipDirectedRelationshipParserRuleCall_1_0());
+				}
+				lv_relationship_1_0=ruleDirectedRelationship
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPathLinkRule());
 					}
-					lv_relationship_1_1=ruleForwardsRelationship
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPathLinkRule());
-						}
-						set(
-							$current,
-							"relationship",
-							lv_relationship_1_1,
-							"ingraph.cucumber.featureresult.FeatureResults.ForwardsRelationship");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getPathLinkAccess().getRelationshipBackwardsRelationshipParserRuleCall_1_0_1());
-					}
-					lv_relationship_1_2=ruleBackwardsRelationship
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPathLinkRule());
-						}
-						set(
-							$current,
-							"relationship",
-							lv_relationship_1_2,
-							"ingraph.cucumber.featureresult.FeatureResults.BackwardsRelationship");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"relationship",
+						lv_relationship_1_0,
+						"ingraph.cucumber.featureresult.FeatureResults.DirectedRelationship");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
 		(
@@ -536,6 +518,69 @@ rulePathLink returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleDirectedRelationship
+entryRuleDirectedRelationship returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDirectedRelationshipRule()); }
+	iv_ruleDirectedRelationship=ruleDirectedRelationship
+	{ $current=$iv_ruleDirectedRelationship.current; }
+	EOF;
+
+// Rule DirectedRelationship
+ruleDirectedRelationship returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getDirectedRelationshipAccess().getDirectedRelationshipAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getRelationshipForwardsRelationshipParserRuleCall_1_0_0());
+					}
+					lv_relationship_1_1=ruleForwardsRelationship
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectedRelationshipRule());
+						}
+						set(
+							$current,
+							"relationship",
+							lv_relationship_1_1,
+							"ingraph.cucumber.featureresult.FeatureResults.ForwardsRelationship");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getDirectedRelationshipAccess().getRelationshipBackwardsRelationshipParserRuleCall_1_0_1());
+					}
+					lv_relationship_1_2=ruleBackwardsRelationship
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectedRelationshipRule());
+						}
+						set(
+							$current,
+							"relationship",
+							lv_relationship_1_2,
+							"ingraph.cucumber.featureresult.FeatureResults.BackwardsRelationship");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleForwardsRelationship
 entryRuleForwardsRelationship returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getForwardsRelationshipRule()); }
@@ -552,21 +597,39 @@ ruleForwardsRelationship returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='-'
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getForwardsRelationshipAccess().getForwardsRelationshipAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='-'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getForwardsRelationshipAccess().getHyphenMinusKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getForwardsRelationshipAccess().getHyphenMinusKeyword_1());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getForwardsRelationshipAccess().getRelationshipDescRelationshipDescParserRuleCall_2_0());
+				}
+				lv_relationshipDesc_2_0=ruleRelationshipDesc
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getForwardsRelationshipRule());
+					}
+					set(
+						$current,
+						"relationshipDesc",
+						lv_relationshipDesc_2_0,
+						"ingraph.cucumber.featureresult.FeatureResults.RelationshipDesc");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='->'
 		{
-			newCompositeNode(grammarAccess.getForwardsRelationshipAccess().getRelationshipDescParserRuleCall_1());
-		}
-		this_RelationshipDesc_1=ruleRelationshipDesc
-		{
-			$current = $this_RelationshipDesc_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		otherlv_2='->'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getForwardsRelationshipAccess().getHyphenMinusGreaterThanSignKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getForwardsRelationshipAccess().getHyphenMinusGreaterThanSignKeyword_3());
 		}
 	)
 ;
@@ -587,21 +650,39 @@ ruleBackwardsRelationship returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='<-'
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getBackwardsRelationshipAccess().getBackwardsRelationshipAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='<-'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getBackwardsRelationshipAccess().getLessThanSignHyphenMinusKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getBackwardsRelationshipAccess().getLessThanSignHyphenMinusKeyword_1());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBackwardsRelationshipAccess().getRelationshipDescRelationshipDescParserRuleCall_2_0());
+				}
+				lv_relationshipDesc_2_0=ruleRelationshipDesc
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBackwardsRelationshipRule());
+					}
+					set(
+						$current,
+						"relationshipDesc",
+						lv_relationshipDesc_2_0,
+						"ingraph.cucumber.featureresult.FeatureResults.RelationshipDesc");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='-'
 		{
-			newCompositeNode(grammarAccess.getBackwardsRelationshipAccess().getRelationshipDescParserRuleCall_1());
-		}
-		this_RelationshipDesc_1=ruleRelationshipDesc
-		{
-			$current = $this_RelationshipDesc_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		otherlv_2='-'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getBackwardsRelationshipAccess().getHyphenMinusKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getBackwardsRelationshipAccess().getHyphenMinusKeyword_3());
 		}
 	)
 ;

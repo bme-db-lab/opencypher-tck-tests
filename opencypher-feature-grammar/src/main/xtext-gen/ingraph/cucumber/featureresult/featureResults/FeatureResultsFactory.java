@@ -96,6 +96,15 @@ public interface FeatureResultsFactory extends EFactory
   PathLink createPathLink();
 
   /**
+   * Returns a new object of class '<em>Directed Relationship</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Directed Relationship</em>'.
+   * @generated
+   */
+  DirectedRelationship createDirectedRelationship();
+
+  /**
    * Returns a new object of class '<em>Forwards Relationship</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

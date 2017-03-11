@@ -65,7 +65,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getListElement()
    * @generated
    */
-  int LIST_ELEMENT = 16;
+  int LIST_ELEMENT = 17;
 
   /**
    * The number of structural features of the '<em>List Element</em>' class.
@@ -301,6 +301,34 @@ public interface FeatureResultsPackage extends EPackage
   int PATH_LINK_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl <em>Directed Relationship</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl
+   * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getDirectedRelationship()
+   * @generated
+   */
+  int DIRECTED_RELATIONSHIP = 8;
+
+  /**
+   * The feature id for the '<em><b>Relationship</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTED_RELATIONSHIP__RELATIONSHIP = 0;
+
+  /**
+   * The number of structural features of the '<em>Directed Relationship</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTED_RELATIONSHIP_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ForwardsRelationshipImpl <em>Forwards Relationship</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -308,7 +336,16 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getForwardsRelationship()
    * @generated
    */
-  int FORWARDS_RELATIONSHIP = 8;
+  int FORWARDS_RELATIONSHIP = 9;
+
+  /**
+   * The feature id for the '<em><b>Relationship Desc</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC = 0;
 
   /**
    * The number of structural features of the '<em>Forwards Relationship</em>' class.
@@ -317,7 +354,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORWARDS_RELATIONSHIP_FEATURE_COUNT = 0;
+  int FORWARDS_RELATIONSHIP_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.BackwardsRelationshipImpl <em>Backwards Relationship</em>}' class.
@@ -327,7 +364,16 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getBackwardsRelationship()
    * @generated
    */
-  int BACKWARDS_RELATIONSHIP = 9;
+  int BACKWARDS_RELATIONSHIP = 10;
+
+  /**
+   * The feature id for the '<em><b>Relationship Desc</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BACKWARDS_RELATIONSHIP__RELATIONSHIP_DESC = 0;
 
   /**
    * The number of structural features of the '<em>Backwards Relationship</em>' class.
@@ -336,7 +382,7 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BACKWARDS_RELATIONSHIP_FEATURE_COUNT = 0;
+  int BACKWARDS_RELATIONSHIP_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.IntegerImpl <em>Integer</em>}' class.
@@ -346,7 +392,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getInteger()
    * @generated
    */
-  int INTEGER = 10;
+  int INTEGER = 11;
 
   /**
    * The number of structural features of the '<em>Integer</em>' class.
@@ -365,7 +411,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getFloatingPoint()
    * @generated
    */
-  int FLOATING_POINT = 11;
+  int FLOATING_POINT = 12;
 
   /**
    * The number of structural features of the '<em>Floating Point</em>' class.
@@ -384,7 +430,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 12;
+  int BOOL = 13;
 
   /**
    * The number of structural features of the '<em>Bool</em>' class.
@@ -403,7 +449,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getNullValue()
    * @generated
    */
-  int NULL_VALUE = 13;
+  int NULL_VALUE = 14;
 
   /**
    * The number of structural features of the '<em>Null Value</em>' class.
@@ -422,7 +468,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getList()
    * @generated
    */
-  int LIST = 14;
+  int LIST = 15;
 
   /**
    * The feature id for the '<em><b>List Contents</b></em>' containment reference list.
@@ -450,7 +496,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getListContents()
    * @generated
    */
-  int LIST_CONTENTS = 15;
+  int LIST_CONTENTS = 16;
 
   /**
    * The feature id for the '<em><b>List Contents</b></em>' containment reference list.
@@ -478,7 +524,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMap()
    * @generated
    */
-  int MAP = 17;
+  int MAP = 18;
 
   /**
    * The number of structural features of the '<em>Map</em>' class.
@@ -497,7 +543,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getPropertyMap()
    * @generated
    */
-  int PROPERTY_MAP = 18;
+  int PROPERTY_MAP = 19;
 
   /**
    * The feature id for the '<em><b>Map Contents</b></em>' containment reference.
@@ -525,7 +571,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMapContents()
    * @generated
    */
-  int MAP_CONTENTS = 19;
+  int MAP_CONTENTS = 20;
 
   /**
    * The feature id for the '<em><b>Key Value Pairs</b></em>' containment reference list.
@@ -553,7 +599,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getKeyValuePair()
    * @generated
    */
-  int KEY_VALUE_PAIR = 20;
+  int KEY_VALUE_PAIR = 21;
 
   /**
    * The number of structural features of the '<em>Key Value Pair</em>' class.
@@ -572,7 +618,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getPropertyValue()
    * @generated
    */
-  int PROPERTY_VALUE = 21;
+  int PROPERTY_VALUE = 22;
 
   /**
    * The number of structural features of the '<em>Property Value</em>' class.
@@ -591,7 +637,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMyString()
    * @generated
    */
-  int MY_STRING = 22;
+  int MY_STRING = 23;
 
   /**
    * The number of structural features of the '<em>My String</em>' class.
@@ -772,6 +818,27 @@ public interface FeatureResultsPackage extends EPackage
   EReference getPathLink_Node();
 
   /**
+   * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship <em>Directed Relationship</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Directed Relationship</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.DirectedRelationship
+   * @generated
+   */
+  EClass getDirectedRelationship();
+
+  /**
+   * Returns the meta object for the containment reference '{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationship <em>Relationship</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Relationship</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.DirectedRelationship#getRelationship()
+   * @see #getDirectedRelationship()
+   * @generated
+   */
+  EReference getDirectedRelationship_Relationship();
+
+  /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.ForwardsRelationship <em>Forwards Relationship</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -782,6 +849,17 @@ public interface FeatureResultsPackage extends EPackage
   EClass getForwardsRelationship();
 
   /**
+   * Returns the meta object for the containment reference '{@link ingraph.cucumber.featureresult.featureResults.ForwardsRelationship#getRelationshipDesc <em>Relationship Desc</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Relationship Desc</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.ForwardsRelationship#getRelationshipDesc()
+   * @see #getForwardsRelationship()
+   * @generated
+   */
+  EReference getForwardsRelationship_RelationshipDesc();
+
+  /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.BackwardsRelationship <em>Backwards Relationship</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -790,6 +868,17 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    */
   EClass getBackwardsRelationship();
+
+  /**
+   * Returns the meta object for the containment reference '{@link ingraph.cucumber.featureresult.featureResults.BackwardsRelationship#getRelationshipDesc <em>Relationship Desc</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Relationship Desc</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.BackwardsRelationship#getRelationshipDesc()
+   * @see #getBackwardsRelationship()
+   * @generated
+   */
+  EReference getBackwardsRelationship_RelationshipDesc();
 
   /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.Integer <em>Integer</em>}'.
@@ -1133,6 +1222,24 @@ public interface FeatureResultsPackage extends EPackage
     EReference PATH_LINK__NODE = eINSTANCE.getPathLink_Node();
 
     /**
+     * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl <em>Directed Relationship</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl
+     * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getDirectedRelationship()
+     * @generated
+     */
+    EClass DIRECTED_RELATIONSHIP = eINSTANCE.getDirectedRelationship();
+
+    /**
+     * The meta object literal for the '<em><b>Relationship</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIRECTED_RELATIONSHIP__RELATIONSHIP = eINSTANCE.getDirectedRelationship_Relationship();
+
+    /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.ForwardsRelationshipImpl <em>Forwards Relationship</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1143,6 +1250,14 @@ public interface FeatureResultsPackage extends EPackage
     EClass FORWARDS_RELATIONSHIP = eINSTANCE.getForwardsRelationship();
 
     /**
+     * The meta object literal for the '<em><b>Relationship Desc</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC = eINSTANCE.getForwardsRelationship_RelationshipDesc();
+
+    /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.BackwardsRelationshipImpl <em>Backwards Relationship</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1151,6 +1266,14 @@ public interface FeatureResultsPackage extends EPackage
      * @generated
      */
     EClass BACKWARDS_RELATIONSHIP = eINSTANCE.getBackwardsRelationship();
+
+    /**
+     * The meta object literal for the '<em><b>Relationship Desc</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BACKWARDS_RELATIONSHIP__RELATIONSHIP_DESC = eINSTANCE.getBackwardsRelationship_RelationshipDesc();
 
     /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.IntegerImpl <em>Integer</em>}' class.

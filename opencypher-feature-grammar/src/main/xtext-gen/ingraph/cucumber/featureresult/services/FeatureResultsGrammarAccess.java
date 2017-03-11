@@ -262,23 +262,52 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cPathLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cRelationshipAlternatives_1_0 = (Alternatives)cRelationshipAssignment_1.eContents().get(0);
-		private final RuleCall cRelationshipForwardsRelationshipParserRuleCall_1_0_0 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(0);
-		private final RuleCall cRelationshipBackwardsRelationshipParserRuleCall_1_0_1 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(1);
+		private final RuleCall cRelationshipDirectedRelationshipParserRuleCall_1_0 = (RuleCall)cRelationshipAssignment_1.eContents().get(0);
 		private final Assignment cNodeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNodeNodeDescParserRuleCall_2_0 = (RuleCall)cNodeAssignment_2.eContents().get(0);
 		
 		/// *
 		// * pathLink : (forwardsRelationship | backwardsRelationship) nodeDesc ;
 		// * / PathLink:
-		//	{PathLink} relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc;
+		//	{PathLink} relationship=DirectedRelationship node=NodeDesc;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{PathLink} relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc
+		//{PathLink} relationship=DirectedRelationship node=NodeDesc
 		public Group getGroup() { return cGroup; }
 		
 		//{PathLink}
 		public Action getPathLinkAction_0() { return cPathLinkAction_0; }
+		
+		//relationship=DirectedRelationship
+		public Assignment getRelationshipAssignment_1() { return cRelationshipAssignment_1; }
+		
+		//DirectedRelationship
+		public RuleCall getRelationshipDirectedRelationshipParserRuleCall_1_0() { return cRelationshipDirectedRelationshipParserRuleCall_1_0; }
+		
+		//node=NodeDesc
+		public Assignment getNodeAssignment_2() { return cNodeAssignment_2; }
+		
+		//NodeDesc
+		public RuleCall getNodeNodeDescParserRuleCall_2_0() { return cNodeNodeDescParserRuleCall_2_0; }
+	}
+	public class DirectedRelationshipElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.DirectedRelationship");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDirectedRelationshipAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cRelationshipAlternatives_1_0 = (Alternatives)cRelationshipAssignment_1.eContents().get(0);
+		private final RuleCall cRelationshipForwardsRelationshipParserRuleCall_1_0_0 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(0);
+		private final RuleCall cRelationshipBackwardsRelationshipParserRuleCall_1_0_1 = (RuleCall)cRelationshipAlternatives_1_0.eContents().get(1);
+		
+		//DirectedRelationship:
+		//	{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship)
+		public Group getGroup() { return cGroup; }
+		
+		//{DirectedRelationship}
+		public Action getDirectedRelationshipAction_0() { return cDirectedRelationshipAction_0; }
 		
 		//relationship=(ForwardsRelationship | BackwardsRelationship)
 		public Assignment getRelationshipAssignment_1() { return cRelationshipAssignment_1; }
@@ -291,62 +320,72 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//BackwardsRelationship
 		public RuleCall getRelationshipBackwardsRelationshipParserRuleCall_1_0_1() { return cRelationshipBackwardsRelationshipParserRuleCall_1_0_1; }
-		
-		//node=NodeDesc
-		public Assignment getNodeAssignment_2() { return cNodeAssignment_2; }
-		
-		//NodeDesc
-		public RuleCall getNodeNodeDescParserRuleCall_2_0() { return cNodeNodeDescParserRuleCall_2_0; }
 	}
 	public class ForwardsRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.ForwardsRelationship");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cRelationshipDescParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cForwardsRelationshipAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRelationshipDescAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRelationshipDescRelationshipDescParserRuleCall_2_0 = (RuleCall)cRelationshipDescAssignment_2.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// *
 		// * forwardsRelationship : '-' relationshipDesc '->' ;
 		// * / ForwardsRelationship:
-		//	'-' RelationshipDesc '->';
+		//	{ForwardsRelationship} '-' relationshipDesc=RelationshipDesc '->';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'-' RelationshipDesc '->'
+		//{ForwardsRelationship} '-' relationshipDesc=RelationshipDesc '->'
 		public Group getGroup() { return cGroup; }
 		
+		//{ForwardsRelationship}
+		public Action getForwardsRelationshipAction_0() { return cForwardsRelationshipAction_0; }
+		
 		//'-'
-		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
+		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
+		
+		//relationshipDesc=RelationshipDesc
+		public Assignment getRelationshipDescAssignment_2() { return cRelationshipDescAssignment_2; }
 		
 		//RelationshipDesc
-		public RuleCall getRelationshipDescParserRuleCall_1() { return cRelationshipDescParserRuleCall_1; }
+		public RuleCall getRelationshipDescRelationshipDescParserRuleCall_2_0() { return cRelationshipDescRelationshipDescParserRuleCall_2_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_2() { return cHyphenMinusGreaterThanSignKeyword_2; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3() { return cHyphenMinusGreaterThanSignKeyword_3; }
 	}
 	public class BackwardsRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.BackwardsRelationship");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLessThanSignHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cRelationshipDescParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Keyword cHyphenMinusKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cBackwardsRelationshipAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLessThanSignHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRelationshipDescAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRelationshipDescRelationshipDescParserRuleCall_2_0 = (RuleCall)cRelationshipDescAssignment_2.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// *
 		// * backwardsRelationship : '<-' relationshipDesc '-' ;
 		// * / BackwardsRelationship:
-		//	'<-' RelationshipDesc '-';
+		//	{BackwardsRelationship} '<-' relationshipDesc=RelationshipDesc '-';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'<-' RelationshipDesc '-'
+		//{BackwardsRelationship} '<-' relationshipDesc=RelationshipDesc '-'
 		public Group getGroup() { return cGroup; }
 		
+		//{BackwardsRelationship}
+		public Action getBackwardsRelationshipAction_0() { return cBackwardsRelationshipAction_0; }
+		
 		//'<-'
-		public Keyword getLessThanSignHyphenMinusKeyword_0() { return cLessThanSignHyphenMinusKeyword_0; }
+		public Keyword getLessThanSignHyphenMinusKeyword_1() { return cLessThanSignHyphenMinusKeyword_1; }
+		
+		//relationshipDesc=RelationshipDesc
+		public Assignment getRelationshipDescAssignment_2() { return cRelationshipDescAssignment_2; }
 		
 		//RelationshipDesc
-		public RuleCall getRelationshipDescParserRuleCall_1() { return cRelationshipDescParserRuleCall_1; }
+		public RuleCall getRelationshipDescRelationshipDescParserRuleCall_2_0() { return cRelationshipDescRelationshipDescParserRuleCall_2_0; }
 		
 		//'-'
-		public Keyword getHyphenMinusKeyword_2() { return cHyphenMinusKeyword_2; }
+		public Keyword getHyphenMinusKeyword_3() { return cHyphenMinusKeyword_3; }
 	}
 	public class IntegerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Integer");
@@ -831,6 +870,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	private final PathElements pPath;
 	private final PathBodyElements pPathBody;
 	private final PathLinkElements pPathLink;
+	private final DirectedRelationshipElements pDirectedRelationship;
 	private final ForwardsRelationshipElements pForwardsRelationship;
 	private final BackwardsRelationshipElements pBackwardsRelationship;
 	private final IntegerElements pInteger;
@@ -877,6 +917,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPath = new PathElements();
 		this.pPathBody = new PathBodyElements();
 		this.pPathLink = new PathLinkElements();
+		this.pDirectedRelationship = new DirectedRelationshipElements();
 		this.pForwardsRelationship = new ForwardsRelationshipElements();
 		this.pBackwardsRelationship = new BackwardsRelationshipElements();
 		this.pInteger = new IntegerElements();
@@ -1040,7 +1081,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * pathLink : (forwardsRelationship | backwardsRelationship) nodeDesc ;
 	// * / PathLink:
-	//	{PathLink} relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc;
+	//	{PathLink} relationship=DirectedRelationship node=NodeDesc;
 	public PathLinkElements getPathLinkAccess() {
 		return pPathLink;
 	}
@@ -1049,10 +1090,20 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		return getPathLinkAccess().getRule();
 	}
 	
+	//DirectedRelationship:
+	//	{DirectedRelationship} relationship=(ForwardsRelationship | BackwardsRelationship);
+	public DirectedRelationshipElements getDirectedRelationshipAccess() {
+		return pDirectedRelationship;
+	}
+	
+	public ParserRule getDirectedRelationshipRule() {
+		return getDirectedRelationshipAccess().getRule();
+	}
+	
 	/// *
 	// * forwardsRelationship : '-' relationshipDesc '->' ;
 	// * / ForwardsRelationship:
-	//	'-' RelationshipDesc '->';
+	//	{ForwardsRelationship} '-' relationshipDesc=RelationshipDesc '->';
 	public ForwardsRelationshipElements getForwardsRelationshipAccess() {
 		return pForwardsRelationship;
 	}
@@ -1064,7 +1115,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * backwardsRelationship : '<-' relationshipDesc '-' ;
 	// * / BackwardsRelationship:
-	//	'<-' RelationshipDesc '-';
+	//	{BackwardsRelationship} '<-' relationshipDesc=RelationshipDesc '-';
 	public BackwardsRelationshipElements getBackwardsRelationshipAccess() {
 		return pBackwardsRelationship;
 	}

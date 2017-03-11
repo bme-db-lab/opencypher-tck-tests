@@ -3,6 +3,7 @@
  */
 package ingraph.cucumber.featureresult.featureResults.impl;
 
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.NodeDesc;
 import ingraph.cucumber.featureresult.featureResults.PathLink;
@@ -11,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -41,7 +41,7 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
    * @generated
    * @ordered
    */
-  protected EObject relationship;
+  protected DirectedRelationship relationship;
 
   /**
    * The cached value of the '{@link #getNode() <em>Node</em>}' containment reference.
@@ -79,7 +79,7 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getRelationship()
+  public DirectedRelationship getRelationship()
   {
     return relationship;
   }
@@ -89,9 +89,9 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRelationship(EObject newRelationship, NotificationChain msgs)
+  public NotificationChain basicSetRelationship(DirectedRelationship newRelationship, NotificationChain msgs)
   {
-    EObject oldRelationship = relationship;
+    DirectedRelationship oldRelationship = relationship;
     relationship = newRelationship;
     if (eNotificationRequired())
     {
@@ -106,7 +106,7 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelationship(EObject newRelationship)
+  public void setRelationship(DirectedRelationship newRelationship)
   {
     if (newRelationship != relationship)
     {
@@ -217,7 +217,7 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
     switch (featureID)
     {
       case FeatureResultsPackage.PATH_LINK__RELATIONSHIP:
-        setRelationship((EObject)newValue);
+        setRelationship((DirectedRelationship)newValue);
         return;
       case FeatureResultsPackage.PATH_LINK__NODE:
         setNode((NodeDesc)newValue);
@@ -237,7 +237,7 @@ public class PathLinkImpl extends MinimalEObjectImpl.Container implements PathLi
     switch (featureID)
     {
       case FeatureResultsPackage.PATH_LINK__RELATIONSHIP:
-        setRelationship((EObject)null);
+        setRelationship((DirectedRelationship)null);
         return;
       case FeatureResultsPackage.PATH_LINK__NODE:
         setNode((NodeDesc)null);

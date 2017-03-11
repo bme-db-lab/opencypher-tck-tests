@@ -3,14 +3,14 @@
  */
 package ingraph.cucumber.featureresult.featureResults.impl;
 
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
-import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
-import ingraph.cucumber.featureresult.featureResults.RelationshipDesc;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,35 +18,35 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Forwards Relationship</b></em>'.
+ * An implementation of the model object '<em><b>Directed Relationship</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ingraph.cucumber.featureresult.featureResults.impl.ForwardsRelationshipImpl#getRelationshipDesc <em>Relationship Desc</em>}</li>
+ *   <li>{@link ingraph.cucumber.featureresult.featureResults.impl.DirectedRelationshipImpl#getRelationship <em>Relationship</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container implements ForwardsRelationship
+public class DirectedRelationshipImpl extends MinimalEObjectImpl.Container implements DirectedRelationship
 {
   /**
-   * The cached value of the '{@link #getRelationshipDesc() <em>Relationship Desc</em>}' containment reference.
+   * The cached value of the '{@link #getRelationship() <em>Relationship</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRelationshipDesc()
+   * @see #getRelationship()
    * @generated
    * @ordered
    */
-  protected RelationshipDesc relationshipDesc;
+  protected EObject relationship;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ForwardsRelationshipImpl()
+  protected DirectedRelationshipImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   @Override
   protected EClass eStaticClass()
   {
-    return FeatureResultsPackage.Literals.FORWARDS_RELATIONSHIP;
+    return FeatureResultsPackage.Literals.DIRECTED_RELATIONSHIP;
   }
 
   /**
@@ -67,9 +67,9 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationshipDesc getRelationshipDesc()
+  public EObject getRelationship()
   {
-    return relationshipDesc;
+    return relationship;
   }
 
   /**
@@ -77,13 +77,13 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRelationshipDesc(RelationshipDesc newRelationshipDesc, NotificationChain msgs)
+  public NotificationChain basicSetRelationship(EObject newRelationship, NotificationChain msgs)
   {
-    RelationshipDesc oldRelationshipDesc = relationshipDesc;
-    relationshipDesc = newRelationshipDesc;
+    EObject oldRelationship = relationship;
+    relationship = newRelationship;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC, oldRelationshipDesc, newRelationshipDesc);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, oldRelationship, newRelationship);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelationshipDesc(RelationshipDesc newRelationshipDesc)
+  public void setRelationship(EObject newRelationship)
   {
-    if (newRelationshipDesc != relationshipDesc)
+    if (newRelationship != relationship)
     {
       NotificationChain msgs = null;
-      if (relationshipDesc != null)
-        msgs = ((InternalEObject)relationshipDesc).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC, null, msgs);
-      if (newRelationshipDesc != null)
-        msgs = ((InternalEObject)newRelationshipDesc).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC, null, msgs);
-      msgs = basicSetRelationshipDesc(newRelationshipDesc, msgs);
+      if (relationship != null)
+        msgs = ((InternalEObject)relationship).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, null, msgs);
+      if (newRelationship != null)
+        msgs = ((InternalEObject)newRelationship).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, null, msgs);
+      msgs = basicSetRelationship(newRelationship, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC, newRelationshipDesc, newRelationshipDesc));
+      eNotify(new ENotificationImpl(this, Notification.SET, FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP, newRelationship, newRelationship));
   }
 
   /**
@@ -120,8 +120,8 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC:
-        return basicSetRelationshipDesc(null, msgs);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
+        return basicSetRelationship(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC:
-        return getRelationshipDesc();
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
+        return getRelationship();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC:
-        setRelationshipDesc((RelationshipDesc)newValue);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
+        setRelationship((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC:
-        setRelationshipDesc((RelationshipDesc)null);
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
+        setRelationship((EObject)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class ForwardsRelationshipImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case FeatureResultsPackage.FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC:
-        return relationshipDesc != null;
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP__RELATIONSHIP:
+        return relationship != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ForwardsRelationshipImpl
+} //DirectedRelationshipImpl

@@ -5,6 +5,7 @@ package ingraph.cucumber.featureresult.featureResults.util;
 
 import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
@@ -144,8 +145,6 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         RelationshipDesc relationshipDesc = (RelationshipDesc)theEObject;
         T result = caseRelationshipDesc(relationshipDesc);
         if (result == null) result = caseRelationship(relationshipDesc);
-        if (result == null) result = caseForwardsRelationship(relationshipDesc);
-        if (result == null) result = caseBackwardsRelationship(relationshipDesc);
         if (result == null) result = caseValue(relationshipDesc);
         if (result == null) result = caseListElement(relationshipDesc);
         if (result == null) result = casePropertyValue(relationshipDesc);
@@ -180,6 +179,13 @@ public class FeatureResultsSwitch<T> extends Switch<T>
       {
         PathLink pathLink = (PathLink)theEObject;
         T result = casePathLink(pathLink);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FeatureResultsPackage.DIRECTED_RELATIONSHIP:
+      {
+        DirectedRelationship directedRelationship = (DirectedRelationship)theEObject;
+        T result = caseDirectedRelationship(directedRelationship);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -450,6 +456,22 @@ public class FeatureResultsSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePathLink(PathLink object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Directed Relationship</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Directed Relationship</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDirectedRelationship(DirectedRelationship object)
   {
     return null;
   }

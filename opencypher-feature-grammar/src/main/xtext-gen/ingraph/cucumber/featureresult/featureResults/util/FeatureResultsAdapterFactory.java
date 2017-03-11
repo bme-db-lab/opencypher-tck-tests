@@ -5,6 +5,7 @@ package ingraph.cucumber.featureresult.featureResults.util;
 
 import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
@@ -136,6 +137,11 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
       public Adapter casePathLink(PathLink object)
       {
         return createPathLinkAdapter();
+      }
+      @Override
+      public Adapter caseDirectedRelationship(DirectedRelationship object)
+      {
+        return createDirectedRelationshipAdapter();
       }
       @Override
       public Adapter caseForwardsRelationship(ForwardsRelationship object)
@@ -350,6 +356,21 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPathLinkAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.DirectedRelationship <em>Directed Relationship</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ingraph.cucumber.featureresult.featureResults.DirectedRelationship
+   * @generated
+   */
+  public Adapter createDirectedRelationshipAdapter()
   {
     return null;
   }

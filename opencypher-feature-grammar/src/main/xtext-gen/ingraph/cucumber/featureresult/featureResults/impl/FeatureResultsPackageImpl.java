@@ -5,6 +5,7 @@ package ingraph.cucumber.featureresult.featureResults.impl;
 
 import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
+import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
@@ -98,6 +99,13 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * @generated
    */
   private EClass pathLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass directedRelationshipEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -432,6 +440,26 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getDirectedRelationship()
+  {
+    return directedRelationshipEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDirectedRelationship_Relationship()
+  {
+    return (EReference)directedRelationshipEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getForwardsRelationship()
   {
     return forwardsRelationshipEClass;
@@ -442,9 +470,29 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getForwardsRelationship_RelationshipDesc()
+  {
+    return (EReference)forwardsRelationshipEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBackwardsRelationship()
   {
     return backwardsRelationshipEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBackwardsRelationship_RelationshipDesc()
+  {
+    return (EReference)backwardsRelationshipEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -671,9 +719,14 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     createEReference(pathLinkEClass, PATH_LINK__RELATIONSHIP);
     createEReference(pathLinkEClass, PATH_LINK__NODE);
 
+    directedRelationshipEClass = createEClass(DIRECTED_RELATIONSHIP);
+    createEReference(directedRelationshipEClass, DIRECTED_RELATIONSHIP__RELATIONSHIP);
+
     forwardsRelationshipEClass = createEClass(FORWARDS_RELATIONSHIP);
+    createEReference(forwardsRelationshipEClass, FORWARDS_RELATIONSHIP__RELATIONSHIP_DESC);
 
     backwardsRelationshipEClass = createEClass(BACKWARDS_RELATIONSHIP);
+    createEReference(backwardsRelationshipEClass, BACKWARDS_RELATIONSHIP__RELATIONSHIP_DESC);
 
     integerEClass = createEClass(INTEGER);
 
@@ -741,8 +794,6 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     nodeDescEClass.getESuperTypes().add(this.getNode());
     relationshipEClass.getESuperTypes().add(this.getValue());
     relationshipDescEClass.getESuperTypes().add(this.getRelationship());
-    relationshipDescEClass.getESuperTypes().add(this.getForwardsRelationship());
-    relationshipDescEClass.getESuperTypes().add(this.getBackwardsRelationship());
     pathEClass.getESuperTypes().add(this.getValue());
     pathBodyEClass.getESuperTypes().add(this.getPath());
     integerEClass.getESuperTypes().add(this.getValue());
@@ -777,12 +828,17 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     initEReference(getPathBody_PathLinks(), this.getPathLink(), null, "pathLinks", null, 0, -1, PathBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pathLinkEClass, PathLink.class, "PathLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPathLink_Relationship(), ecorePackage.getEObject(), null, "relationship", null, 0, 1, PathLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPathLink_Relationship(), this.getDirectedRelationship(), null, "relationship", null, 0, 1, PathLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPathLink_Node(), this.getNodeDesc(), null, "node", null, 0, 1, PathLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(directedRelationshipEClass, DirectedRelationship.class, "DirectedRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDirectedRelationship_Relationship(), ecorePackage.getEObject(), null, "relationship", null, 0, 1, DirectedRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(forwardsRelationshipEClass, ForwardsRelationship.class, "ForwardsRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getForwardsRelationship_RelationshipDesc(), this.getRelationshipDesc(), null, "relationshipDesc", null, 0, 1, ForwardsRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(backwardsRelationshipEClass, BackwardsRelationship.class, "BackwardsRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBackwardsRelationship_RelationshipDesc(), this.getRelationshipDesc(), null, "relationshipDesc", null, 0, 1, BackwardsRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(integerEClass, ingraph.cucumber.featureresult.featureResults.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
