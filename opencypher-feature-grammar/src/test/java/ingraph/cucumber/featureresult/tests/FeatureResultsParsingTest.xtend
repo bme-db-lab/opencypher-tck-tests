@@ -22,7 +22,7 @@ class FeatureResultsParsingTest{
 	@Test 
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			(:Label {name: 'hello'})
 		''')
 		Assert.assertNotNull(result)
 	}
