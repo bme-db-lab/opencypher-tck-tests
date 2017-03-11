@@ -1,0 +1,17 @@
+apply plugin: 'scala'
+
+jar {
+  from sourceSets.main.allScala
+}
+
+dependencies {
+  compile group: 'org.scala-lang', name: 'scala-library', version: scalaLongVersion
+  compile group: 'org.neo4j', name: 'neo4j-cypher', version: neo4jVersion
+  compile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion
+  compile group: 'org.neo4j', name: 'neo4j-io', version: neo4jVersion
+  compile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion, classifier: 'tests'
+  compile group: 'org.neo4j', name: 'neo4j-io', version: neo4jVersion, classifier: 'tests'
+  compile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
+  compile group: 'info.cukes', name: "cucumber-scala_$scalaShortVersion", version: cucumberVersion
+  compile group: 'neo4j-reactive-driver', name: 'neo4j-reactive-driver', version: '0.0.1-SNAPSHOT'
+}

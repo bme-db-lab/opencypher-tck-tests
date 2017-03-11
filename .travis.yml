@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - oraclejdk8
+script:
+  - ./gradlew build -x test
+notifications:
+  slack: ftsrg:1cgKhTwTbPgsK0MdAJBtYKTT
+  email: false
+  on_success: change
+  on_failure: always

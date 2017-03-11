@@ -14,6 +14,8 @@ object QueryCalculator {
   def calculateSideEffects(session: Neo4jReactiveSession, query: String): DatabaseResult = {
     var sideEffects = scala.collection.mutable.Map[String, Int]()
     val queryList = List("nodes", "relationships", "labels", "properties")
+    val x = session.run("MATCH (n) RETURN count(n) AS count")
+    val y = x.next().get("count")
     session.registerQuery("nodes", "MATCH (n) RETURN count(n) AS count")
     session.registerQuery("relationships", "MATCH ()-[r]-() RETURN count(DISTINCT r) AS count")
     session.registerQuery("labels", "MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count")

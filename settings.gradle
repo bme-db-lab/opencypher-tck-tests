@@ -1,2 +1,4 @@
-rootProject.name = 'cypher-test'
+rootProject.name = 'opencypher-cucumber-tests'
 
+include ':opencypher-feature-grammar'
+include ':opencypher-tests'
