@@ -60,7 +60,7 @@ PathBody : node=NodeDesc (pathLinks+=PathLink)* ;
 /*
  * pathLink : (forwardsRelationship | backwardsRelationship) nodeDesc ;
  */
-PathLink : relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc ;
+PathLink : {PathLink} relationship=(ForwardsRelationship | BackwardsRelationship) node=NodeDesc ;
 
 /*
  * forwardsRelationship : '-' relationshipDesc '->' ;
