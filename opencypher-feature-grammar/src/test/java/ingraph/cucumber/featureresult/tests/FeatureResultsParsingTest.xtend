@@ -4,7 +4,7 @@
 package ingraph.cucumber.featureresult.tests
 
 import com.google.inject.Inject
-import org.eclipse.emf.mwe2.language.mwe2.Value
+import ingraph.cucumber.featureresult.featureResults.FeatureValue
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
