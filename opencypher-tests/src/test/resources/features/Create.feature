@@ -1,19 +1,15 @@
 Feature: Create
 
-  Scenario: Combine MATCH, WITH and CREATE
-    Given an empty graph
-    And having executed:
-      """
-      CREATE (), ()
-      """
+  Scenario: Unwinding a list
+    Given any graph
     When executing query:
       """
-      MATCH ()
-      CREATE ()
-      WITH *
-      MATCH ()
-      CREATE ()
+      UNWIND [1, 2, 3] AS x
+      RETURN x
       """
-    Then the result should be empty
-    And the side effects should be:
-      | +nodes  | 10 |
+    Then the result should be:
+      | x |
+      | 1 |
+      | 2 |
+      | 3 |
+    And no side effects
