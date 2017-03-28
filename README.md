@@ -25,8 +25,8 @@ Install the following dependencies:
 
 1. Go to **Help** | **Install New Software...** and install the following plug-ins from the update site of your Eclipse release (e.g. the Neon update site):
 
-  * **Xtend IDE**
-  * **Xtext Complete SDK**
+    * **Xtend IDE**
+    * **Xtext Complete SDK**
 
 1. Go to **Help** | **Eclipse Marketplace...** and install the **Buildship: Eclipse Plug-ins for Gradle** plug-in.
 
