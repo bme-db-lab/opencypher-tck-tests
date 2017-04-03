@@ -3,7 +3,8 @@ package steps
 import calculator.{DatabaseResult, QueryCalculator}
 import cucumber.api.DataTable
 import cucumber.api.scala.{EN, ScalaDsl}
-import neo4j.driver.reactive.Neo4jReactiveDriver
+import neo4j.driver.reactive.impl.Neo4jReactiveDriver
+import neo4j.driver.testkit.EmbeddedTestkitDriver
 
 /**
   * Created by Andras Zsamboki on 2017.02.23..
@@ -12,11 +13,11 @@ class CreateStepDefinitions extends ScalaDsl with EN {
   var driver: Neo4jReactiveDriver = _
   var result: DatabaseResult = _
   Given("""^any graph$""") { () =>
-    driver = new Neo4jReactiveDriver
+    driver = new Neo4jReactiveDriver(new EmbeddedTestkitDriver)
   }
 
   Given("""^an empty graph$""") { () =>
-    driver = new Neo4jReactiveDriver
+    driver = new Neo4jReactiveDriver(new EmbeddedTestkitDriver)
   }
   Given("""^having executed:$""") { (query: String) =>
     driver.session.run(query)
@@ -44,7 +45,4 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
 
-  Then("""^a SyntaxError should be raised at compile time: NestedAggregation$"""){ () =>
-
-  }
-}
+ }

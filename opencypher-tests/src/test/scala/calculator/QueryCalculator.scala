@@ -1,7 +1,8 @@
 package calculator
 
 import cucumber.api.DataTable
-import neo4j.driver.reactive.Neo4jReactiveSession
+import neo4j.driver.reactive.impl.Neo4jReactiveSession
+import neo4j.driver.reactive.interfaces.ReactiveSession
 import org.neo4j.cypher.SyntaxException
 
 import scala.collection.JavaConversions._
@@ -12,62 +13,54 @@ import scala.collection.mutable.ListBuffer
   */
 object QueryCalculator {
 
-  def calculateSideEffects(session: Neo4jReactiveSession, query: String): DatabaseResult = {
-    var exceptionStackTrace = ""
-    var queryResults = ListBuffer[ListBuffer[String]]()
+  def calculateSideEffects(session: ReactiveSession, query: String): DatabaseResult = {
     var sideEffects = scala.collection.mutable.Map[String, Int]()
     val queryList = List("nodes", "relationships", "labels", "properties")
+    val x = session.run("MATCH (n) RETURN count(n) AS count")
+    val y = x.next().get("count")
     session.registerQuery("nodes", "MATCH (n) RETURN count(n) AS count")
     session.registerQuery("relationships", "MATCH ()-[r]-() RETURN count(DISTINCT r) AS count")
     session.registerQuery("labels", "MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count")
     session.registerQuery("properties", "MATCH (n) RETURN count(properties(n)) AS count")
     session.beginTransaction()
-    try {
-      val sessionResult = session.run(query)
+    val sessionResult = session.run(query)
+    var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
+    var queryResults = ListBuffer[ListBuffer[String]]()
 
-
-      var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
-
-      queryResults = ListBuffer[ListBuffer[String]]()
-
-      if (unProcessedQueryResultsBuffer.nonEmpty) {
-        var tmp = ListBuffer[String]()
-        tmp ++= unProcessedQueryResultsBuffer(0).keys()
-        queryResults += tmp
+    if (unProcessedQueryResultsBuffer.nonEmpty) {
+      var tmp = ListBuffer[String]()
+      tmp ++= unProcessedQueryResultsBuffer(0).keys()
+      queryResults += tmp
+    }
+    for (i <- unProcessedQueryResultsBuffer.indices) {
+      var tmp = ListBuffer[String]()
+      var valueBuffer = ListBuffer[String]()
+      for (value <- unProcessedQueryResultsBuffer(i).values()) {
+        valueBuffer += value.toString
+        //TODO lowercase check
       }
-      for (i <- unProcessedQueryResultsBuffer.indices) {
-        var tmp = ListBuffer[String]()
-        var valueBuffer = ListBuffer[String]()
-        for (value <- unProcessedQueryResultsBuffer(i).values()) {
-          valueBuffer += value.toString
-          //TODO lowercase check
-        }
-        tmp ++= valueBuffer
-        queryResults += tmp
-      }
+      tmp ++= valueBuffer
+      queryResults += tmp
+    }
 
-      for (query <- queryList) {
-        var diff = calculateDifference(session, query)
-        if (diff != null) {
-          sideEffects += diff
-        }
+    for (query <- queryList) {
+      var diff = calculateDifference(session, query)
+      if (diff != null) {
+        sideEffects += diff
       }
     }
-    catch {
-      case syntax: SyntaxException => exceptionStackTrace = syntax.getStackTrace.toString;
-    }
-    return DatabaseResult(queryResults, sideEffects, exceptionStackTrace)
+    DatabaseResult(queryResults, sideEffects)
 
   }
 
-  def calculateDifference(session: Neo4jReactiveSession, queryName: String): (String, Int) = {
+  def calculateDifference(session: ReactiveSession, queryName: String): (String, Int) = {
     val cs = session.getDeltas(queryName)
     if (!cs.getPositive.isEmpty) {
       return ("+" + queryName, cs.getPositive.iterator().next().get("count").asInt)
     } else if (!cs.getNegative.isEmpty) {
       return ("-" + queryName, cs.getNegative.iterator().next().get("count").asInt)
     }
-    return null
+    null
   }
 
   def checkResultEqualiy(result: DatabaseResult, dataTable: DataTable): Boolean = {
