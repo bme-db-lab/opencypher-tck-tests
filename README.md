@@ -1,5 +1,7 @@
 # opencypher-cucumber-tests
 
+[![Build Status](https://travis-ci.com/bme-db-lab/opencypher-tck-tests.svg?token=dduaCwDzExdmU27AvBiK&branch=master)](https://travis-ci.com/bme-db-lab/opencypher-tck-tests)
+
 ## Contributor's guide
 
 First, build the repository from command line to generate the source files for the Xtext grammar. To do this, navigate the the folder of the repository and issue the following command:
