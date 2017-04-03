@@ -261,14 +261,6 @@ Feature: AggregationAcceptance
       | ['blue'] | 1        |
     And no side effects
 
-  Scenario: Aggregates in aggregates
-    Given any graph
-    When executing query:
-      """
-      RETURN count(count(*))
-      """
-    Then a SyntaxError should be raised at compile time: NestedAggregation
-
   Scenario: Aggregates with arithmetics
     Given an empty graph
     And having executed:
