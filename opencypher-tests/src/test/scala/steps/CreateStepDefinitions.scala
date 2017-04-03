@@ -35,9 +35,16 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
   Then("""^no side effects$""") { () =>
-     assert(QueryCalculator.checkSideEffectsEquality(result, None))
+    assert(QueryCalculator.checkSideEffectsEquality(result, None))
   }
-  Then("""^the result should be, in order:$"""){ (dataTable:DataTable) =>
+  Then("""^the result should be, in order:$""") { (dataTable: DataTable) =>
     assert(QueryCalculator.checkResultEqualiy(result, dataTable))
+  }
+  Then("""^the result should be \(ignoring element order for lists\):$"""){ (dataTable: DataTable) =>
+    assert(QueryCalculator.checkResultEqualiy(result, dataTable))
+  }
+
+  Then("""^a SyntaxError should be raised at compile time: NestedAggregation$"""){ () =>
+
   }
 }

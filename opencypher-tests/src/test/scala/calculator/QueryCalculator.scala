@@ -2,6 +2,7 @@ package calculator
 
 import cucumber.api.DataTable
 import neo4j.driver.reactive.Neo4jReactiveSession
+import org.neo4j.cypher.SyntaxException
 
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
@@ -12,42 +13,50 @@ import scala.collection.mutable.ListBuffer
 object QueryCalculator {
 
   def calculateSideEffects(session: Neo4jReactiveSession, query: String): DatabaseResult = {
+    var exceptionStackTrace = ""
+    var queryResults = ListBuffer[ListBuffer[String]]()
     var sideEffects = scala.collection.mutable.Map[String, Int]()
     val queryList = List("nodes", "relationships", "labels", "properties")
-    val x = session.run("MATCH (n) RETURN count(n) AS count")
-    val y = x.next().get("count")
     session.registerQuery("nodes", "MATCH (n) RETURN count(n) AS count")
     session.registerQuery("relationships", "MATCH ()-[r]-() RETURN count(DISTINCT r) AS count")
     session.registerQuery("labels", "MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count")
     session.registerQuery("properties", "MATCH (n) RETURN count(properties(n)) AS count")
     session.beginTransaction()
-    val sessionResult = session.run(query)
-    var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
-    var queryResults = ListBuffer[ListBuffer[String]]()
+    try {
+      val sessionResult = session.run(query)
 
-    if (!unProcessedQueryResultsBuffer.isEmpty) {
-      var tmp = ListBuffer[String]()
-      tmp ++= unProcessedQueryResultsBuffer(0).keys()
-      queryResults += tmp
-    }
-    for (i <- 0 until unProcessedQueryResultsBuffer.size) {
-      var tmp = ListBuffer[String]()
-      var valueBuffer = ListBuffer[String]()
-      for (value <- unProcessedQueryResultsBuffer(i).values()) {
-        valueBuffer += value.toString
-        //TODO lowercase check
-      }
-      tmp ++= valueBuffer
-      queryResults += tmp
-    }
 
-    for (query <- queryList) {
-      var diff = calculateDifference(session, query)
-      if (diff != null) {
-        sideEffects += diff
+      var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
+
+      queryResults = ListBuffer[ListBuffer[String]]()
+
+      if (unProcessedQueryResultsBuffer.nonEmpty) {
+        var tmp = ListBuffer[String]()
+        tmp ++= unProcessedQueryResultsBuffer(0).keys()
+        queryResults += tmp
+      }
+      for (i <- unProcessedQueryResultsBuffer.indices) {
+        var tmp = ListBuffer[String]()
+        var valueBuffer = ListBuffer[String]()
+        for (value <- unProcessedQueryResultsBuffer(i).values()) {
+          valueBuffer += value.toString
+          //TODO lowercase check
+        }
+        tmp ++= valueBuffer
+        queryResults += tmp
+      }
+
+      for (query <- queryList) {
+        var diff = calculateDifference(session, query)
+        if (diff != null) {
+          sideEffects += diff
+        }
       }
     }
-    return DatabaseResult(queryResults, sideEffects)
+    catch {
+      case syntax: SyntaxException => exceptionStackTrace = syntax.getStackTrace.toString;
+    }
+    return DatabaseResult(queryResults, sideEffects, exceptionStackTrace)
 
   }
 
@@ -74,11 +83,27 @@ object QueryCalculator {
     expectedResult.foreach(println)
     println("QUERY RESULT: ")
     result.queryResult.foreach(println)
-    var isSame = true;
-    for (i <- 0 until expectedResult.length) {
-      isSame = expectedResult(i) sameElements result.queryResult(i)
+
+    for (i <- 0 until result.queryResult.size) {
+      result.queryResult(i) = result.queryResult(i).map(_.toUpperCase)
     }
-    return isSame
+
+    for (i <- 0 until expectedResult.size) {
+      expectedResult(i) = expectedResult(i).map(_.toUpperCase)
+    }
+    var isSame = false
+    for (i <- 0 until expectedResult.size) {
+      isSame = false
+      for (j <- 0 until result.queryResult.size) {
+        if (expectedResult(i).size == expectedResult(i).intersect(result.queryResult(j)).size) {
+          isSame = true
+        }
+      }
+      if (!isSame) {
+        return false
+      }
+    }
+    true
   }
 
 

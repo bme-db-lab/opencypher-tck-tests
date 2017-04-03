@@ -1,0 +1,174 @@
+Bad Scenarios:
+
+/*Aggregation Acceptance*/
+
+  Scenario: Aggregates in aggregates
+    Given any graph
+    When executing query:
+      """
+      RETURN count(count(*))
+      """
+    Then a SyntaxError should be raised at compile time: NestedAggregation
+
+  Scenario: Aggregates with arithmetics
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+    When executing query:
+      """
+      MATCH ()
+      RETURN count(*) * 10 AS c
+      """
+    Then the result should be:
+      | c  |
+      | 10 |
+    And no side effects
+	
+	
+	/*org.neo4j.driver.v1.exceptions.ClientException: Unable to convert org.neo4j.kernel.impl.core.NodeProxy to Neo4j Value.*/
+	Scenario: Multiple aggregates on same variable
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+    When executing query:
+      """
+      MATCH (n)
+      RETURN count(n), collect(n)
+      """
+    Then the result should be:
+      | count(n) | collect(n) |
+      | 1        | [()]       |
+    And no side effects
+	
+	/*org.neo4j.driver.v1.exceptions.ClientException: Unable to convert org.neo4j.kernel.impl.core.NodeProxy to Neo4j Value.*/
+	  Scenario: Aggregation of named paths
+    Given an empty graph
+    And having executed:
+      """
+      CREATE (a:A), (b:B), (c:C), (d:D), (e:E), (f:F)
+      CREATE (a)-[:R]->(b)
+      CREATE (c)-[:R]->(d)
+      CREATE (d)-[:R]->(e)
+      CREATE (e)-[:R]->(f)
+      """
+    When executing query:
+      """
+      MATCH p = (a)-[*]->(b)
+      RETURN collect(nodes(p)) AS paths, length(p) AS l
+      ORDER BY l
+      """
+    Then the result should be, in order:
+      | paths                                                    | l |
+      | [[(:A), (:B)], [(:C), (:D)], [(:D), (:E)], [(:E), (:F)]] | 1 |
+      | [[(:C), (:D), (:E)], [(:D), (:E), (:F)]]                 | 2 |
+      | [[(:C), (:D), (:E), (:F)]]                               | 3 |
+    And no side effects
+	
+	
+/*ColumnNameAcceptance*/
+
+
+  Background:
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+	  
+  Scenario: Keeping used expression 2
+    When executing query:
+      """
+      MATCH p = (n)-->(b)
+      RETURN nOdEs( p )
+      """
+    Then the result should be:
+      | nOdEs( p ) |
+    And no side effects
+	
+	
+/*NOT FAILS JUST INTERESTING
+Neo4J Driver returns NULL <-> null*/
+ Scenario: Keeping used expression 4
+    When executing query:
+      """
+      MATCH p = (n)-->(b)
+      RETURN aVg(    n.aGe     )
+      """
+    Then the result should be:
+      | aVg(    n.aGe     ) |
+      | null                |
+    And no side effects
+	
+/*Comparability*/
+/*org.neo4j.graphdb.QueryExecutionException: Don't know how to compare that. Left: 0 (Long); Right: "x" (String)*/
+
+/*CreateAcceptance, DeleteAcceptance*/
+/*similar errors like this*/
+/*result: 
+(+nodes,12)
+(+properties,12)
+expected result: 
+(+nodes,10)*/	
+Scenario: Combine MATCH, WITH and CREATE
+    Given an empty graph
+    And having executed:
+      """
+      CREATE (), ()
+      """
+    When executing query:
+      """
+      MATCH ()
+      CREATE ()
+      WITH *
+      MATCH ()
+      CREATE ()
+      """
+    Then the result should be empty
+    And the side effects should be:
+      | +nodes  | 10 |
+	  
+/*EqualsAcceptance*/
+ Scenario: Number-typed float comparison
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ({id: 0})
+      """
+    When executing query:
+      """
+      WITH collect([0.5, 0]) AS numbers
+      UNWIND numbers AS arr
+      WITH arr[0] AS expected
+      MATCH (n) WHERE toInteger(n.id) = expected
+      RETURN n
+      """
+    Then the result should be:
+      | n |
+    And no side effects
+
+  Scenario: Any-typed string comparison
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ({id: 0})
+      """
+    When executing query:
+      """
+      WITH collect(['0', 0]) AS things
+      UNWIND things AS arr
+      WITH arr[0] AS expected
+      MATCH (n) WHERE toInteger(n.id) = expected
+      RETURN n
+      """
+    Then the result should be:
+      | n |
+    And no side effects
+	
+/*ExpressionAcceptance*/
+/*TODO error check*/
+/*FunctionsAcceptance*/
+/*TODO parameter adding*/
