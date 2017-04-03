@@ -16,7 +16,7 @@ import scala.collection.mutable.ListBuffer
 object QueryCalculator {
 
   def calculateSideEffects(session: Session, query: String): DatabaseResult = {
-    var sideEffects = scala.collection.mutable.Map[String, Int]()
+    var sideEffectsMap = scala.collection.mutable.Map[String, Int]()
     val startNodes = session.run("MATCH (n) RETURN count(n) AS count").next().get("count").asInt
     val startRelationships = session.run("MATCH ()-[r]-() RETURN count(DISTINCT r) AS count").next().get("count").asInt
     val startLabels = session.run("MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count").next().get("count").asInt
@@ -30,43 +30,43 @@ object QueryCalculator {
 
     if(diffNodes != 0){
       if(diffNodes>0){
-        sideEffects+=Tuple2("+nodes", diffNodes)
+        sideEffectsMap+=Tuple2("+nodes", diffNodes)
       }else{
-        sideEffects+=Tuple2("-nodes", diffNodes)
+        sideEffectsMap+=Tuple2("-nodes", diffNodes)
       }
     }
 
     if(diffRelationships != 0){
       if(diffRelationships>0){
-        sideEffects+=Tuple2("+relationships",diffRelationships)
+        sideEffectsMap+=Tuple2("+relationships",diffRelationships)
       }else{
-        sideEffects+=Tuple2("-relationships", diffRelationships)
+        sideEffectsMap+=Tuple2("-relationships", diffRelationships)
       }
     }
 
     if(diffLabels != 0){
       if(diffLabels>0){
-        sideEffects+=Tuple2("+labels", diffLabels)
+        sideEffectsMap+=Tuple2("+labels", diffLabels)
       }else{
-        sideEffects+=Tuple2("-labels", diffLabels)
+        sideEffectsMap+=Tuple2("-labels", diffLabels)
       }
     }
 
     if(diffProperties != 0){
       if(diffProperties>0){
-        sideEffects+=Tuple2("+properties", diffProperties)
+        sideEffectsMap+=Tuple2("+properties", diffProperties)
       }else{
-        sideEffects+=Tuple2("-properties", diffProperties)
+        sideEffectsMap+=Tuple2("-properties", diffProperties)
       }
     }
 
     var unProcessedQueryResultsBuffer = asScalaBuffer(sessionResult.list())
-    var queryResults = ListBuffer[ListBuffer[String]]()
+    var queryResultsBuffer = ListBuffer[ListBuffer[String]]()
 
     if (unProcessedQueryResultsBuffer.nonEmpty) {
       var tmp = ListBuffer[String]()
       tmp ++= unProcessedQueryResultsBuffer.head.keys()
-      queryResults += tmp
+      queryResultsBuffer += tmp
     }
     for (i <- unProcessedQueryResultsBuffer.indices) {
       var tmp = ListBuffer[String]()
@@ -75,9 +75,9 @@ object QueryCalculator {
         valueBuffer += value.toString
       }
       tmp ++= valueBuffer
-      queryResults += tmp
+      queryResultsBuffer += tmp
     }
-    DatabaseResult(queryResults, sideEffects)
+    DatabaseResult(queryResultsBuffer, sideEffectsMap)
 
   }
 
