@@ -168,7 +168,7 @@ RelationshipTypeName :
  * label : ':' labelName ;
  */
 Label:
-  ':' LabelName;
+  ':' name=LabelName;
 
 /*
  * labelName : SYMBOLIC_NAME ;
