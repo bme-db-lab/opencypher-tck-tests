@@ -155,7 +155,7 @@ PropertyValue :
  * relationshipType : ':' relationshipTypeName ;
  */
 RelationshipType :
-  ':' RelationshipTypeName ;
+  ':' name=RelationshipTypeName ;
 
 /*
  * relationshipTypeName : SYMBOLIC_NAME ;

@@ -79,9 +79,9 @@ object FeatureResultCompiler {
   }
 
   protected def c(relationship: RelationshipDesc): RelationshipValue = {
-    val t = relationship.getType
+    val t = relationship.getType.getName
     val propertiesMapValue = c(relationship.getPropertyMap)
-    val properties = propertiesMapValue.asMap(Values.ofValue())
+    val properties = propertiesMapValue.asMap(Values.ofValue)
     new RelationshipValue(new InternalRelationship(0, 0, 0, t, properties))
   }
 
