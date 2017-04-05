@@ -72,9 +72,9 @@ object FeatureResultCompiler {
   }
 
   protected def c(node: NodeDesc): NodeValue = {
-    val labels = node.getLabels.toList.asJava
+    val labels = node.getLabels.map { _.getName }.toList.asJava
     val propertiesMapValue = c(node.getPropertyMap)
-    val properties = propertiesMapValue.asMap(Values.ofValue())
+    val properties = propertiesMapValue.asMap(Values.ofValue)
     new NodeValue(new InternalNode(0, labels, properties))
   }
 
