@@ -24,7 +24,7 @@ object QueryCalculator {
 
     session.beginTransaction()
     val sessionResult = session.run(query)
-    
+
     sideEffectsMap.foreach(x => {
       val diff = session.run(x._2._1).next().get("count").asInt() - x._2._2
 
