@@ -17,7 +17,7 @@ object QueryCalculator {
     sideEffectsMap += "nodes" -> ("MATCH (n) RETURN count(n) AS count", 0)
     sideEffectsMap += "relationships" -> ("MATCH ()-[r]-() RETURN count(DISTINCT r) AS count", 0)
     sideEffectsMap += "labels" -> ("MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count", 0)
-    sideEffectsMap += "properties" -> ("MATCH (n) RETURN count(properties(n)) AS count", 0)
+    sideEffectsMap += "properties" -> ("MATCH (n) RETURN size(keys(n)) AS count", 0)
     sideEffectsMap.foreach(x =>
       sideEffectsMap(x._1) = (x._2._1, session.run(x._2._1).next().get("count").asInt())
     )
@@ -27,7 +27,6 @@ object QueryCalculator {
 
     sideEffectsMap.foreach(x => {
       val diff = session.run(x._2._1).next().get("count").asInt() - x._2._2
-
       diff compare 0 match {
         case 1 => sideEffectsMap(x._1) = ("+" + x._1, diff)
         case -1 => sideEffectsMap(x._1) = ("-" + x._1, -diff)
@@ -35,7 +34,6 @@ object QueryCalculator {
       }
     }
     )
-
 
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
     val queryResultsBuffer = ListBuffer[ListBuffer[String]]()
@@ -63,22 +61,7 @@ object QueryCalculator {
     println("QUERY RESULT: ")
     result.queryResult.foreach(println)
 
-    result.queryResult.foreach(_.map(_.toUpperCase))
-    expectedResult.foreach(_.map(_.toUpperCase))
-
-    expectedResult.foreach(x => {
-      var isSame = false
-      result.queryResult.foreach(y => {
-
-        if (x.size == x.intersect(y).size) {
-          isSame = true
-        }
-      }
-      )
-      if (!isSame) return false
-
-    })
-    true
+    expectedResult.flatten.map(_.toUpperCase).intersect(result.queryResult.flatten.map(_.toUpperCase)).size == expectedResult.flatten.size
   }
 
 
