@@ -18,19 +18,26 @@ object QueryCalculator {
     sideEffectsMap += "relationships" -> ("MATCH ()-[r]-() RETURN count(DISTINCT r) AS count", 0)
     sideEffectsMap += "labels" -> ("MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count", 0)
     sideEffectsMap += "properties" -> ("MATCH (n) RETURN size(keys(n)) AS count", 0)
-    sideEffectsMap.foreach(x =>
-      sideEffectsMap(x._1) = (x._2._1, session.run(x._2._1).next().get("count").asInt())
+
+    sideEffectsMap.foreach(x => {
+      val it = session.run(x._2._1)
+      if (it.hasNext) sideEffectsMap(x._1) = (x._2._1, session.run(x._2._1).next().get("count").asInt())
+    }
     )
+
 
     session.beginTransaction()
     val sessionResult = session.run(query)
 
     sideEffectsMap.foreach(x => {
-      val diff = session.run(x._2._1).next().get("count").asInt() - x._2._2
-      diff compare 0 match {
-        case 1 => sideEffectsMap(x._1) = ("+" + x._1, diff)
-        case -1 => sideEffectsMap(x._1) = ("-" + x._1, -diff)
-        case 0 => sideEffectsMap -= x._1
+      val it = session.run(x._2._1)
+      if (it.hasNext) {
+        val diff = it.next().get("count").asInt() - x._2._2
+        diff compare 0 match {
+          case 1 => sideEffectsMap(x._1) = ("+" + x._1, diff)
+          case -1 => sideEffectsMap(x._1) = ("-" + x._1, -diff)
+          case 0 => sideEffectsMap -= x._1
+        }
       }
     }
     )
