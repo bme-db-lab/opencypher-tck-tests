@@ -1273,20 +1273,6 @@ Feature: MatchAcceptance2
       | (:A) | [:T] | null | null |
     And no side effects
 
-  Scenario: Fail when using property access on primitive type
-    Given an empty graph
-    And having executed:
-      """
-      CREATE ({prop: 42})
-      """
-    When executing query:
-      """
-      MATCH (n)
-      WITH n.prop AS n2
-      RETURN n2.prop
-      """
-    Then a TypeError should be raised at runtime: PropertyAccessOnNonMap
-
   Scenario: Matching and returning ordered results, with LIMIT
     Given an empty graph
     And having executed:

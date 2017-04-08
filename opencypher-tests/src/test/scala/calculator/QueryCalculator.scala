@@ -1,7 +1,9 @@
 package calculator
 
+import compiler.FeatureResultCompiler
 import cucumber.api.DataTable
-import org.neo4j.driver.v1.{Session}
+import org.neo4j.driver.internal.value._
+import org.neo4j.driver.v1.{Session, Value}
 
 import scala.collection.mutable.ListBuffer
 import collection.JavaConverters._
@@ -12,8 +14,8 @@ import collection.JavaConverters._
 object QueryCalculator {
 
   def calculateSideEffects(session: Session, query: String): DatabaseResult = {
-
-    val sideEffectsMap = scala.collection.mutable.Map[String, (String, Int)]()
+    lazy val queryResultsBuffer = ListBuffer[String]()
+    lazy val sideEffectsMap = scala.collection.mutable.Map[String, (String, Int)]()
     sideEffectsMap += "nodes" -> ("MATCH (n) RETURN count(n) AS count", 0)
     sideEffectsMap += "relationships" -> ("MATCH ()-[r]-() RETURN count(DISTINCT r) AS count", 0)
     sideEffectsMap += "labels" -> ("MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count", 0)
@@ -22,9 +24,9 @@ object QueryCalculator {
     sideEffectsMap.foreach(x => {
       val it = session.run(x._2._1)
       if (it.hasNext) sideEffectsMap(x._1) = (x._2._1, session.run(x._2._1).next().get("count").asInt())
+      else sideEffectsMap(x._1) = (x._2._1, 0)
     }
     )
-
 
     session.beginTransaction()
     val sessionResult = session.run(query)
@@ -38,37 +40,44 @@ object QueryCalculator {
           case -1 => sideEffectsMap(x._1) = ("-" + x._1, -diff)
           case 0 => sideEffectsMap -= x._1
         }
+      } else {
+        if (x._2._2 == 0)
+          sideEffectsMap -= x._1
+        else
+          sideEffectsMap(x._1) = ("-" + x._1, x._2._2)
       }
     }
     )
 
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
-    val queryResultsBuffer = ListBuffer[ListBuffer[String]]()
 
     if (unProcessedQueryResultsBuffer.nonEmpty) {
-      queryResultsBuffer :+ unProcessedQueryResultsBuffer.head.keys().asScala
+      unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
     }
 
-    unProcessedQueryResultsBuffer.foreach(x =>
-      queryResultsBuffer :+ x.values().asScala.map(_.toString)
-    )
+    unProcessedQueryResultsBuffer.foreach(_.values().asScala.foreach(value => resultElementToStringBuffer(value, queryResultsBuffer)))
 
     DatabaseResult(queryResultsBuffer, sideEffectsMap.map(x => x._2._1 -> x._2._2))
 
   }
 
   def checkResultEqualiy(result: DatabaseResult, dataTable: DataTable): Boolean = {
-    val expectedResult = ListBuffer[ListBuffer[String]]()
+    val expectedResult = ListBuffer[String]()
 
-    dataTable.getGherkinRows.asScala.foreach(x =>
-      expectedResult :+ x.getCells.asScala.map(x => x.replace(''', '"'))
-    )
+    dataTable.getGherkinRows.asScala.zipWithIndex foreach { case (el, i) => {
+      if (i == 0) {
+        expectedResult ++= el.getCells.asScala
+      } else {
+        el.getCells.asScala.foreach(x => resultElementToStringBuffer(FeatureResultCompiler.parseAndCompile(x), expectedResult))
+      }
+    }
+    }
     println("EXPECTED RESULT: ")
     expectedResult.foreach(println)
     println("QUERY RESULT: ")
     result.queryResult.foreach(println)
-
-    expectedResult.flatten.map(_.toUpperCase).intersect(result.queryResult.flatten.map(_.toUpperCase)).size == expectedResult.flatten.size
+    //TODO megnezni, hogy miert igy kapom vissza a String-et : 'STRING'
+    expectedResult.map(_.replace("'", "")).intersect(result.queryResult).size == expectedResult.size
   }
 
 
@@ -88,5 +97,26 @@ object QueryCalculator {
     }
   }
 
+  def resultElementToStringBuffer(resultElement: Value, resultStringBuffer: ListBuffer[String]): Unit = {
+    resultElement match {
+
+      case integerValue: IntegerValue =>
+        resultStringBuffer += integerValue.toString
+
+      case stringValue: StringValue =>
+        resultStringBuffer += stringValue.asString
+
+      case floatValue: FloatValue =>
+        resultStringBuffer += floatValue.toString
+
+      case nodeValue: NodeValue =>
+        resultStringBuffer ++= nodeValue.asEntity().labels().asScala
+        resultStringBuffer ++= nodeValue.asEntity().asMap.asScala.toList.map(x => x._1 + " : " + x._2)
+
+      case listValue: ListValue =>
+        listValue.values().asScala.foreach(x => resultElementToStringBuffer(x, resultStringBuffer))
+
+    }
+  }
 
 }

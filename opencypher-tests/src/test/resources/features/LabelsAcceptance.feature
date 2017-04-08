@@ -158,45 +158,6 @@ Feature: LabelsAcceptance
       | +relationships | 1 |
       | +labels        | 2 |
 
-  Scenario: Fail when adding a new label predicate on a node that is already bound 1
-    When executing query:
-      """
-      CREATE (n:Foo)-[:T1]->(),
-             (n:Bar)-[:T2]->()
-      """
-    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
-
-  Scenario: Fail when adding new label predicate on a node that is already bound 2
-    When executing query:
-      """
-      CREATE ()<-[:T2]-(n:Foo),
-             (n:Bar)<-[:T1]-()
-      """
-    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
-
-  Scenario: Fail when adding new label predicate on a node that is already bound 3
-    When executing query:
-      """
-      CREATE (n:Foo)
-      CREATE (n:Bar)-[:OWNS]->(:Dog)
-      """
-    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
-
-  Scenario: Fail when adding new label predicate on a node that is already bound 4
-    When executing query:
-      """
-      CREATE (n {})
-      CREATE (n:Bar)-[:OWNS]->(:Dog)
-      """
-    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
-
-  Scenario: Fail when adding new label predicate on a node that is already bound 5
-    When executing query:
-      """
-      CREATE (n:Foo)
-      CREATE (n {})-[:OWNS]->(:Dog)
-      """
-    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
 
   Scenario: Using `labels()` in return clauses
     And having executed:

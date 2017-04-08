@@ -102,29 +102,8 @@ Feature: FunctionsAcceptance
       | {name: 'Popeye', level: 9001} |
     And no side effects
 
-  Scenario: `properties()` failing on an integer literal
-    Given any graph
-    When executing query:
-      """
-      RETURN properties(1)
-      """
-    Then a SyntaxError should be raised at compile time: InvalidArgumentType
 
-  Scenario: `properties()` failing on a string literal
-    Given any graph
-    When executing query:
-      """
-      RETURN properties('Cypher')
-      """
-    Then a SyntaxError should be raised at compile time: InvalidArgumentType
 
-  Scenario: `properties()` failing on a list of booleans
-    Given any graph
-    When executing query:
-      """
-      RETURN properties([true, false])
-      """
-    Then a SyntaxError should be raised at compile time: InvalidArgumentType
 
   Scenario: `properties()` on null
     Given any graph
@@ -254,68 +233,7 @@ Feature: FunctionsAcceptance
       | 0.5 | 20.0   |
       | 1.0 | 30.0   |
 
-  Scenario Outline: `percentileCont()` failing on bad arguments
-    Given an empty graph
-    And having executed:
-      """
-      CREATE ({prop: 10.0})
-      """
-    And parameters are:
-      | param | <percentile> |
-    When executing query:
-      """
-      MATCH (n)
-      RETURN percentileCont(n.prop, $param)
-      """
-    Then a ArgumentError should be raised at runtime: NumberOutOfRange
 
-    Examples:
-      | percentile |
-      | 1000       |
-      | -1         |
-      | 1.1        |
-
-  Scenario Outline: `percentileDisc()` failing on bad arguments
-    Given an empty graph
-    And having executed:
-      """
-      CREATE ({prop: 10.0})
-      """
-    And parameters are:
-      | param | <percentile> |
-    When executing query:
-      """
-      MATCH (n)
-      RETURN percentileDisc(n.prop, $param)
-      """
-    Then a ArgumentError should be raised at runtime: NumberOutOfRange
-
-    Examples:
-      | percentile |
-      | 1000       |
-      | -1         |
-      | 1.1        |
-
-  Scenario: `percentileDisc()` failing in more involved query
-    Given an empty graph
-    And having executed:
-      """
-      UNWIND range(0, 10) AS i
-      CREATE (s:S)
-      WITH s, i
-      UNWIND range(0, i) AS j
-      CREATE (s)-[:REL]->()
-      """
-    When executing query:
-      """
-      MATCH (n:S)
-      WITH n, size([(n)-->() | 1]) AS deg
-      WHERE deg > 2
-      WITH deg
-      LIMIT 100
-      RETURN percentileDisc(0.90, deg), deg
-      """
-    Then a ArgumentError should be raised at runtime: NumberOutOfRange
 
   Scenario: `type()`
     Given an empty graph
@@ -401,18 +319,6 @@ Feature: FunctionsAcceptance
       | 'T'           |
     And no side effects
 
-  Scenario Outline: `type()` failing on invalid arguments
-    Given an empty graph
-    And having executed:
-      """
-      CREATE ()-[:T]->()
-      """
-    When executing query:
-      """
-      MATCH p = (n)-[r:T]->()
-      RETURN [x IN [r, <invalid>] | type(x) ] AS list
-      """
-    Then a TypeError should be raised at runtime: InvalidArgumentValue
 
     Examples:
       | invalid |
@@ -440,32 +346,6 @@ Feature: FunctionsAcceptance
       | ['Foo', 'Bar'] |
     And no side effects
 
-  Scenario: `labels()` failing on a path
-    Given an empty graph
-    And having executed:
-      """
-      CREATE (:Foo), (:Foo:Bar)
-      """
-    When executing query:
-      """
-      MATCH p = (a)
-      RETURN labels(p) AS l
-      """
-    Then a SyntaxError should be raised at compile time: InvalidArgumentType
-
-  Scenario: `labels()` failing on invalid arguments
-    Given an empty graph
-    And having executed:
-      """
-      CREATE (:Foo), (:Foo:Bar)
-      """
-    When executing query:
-      """
-      MATCH (a)
-      WITH [a, 1] AS list
-      RETURN labels(list[1]) AS l
-      """
-    Then a TypeError should be raised at runtime: InvalidArgumentValue
 
   Scenario: `exists()` is case insensitive
     Given an empty graph

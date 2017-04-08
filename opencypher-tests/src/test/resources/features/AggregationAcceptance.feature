@@ -261,6 +261,22 @@ Feature: AggregationAcceptance
       | ['blue'] | 1        |
     And no side effects
 
+  Scenario: Aggregates with arithmetics
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+    When executing query:
+      """
+      MATCH ()
+      RETURN count(*) * 10 AS c
+      """
+    Then the result should be:
+      | c  |
+      | 10 |
+    And no side effects
+
   Scenario: Aggregates ordered by arithmetics
     Given an empty graph
     And having executed:
@@ -278,7 +294,21 @@ Feature: AggregationAcceptance
       | 30 |
     And no side effects
 
-  
+  Scenario: Multiple aggregates on same variable
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+    When executing query:
+      """
+      MATCH (n)
+      RETURN count(n), collect(n)
+      """
+    Then the result should be:
+      | count(n) | collect(n) |
+      | 1        | [()]       |
+    And no side effects
 
   Scenario: Simple counting of nodes
     Given an empty graph
@@ -297,7 +327,28 @@ Feature: AggregationAcceptance
       | 100      |
     And no side effects
 
-
+  Scenario: Aggregation of named paths
+    Given an empty graph
+    And having executed:
+      """
+      CREATE (a:A), (b:B), (c:C), (d:D), (e:E), (f:F)
+      CREATE (a)-[:R]->(b)
+      CREATE (c)-[:R]->(d)
+      CREATE (d)-[:R]->(e)
+      CREATE (e)-[:R]->(f)
+      """
+    When executing query:
+      """
+      MATCH p = (a)-[*]->(b)
+      RETURN collect(nodes(p)) AS paths, length(p) AS l
+      ORDER BY l
+      """
+    Then the result should be, in order:
+      | paths                                                    | l |
+      | [[(:A), (:B)], [(:C), (:D)], [(:D), (:E)], [(:E), (:F)]] | 1 |
+      | [[(:C), (:D), (:E)], [(:D), (:E), (:F)]]                 | 2 |
+      | [[(:C), (:D), (:E), (:F)]]                               | 3 |
+    And no side effects
 
   Scenario: Aggregation with `min()`
     Given an empty graph
