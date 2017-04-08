@@ -44,4 +44,7 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
 
+  When("""^executing control query:$"""){ (query:String) =>
+    result = QueryCalculator.calculateSideEffects(driver.session, query)
+  }
  }

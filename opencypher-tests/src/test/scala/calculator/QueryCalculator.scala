@@ -99,6 +99,17 @@ object QueryCalculator {
 
   def resultElementToStringBuffer(resultElement: Value, resultStringBuffer: ListBuffer[String]): Unit = {
     resultElement match {
+      case relationShipValue: RelationshipValue =>
+        resultStringBuffer += relationShipValue.toString
+
+      case booleanValue: BooleanValue =>
+        resultStringBuffer += booleanValue.toString
+
+      case nullValue: NullValue =>
+        resultStringBuffer += "null"
+
+      case mapValue: MapValue =>
+        resultStringBuffer += mapValue.asMap.toString
 
       case integerValue: IntegerValue =>
         resultStringBuffer += integerValue.toString
