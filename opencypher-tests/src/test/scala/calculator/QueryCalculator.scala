@@ -61,16 +61,15 @@ object QueryCalculator {
 
   }
 
-  def checkResultEqualiy(result: DatabaseResult, dataTable: DataTable): Boolean = {
+  def checkResultEqualiy(result: DatabaseResult, expectedDataTable: DataTable): Boolean = {
     val expectedResult = ListBuffer[String]()
 
-    dataTable.getGherkinRows.asScala.zipWithIndex foreach { case (el, i) => {
+    expectedDataTable.getGherkinRows.asScala.zipWithIndex foreach { case (el, i) =>
       if (i == 0) {
         expectedResult ++= el.getCells.asScala
       } else {
         el.getCells.asScala.foreach(x => resultElementToStringBuffer(FeatureResultCompiler.parseAndCompile(x), expectedResult))
       }
-    }
     }
     println("EXPECTED RESULT: ")
     expectedResult.foreach(println)
@@ -100,12 +99,16 @@ object QueryCalculator {
   def resultElementToStringBuffer(resultElement: Value, resultStringBuffer: ListBuffer[String]): Unit = {
     resultElement match {
       case relationShipValue: RelationshipValue =>
-        resultStringBuffer += relationShipValue.toString
+        resultStringBuffer += relationShipValue.asRelationship().`type`()
+        //TODO relationship propertyk listázása resultStringBuffer += relationShipValue.asRelationship().asMap.asScala.toList(x => x._1 + " : " + x._2)
 
       case booleanValue: BooleanValue =>
         resultStringBuffer += booleanValue.toString
 
-      case nullValue: NullValue =>
+      case _: NullValue =>
+        resultStringBuffer += "null"
+
+      case null =>
         resultStringBuffer += "null"
 
       case mapValue: MapValue =>

@@ -63,21 +63,6 @@ Feature: DeleteAcceptance
     And the side effects should be:
       | -relationships | 3 |
 
-  Scenario: Deleting connected nodes
-    Given an empty graph
-    And having executed:
-      """
-      CREATE (x:X)
-      CREATE (x)-[:R]->()
-      CREATE (x)-[:R]->()
-      CREATE (x)-[:R]->()
-      """
-    When executing query:
-      """
-      MATCH (n:X)
-      DELETE n
-      """
-    Then a ConstraintVerificationFailed should be raised at runtime: DeleteConnectedNode
 
   Scenario: Detach deleting connected nodes and relationships
     Given an empty graph

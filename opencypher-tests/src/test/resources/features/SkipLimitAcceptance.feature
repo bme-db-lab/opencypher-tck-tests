@@ -1,3 +1,4 @@
+#
 # Copyright 2017 "Neo Technology",
 # Network Engine for Objects in Lund AB (http://neotechnology.com)
 #
@@ -14,54 +15,43 @@
 # limitations under the License.
 #
 
-Feature: ColumnNameAcceptance
+Feature: SkipLimitAcceptanceTest
 
   Background:
-    Given an empty graph
+    Given any graph
+
+  Scenario: SKIP with an expression that does not depend on variables
     And having executed:
       """
-      CREATE ()
+      UNWIND range(1, 10) AS i
+      CREATE ({nr: i})
       """
-
-  Scenario: Keeping used expression 1
     When executing query:
       """
       MATCH (n)
-      RETURN cOuNt( * )
+      WITH n SKIP toInteger(rand()*9)
+      WITH count(*) AS count
+      RETURN count > 0 AS nonEmpty
       """
     Then the result should be:
-      | cOuNt( * ) |
-      | 1          |
+      | nonEmpty |
+      | true     |
     And no side effects
 
-  Scenario: Keeping used expression 2
-    When executing query:
-      """
-      MATCH p = (n)-->(b)
-      RETURN nOdEs( p )
-      """
-    Then the result should be:
-      | nOdEs( p ) |
-    And no side effects
 
-  Scenario: Keeping used expression 3
+  Scenario: LIMIT with an expression that does not depend on variables
+    And having executed:
+      """
+      UNWIND range(1, 3) AS i
+      CREATE ({nr: i})
+      """
     When executing query:
       """
-      MATCH p = (n)-->(b)
-      RETURN coUnt( dIstInct p )
+      MATCH (n)
+      WITH n LIMIT toInteger(ceil(1.7))
+      RETURN count(*) AS count
       """
     Then the result should be:
-      | coUnt( dIstInct p ) |
-      | 0                   |
-    And no side effects
-
-  Scenario: Keeping used expression 4
-    When executing query:
-      """
-      MATCH p = (n)-->(b)
-      RETURN aVg(    n.aGe     )
-      """
-    Then the result should be:
-      | aVg(    n.aGe     ) |
-      | null                |
+      | count |
+      | 2     |
     And no side effects
