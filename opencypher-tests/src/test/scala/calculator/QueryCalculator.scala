@@ -14,50 +14,18 @@ import collection.JavaConverters._
 object QueryCalculator {
 
 
-  def calculateSideEffects(session: Session, query: String): DatabaseResult = {
+  def calculateSideEffects(session: Session, query: String, sideEffectsHolder: SideEffectsHolder): DatabaseResult = {
     lazy val queryResultsBuffer = ListBuffer[String]()
-    lazy val sideEffectsMap = scala.collection.mutable.Map[String, (String, Int)]()
-    sideEffectsMap += "nodes" -> ("MATCH (n) RETURN count(n) AS count", 0)
-    sideEffectsMap += "relationships" -> ("MATCH ()-[r]-() RETURN count(DISTINCT r) AS count", 0)
-    sideEffectsMap += "labels" -> ("MATCH (n) UNWIND labels(n) AS label\nMATCH (n) WHERE label IN labels(n) RETURN count(DISTINCT label) AS count", 0)
-    sideEffectsMap += "properties" -> ("MATCH (n) RETURN size(keys(n)) AS count", 0)
-
-    sideEffectsMap.foreach(x => {
-      val it = session.run(x._2._1)
-      if (it.hasNext) sideEffectsMap(x._1) = (x._2._1, session.run(x._2._1).next().get("count").asInt())
-      else sideEffectsMap(x._1) = (x._2._1, 0)
-    }
-    )
-
+    sideEffectsHolder.init()
     session.beginTransaction()
     val sessionResult = session.run(query)
-
-    sideEffectsMap.foreach(x => {
-      val it = session.run(x._2._1)
-      if (it.hasNext) {
-        val diff = it.next().get("count").asInt() - x._2._2
-        diff compare 0 match {
-          case 1 => sideEffectsMap(x._1) = ("+" + x._1, diff)
-          case -1 => sideEffectsMap(x._1) = ("-" + x._1, -diff)
-          case 0 => sideEffectsMap -= x._1
-        }
-      } else {
-        if (x._2._2 == 0)
-          sideEffectsMap -= x._1
-        else
-          sideEffectsMap(x._1) = ("-" + x._1, x._2._2)
-      }
-    }
-    )
-
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
     if (unProcessedQueryResultsBuffer.nonEmpty) {
       unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
     }
-
     unProcessedQueryResultsBuffer.foreach(_.values().asScala.foreach(value => resultElementToStringBuffer(value, queryResultsBuffer)))
 
-    DatabaseResult(queryResultsBuffer, sideEffectsMap.map(x => x._2._1 -> x._2._2))
+    DatabaseResult(queryResultsBuffer, sideEffectsHolder.calculateDifference())
 
   }
 

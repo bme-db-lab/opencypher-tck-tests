@@ -11,20 +11,22 @@ import neo4j.driver.testkit.EmbeddedTestkitDriver
 class CreateStepDefinitions extends ScalaDsl with EN {
   var driver: EmbeddedTestkitDriver = _
   var result: DatabaseResult = _
-  var sideEffectsHolder: SideEffectsHolder = _
+  var sideEffectsHolder : SideEffectsHolder = _
   Given("""^any graph$""") { () =>
     driver = new EmbeddedTestkitDriver
+    sideEffectsHolder = new SideEffectsHolder(driver.session)
   }
 
   Given("""^an empty graph$""") { () =>
     driver = new EmbeddedTestkitDriver
+    sideEffectsHolder = new SideEffectsHolder(driver.session)
   }
   And("""^having executed:$""") { (query: String) =>
     driver.session.run(query)
     sideEffectsHolder.init()
   }
   When("""^executing query:$""") { (query: String) =>
-    result = QueryCalculator.calculateSideEffects(driver.session, query)
+    result = QueryCalculator.calculateSideEffects(driver.session, query, sideEffectsHolder)
   }
   Then("""^the result should be empty$""") { () =>
     assert(result.queryResult.isEmpty)
@@ -47,6 +49,6 @@ class CreateStepDefinitions extends ScalaDsl with EN {
   }
 
   When("""^executing control query:$"""){ (query:String) =>
-    result = QueryCalculator.calculateSideEffects(driver.session, query)
+    result = QueryCalculator.calculateSideEffects(driver.session, query, sideEffectsHolder)
   }
  }
