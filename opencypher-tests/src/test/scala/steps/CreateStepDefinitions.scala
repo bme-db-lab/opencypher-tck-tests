@@ -1,6 +1,6 @@
 package steps
 
-import calculator.{DatabaseResult, QueryCalculator}
+import calculator.{DatabaseResult, QueryCalculator, SideEffectsHolder}
 import cucumber.api.DataTable
 import cucumber.api.scala.{EN, ScalaDsl}
 import neo4j.driver.testkit.EmbeddedTestkitDriver
@@ -11,6 +11,7 @@ import neo4j.driver.testkit.EmbeddedTestkitDriver
 class CreateStepDefinitions extends ScalaDsl with EN {
   var driver: EmbeddedTestkitDriver = _
   var result: DatabaseResult = _
+  var sideEffectsHolder: SideEffectsHolder = _
   Given("""^any graph$""") { () =>
     driver = new EmbeddedTestkitDriver
   }
@@ -18,8 +19,9 @@ class CreateStepDefinitions extends ScalaDsl with EN {
   Given("""^an empty graph$""") { () =>
     driver = new EmbeddedTestkitDriver
   }
-  Given("""^having executed:$""") { (query: String) =>
+  And("""^having executed:$""") { (query: String) =>
     driver.session.run(query)
+    sideEffectsHolder.init()
   }
   When("""^executing query:$""") { (query: String) =>
     result = QueryCalculator.calculateSideEffects(driver.session, query)

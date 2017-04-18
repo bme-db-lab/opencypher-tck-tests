@@ -13,6 +13,7 @@ import collection.JavaConverters._
   */
 object QueryCalculator {
 
+
   def calculateSideEffects(session: Session, query: String): DatabaseResult = {
     lazy val queryResultsBuffer = ListBuffer[String]()
     lazy val sideEffectsMap = scala.collection.mutable.Map[String, (String, Int)]()
@@ -50,7 +51,6 @@ object QueryCalculator {
     )
 
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
-
     if (unProcessedQueryResultsBuffer.nonEmpty) {
       unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
     }
@@ -100,7 +100,7 @@ object QueryCalculator {
     resultElement match {
       case relationShipValue: RelationshipValue =>
         resultStringBuffer += relationShipValue.asRelationship().`type`()
-        //TODO relationship propertyk listázása resultStringBuffer += relationShipValue.asRelationship().asMap.asScala.toList(x => x._1 + " : " + x._2)
+      //TODO relationship propertyk listázása resultStringBuffer += relationShipValue.asRelationship().asMap.asScala.toList(x => x._1 + " : " + x._2)
 
       case booleanValue: BooleanValue =>
         resultStringBuffer += booleanValue.toString
