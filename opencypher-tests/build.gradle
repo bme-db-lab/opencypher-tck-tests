@@ -25,13 +25,6 @@ dependencies {
   compile group: 'neo4j-drivers', name: 'neo4j-embedded-testkit-driver', version: '0.0.4-SNAPSHOT'
 }
 
-
-configurations { cucumberRuntime { extendsFrom testRuntime } }
-
 addCucumberSuite 'cucumberTest'
 
-cucumber { maxParallelForks = 3 }
-
-cucumberTest {
-  stepDefinitionRoots = ['steps']
-}
+cucumber { maxParallelForks = 4 }

@@ -1,4 +1,4 @@
-package steps
+package cucumber.steps
 
 import calculator.{DatabaseResult, QueryCalculator}
 import cucumber.api.DataTable
