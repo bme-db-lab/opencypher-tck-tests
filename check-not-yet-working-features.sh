@@ -4,9 +4,9 @@ for f in AggregationAcceptance.feature CreateAcceptance.feature DeleteAcceptance
 
   cp opencypher-tests/src/cucumberTest/resources/features-not-yet-working/$f opencypher-tests/src/cucumberTest/resources/features
 
-  rm -rf opencypher-tck-tests/opencypher-tests/build/reports/cucumberTest/
+  rm -rf opencypher-tests/build/reports/cucumberTest/
   ./gradlew cucumberT
-  if [[ -z "opencypher-tck-tests/opencypher-tests/build/reports/cucumberTest" ]]; then
+  if [[ -z "opencypher-tests/build/reports/cucumberTest" ]]; then
     # it was working
     rm opencypher-tests/src/cucumberTest/resources/features-not-yet-working/$f
   else
