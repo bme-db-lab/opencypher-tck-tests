@@ -1,9 +1,3 @@
-plugins { id 'com.commercehub.cucumber-jvm' version '0.7' }
-
-apply plugin: 'scala'
-
-jar { from sourceSets.main.allScala }
-
 buildscript {
   repositories {
     maven { url "http://repo.bodar.com" }
@@ -11,6 +5,12 @@ buildscript {
   }
   dependencies { classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.8" }
 }
+
+plugins { id 'com.commercehub.cucumber-jvm' version '0.7' }
+
+apply plugin: 'scala'
+
+jar { from sourceSets.main.allScala }
 
 dependencies {
   compile project(':opencypher-feature-grammar')
