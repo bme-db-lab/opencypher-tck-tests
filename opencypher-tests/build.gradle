@@ -1,23 +1,15 @@
-buildscript {
-    repositories {
-        maven {
-          url "http://repo.bodar.com"
-        }
-        maven {
-          url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.8"
-    }
-}
-plugins {
-    id 'com.commercehub.cucumber-jvm' version '0.7'
-}
+plugins { id 'com.commercehub.cucumber-jvm' version '0.7' }
+
 apply plugin: 'scala'
 
-jar {
-  from sourceSets.main.allScala
+jar { from sourceSets.main.allScala }
+
+buildscript {
+  repositories {
+    maven { url "http://repo.bodar.com" }
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+  dependencies { classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.8" }
 }
 
 dependencies {
@@ -35,19 +27,13 @@ dependencies {
 }
 
 
-configurations {
-  cucumberRuntime {
-    extendsFrom testRuntime
-  }
-}
+configurations { cucumberRuntime { extendsFrom testRuntime } }
 
 addCucumberSuite 'cucumberTest'
 
-cucumber {
-  maxParallelForks = 3
-}
+cucumber { maxParallelForks = 3 }
 
 cucumberTest {
-    junitReport = true
+  junitReport = true
   stepDefinitionRoots = ['steps']
 }
