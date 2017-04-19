@@ -27,4 +27,4 @@ dependencies {
 
 addCucumberSuite 'cucumberTest'
 
-cucumber { maxParallelForks = 4 }
+cucumber { maxParallelForks = 1 }

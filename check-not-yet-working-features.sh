@@ -6,7 +6,7 @@ for f in AggregationAcceptance.feature CreateAcceptance.feature DeleteAcceptance
 
   rm -rf opencypher-tests/build/reports/cucumberTest/
   ./gradlew cucumberT
-  if [[ -z "opencypher-tests/build/reports/cucumberTest" ]]; then
+  if [[ -d "opencypher-tests/build/reports/cucumberTest" ]]; then
     # it was working
     rm opencypher-tests/src/cucumberTest/resources/features-not-yet-working/$f
   else
