@@ -17,3 +17,21 @@ dependencies {
   compile group: 'neo4j-drivers', name: 'neo4j-embedded-testkit-driver', version: '0.0.4-SNAPSHOT'
   compile group: 'neo4j-drivers', name: 'neo4j-reactive-driver-impl', version: '0.0.4-SNAPSHOT'
 }
+
+
+configurations {
+  cucumberRuntime {
+    extendsFrom testRuntime
+  }
+}
+
+task cucumber() {
+  dependsOn assemble, compileTestJava
+  doLast {
+    javaexec {
+      main = "cucumber.api.cli.Main"
+      classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+      args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+    }
+  }
+}

@@ -14,9 +14,10 @@ import collection.JavaConverters._
 object QueryCalculator {
 
 
-  def calculateSideEffects(session: Session, query: String, sideEffectsHolder: SideEffectsHolder): DatabaseResult = {
-    lazy val queryResultsBuffer = ListBuffer[String]()
+  def calculateSideEffects(session: Session, query: String): DatabaseResult = {
+    lazy val sideEffectsHolder =  new SideEffectsHolder(session)
     sideEffectsHolder.init()
+    lazy val queryResultsBuffer = ListBuffer[String]()
     session.beginTransaction()
     val sessionResult = session.run(query)
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
@@ -49,7 +50,7 @@ object QueryCalculator {
 
 
   def checkSideEffectsEquality(result: DatabaseResult, expectedResult: Option[DataTable]): Boolean = {
-    var expectedResultMap = collection.mutable.Map[String, Int]()
+    val expectedResultMap = collection.mutable.Map[String, Int]()
     println("result: ")
     result.sideEffect.foreach(println)
     expectedResult match {
