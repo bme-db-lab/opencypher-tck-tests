@@ -48,5 +48,6 @@ cucumber {
 }
 
 cucumberTest {
+    junitReport = true
   stepDefinitionRoots = ['steps']
 }
