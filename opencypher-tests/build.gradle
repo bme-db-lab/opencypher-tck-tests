@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven {
-            url "http://repo.bodar.com"
+          url "http://repo.bodar.com"
         }
         maven {
           url "https://plugins.gradle.org/m2/"
@@ -49,7 +49,4 @@ cucumber {
 
 cucumberTest {
   stepDefinitionRoots = ['steps']
-  systemProperties = [
-    'myVar': 'myValue'
-  ]
 }
