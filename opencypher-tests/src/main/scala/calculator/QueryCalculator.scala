@@ -40,10 +40,10 @@ object QueryCalculator {
         el.getCells.asScala.foreach(x => resultElementToStringBuffer(FeatureResultCompiler.parseAndCompile(x), expectedResult))
       }
     }
-    println("EXPECTED RESULT: ")
-    expectedResult.foreach(println)
-    println("QUERY RESULT: ")
-    result.queryResult.foreach(println)
+//    println("EXPECTED RESULT: ")
+//    expectedResult.foreach(println)
+//    println("QUERY RESULT: ")
+//    result.queryResult.foreach(println)
     //TODO megnezni, hogy miert igy kapom vissza a String-et : 'STRING'
     expectedResult.map(_.replace("'", "")).intersect(result.queryResult).size == expectedResult.size
   }
@@ -51,15 +51,15 @@ object QueryCalculator {
 
   def checkSideEffectsEquality(result: DatabaseResult, expectedResult: Option[DataTable]): Boolean = {
     val expectedResultMap = collection.mutable.Map[String, Int]()
-    println("result: ")
-    result.sideEffect.foreach(println)
+//    println("result: ")
+//    result.sideEffect.foreach(println)
     expectedResult match {
       case Some(x) =>
         x.raw().asScala.foreach(x =>
           expectedResultMap += (x.get(0) -> x.get(1).toInt)
         )
-        println("expected result: ")
-        expectedResultMap.foreach(println)
+//        println("expected result: ")
+//        expectedResultMap.foreach(println)
         result.sideEffect == expectedResultMap
       case None => result.sideEffect.isEmpty
     }
