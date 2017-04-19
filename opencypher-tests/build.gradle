@@ -23,7 +23,6 @@ dependencies {
   compile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
   compile group: 'info.cukes', name: "cucumber-scala_$scalaShortVersion", version: cucumberVersion
   compile group: 'neo4j-drivers', name: 'neo4j-embedded-testkit-driver', version: '0.0.4-SNAPSHOT'
-  compile group: 'neo4j-drivers', name: 'neo4j-reactive-driver-impl', version: '0.0.4-SNAPSHOT'
 }
 
 
