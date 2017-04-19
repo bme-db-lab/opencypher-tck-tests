@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/bme-db-lab/opencypher-tck-tests.svg?token=dduaCwDzExdmU27AvBiK&branch=master)](https://travis-ci.com/bme-db-lab/opencypher-tck-tests)
 
-[Latest test outputs](https://bme-db-lab.github.io/opencypher-tck-tests/feature-overview.html)
+[[latest test outputs]](https://bme-db-lab.github.io/opencypher-tck-tests/feature-overview.html)
 
 ## Contributor's guide
 
