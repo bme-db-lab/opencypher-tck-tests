@@ -33,6 +33,5 @@ addCucumberSuite 'cucumberTest'
 cucumber { maxParallelForks = 3 }
 
 cucumberTest {
-  junitReport = true
   stepDefinitionRoots = ['steps']
 }
