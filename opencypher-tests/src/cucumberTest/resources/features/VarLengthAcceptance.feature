@@ -103,6 +103,15 @@ Feature: VarLengthAcceptance
       | 'n0111' |
     And no side effects
 
+  Scenario: Fail when asterisk operator is missing
+    When executing query:
+      """
+      MATCH (a:A)
+      MATCH (a)-[:LIKES..]->(c)
+      RETURN c.name
+      """
+    Then a SyntaxError should be raised at compile time: InvalidRelationshipPattern
+
   Scenario: Handling single bounded variable length match 1
     When executing query:
       """
@@ -218,6 +227,14 @@ Feature: VarLengthAcceptance
       | 'n011' |
     And no side effects
 
+  Scenario: Fail on negative bound
+    When executing query:
+      """
+      MATCH (a:A)
+      MATCH (a)-[:LIKES*-2]->(c)
+      RETURN c.name
+      """
+    Then a SyntaxError should be raised at compile time: InvalidRelationshipPattern
 
   Scenario: Handling upper and lower bounded variable length match, empty interval 1
     When executing query:

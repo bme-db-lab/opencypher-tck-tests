@@ -104,6 +104,19 @@ Feature: ReturnAcceptance2
       | n |
     And no side effects
 
+  Scenario: Fail when sorting on variable removed by DISTINCT
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ({name: 'A', age: 13}), ({name: 'B', age: 12}), ({name: 'C', age: 11})
+      """
+    When executing query:
+      """
+      MATCH (a)
+      RETURN DISTINCT a.name
+        ORDER BY a.age
+      """
+    Then a SyntaxError should be raised at compile time: UndefinedVariable
 
   Scenario: Ordering with aggregation
     Given an empty graph

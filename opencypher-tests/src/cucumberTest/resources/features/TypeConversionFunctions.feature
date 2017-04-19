@@ -69,6 +69,23 @@ Feature: TypeConversionFunctions
       | null |
     And no side effects
 
+  Scenario Outline: `toBoolean()` on invalid types
+    Given any graph
+    When executing query:
+      """
+      WITH [true, <invalid>] AS list
+      RETURN toBoolean(list[1]) AS b
+      """
+    Then a TypeError should be raised at runtime: InvalidArgumentValue
+
+    Examples:
+      | invalid |
+      | []      |
+      | {}      |
+      | 1       |
+      | 1.0     |
+
+
   Scenario: `toInteger()`
     Given an empty graph
     And having executed:
@@ -160,6 +177,27 @@ Feature: TypeConversionFunctions
       | 0      |
     And no side effects
 
+  Scenario Outline: `toInteger()` failing on invalid arguments
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()-[:T]->()
+      """
+    When executing query:
+      """
+      MATCH p = (n)-[r:T]->()
+      RETURN [x IN [1, <invalid>] | toInteger(x) ] AS list
+      """
+    Then a TypeError should be raised at runtime: InvalidArgumentValue
+
+    Examples:
+      | invalid |
+      | true    |
+      | []      |
+      | {}      |
+      | n       |
+      | r       |
+      | p       |
 
   Scenario: `toFloat()`
     Given an empty graph
@@ -227,6 +265,27 @@ Feature: TypeConversionFunctions
       | [1.0, 2.0, null] |
     And no side effects
 
+  Scenario Outline: `toFloat()` failing on invalid arguments
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()-[:T]->()
+      """
+    When executing query:
+      """
+      MATCH p = (n)-[r:T]->()
+      RETURN [x IN [1.0, <invalid>] | toFloat(x) ] AS list
+      """
+    Then a TypeError should be raised at runtime: InvalidArgumentValue
+
+    Examples:
+      | invalid |
+      | true    |
+      | []      |
+      | {}      |
+      | n       |
+      | r       |
+      | p       |
 
   Scenario: `toString()`
     Given an empty graph
@@ -307,6 +366,26 @@ Feature: TypeConversionFunctions
       | ['1', '2', '3'] |
     And no side effects
 
+  Scenario Outline: `toString()` failing on invalid arguments
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()-[:T]->()
+      """
+    When executing query:
+      """
+      MATCH p = (n)-[r:T]->()
+      RETURN [x IN [1, '', <invalid>] | toString(x) ] AS list
+      """
+    Then a TypeError should be raised at runtime: InvalidArgumentValue
+
+    Examples:
+      | invalid |
+      | []      |
+      | {}      |
+      | n       |
+      | r       |
+      | p       |
 
   Scenario: `toString()` should accept potentially correct types 1
     Given any graph

@@ -379,6 +379,14 @@ Feature: MergeRelationshipAcceptance
       | [:KNOWS {name: 'cd'}] |
     And no side effects
 
+  Scenario: Fail when imposing new predicates on a variable that is already bound
+    Given any graph
+    When executing query:
+      """
+      CREATE (a:Foo)
+      MERGE (a)-[r:KNOWS]->(a:Bar)
+      """
+    Then a SyntaxError should be raised at compile time: VariableAlreadyBound
 
   Scenario: Using list properties via variable
     Given an empty graph
