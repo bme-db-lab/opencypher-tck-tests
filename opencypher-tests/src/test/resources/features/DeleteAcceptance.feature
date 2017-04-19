@@ -17,22 +17,6 @@
 
 Feature: DeleteAcceptance
 
-  Scenario: Create and delete in same query
-    Given an empty graph
-    And having executed:
-      """
-      CREATE ()
-      """
-    When executing query:
-      """
-      MATCH ()
-      CREATE (n)
-      DELETE n
-      """
-    Then the result should be empty
-    And the side effects should be:
-      | +nodes | 1 |
-      | -nodes | 1 |
 
   Scenario: Should support updates while merging
     Given an empty graph
@@ -89,4 +73,83 @@ Feature: DeleteAcceptance
     And the side effects should be:
       | +nodes      | 1 |
       | +properties | 1 |
+
+  Scenario: Merges should not be able to match on deleted nodes
+    Given an empty graph
+    And having executed:
+      """
+      CREATE (:A {value: 1}),
+        (:A {value: 2})
+      """
+    When executing query:
+      """
+      MATCH (a:A)
+      DELETE a
+      MERGE (a2:A)
+      RETURN a2.value
+      """
+    Then the result should be:
+      | a2.value |
+      | null     |
+      | null     |
+    And the side effects should be:
+      | +nodes  | 1 |
+      | -nodes  | 2 |
+      | +labels | 1 |
+
+  Scenario: Non-existent values in a property map are removed with SET =
+    Given any graph
+    And having executed:
+      """
+      CREATE (:X {foo: 'A', bar: 'B'})
+      """
+    When executing query:
+      """
+      MATCH (n:X {foo: 'A'})
+      SET n = {foo: 'B', baz: 'C'}
+      RETURN n
+      """
+    Then the result should be:
+      | n                         |
+      | (:X {foo: 'B', baz: 'C'}) |
+    And the side effects should be:
+      | +properties | 2 |
+      | -properties | 1 |
+
+  Scenario: Using list properties via variable
+    Given an empty graph
+    When executing query:
+      """
+      CREATE (a:Foo), (b:Bar)
+      WITH a, b
+      UNWIND ['a,b', 'a,b'] AS str
+      WITH a, b, split(str, ',') AS roles
+      MERGE (a)-[r:FB {foobar: roles}]->(b)
+      RETURN count(*)
+      """
+    Then the result should be:
+      | count(*) |
+      | 2        |
+    And the side effects should be:
+      | +nodes         | 2 |
+      | +relationships | 1 |
+      | +labels        | 2 |
+      | +properties    | 1 |
+
+  Scenario: Create and delete in same query
+    Given an empty graph
+    And having executed:
+      """
+      CREATE ()
+      """
+    When executing query:
+      """
+      MATCH ()
+      CREATE (n)
+      DELETE n
+      """
+    Then the result should be empty
+    And the side effects should be:
+      | +nodes | 1 |
+      | -nodes | 1 |
 

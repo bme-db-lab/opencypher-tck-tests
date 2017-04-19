@@ -1,0 +1,26 @@
+1. Amikor egy ilyet szeretnék parseolni, a FeatureResultCompilerrel, akkor valamiért ilyen hibát dob:
+
+Mit: () vagy 1.0 -ra dobja a hibát.
+Hiba: 	at ingraph.cucumber.featureresult.parser.FeatureParser.validateAndThrowError(FeatureParser.java:69)
+	at ingraph.cucumber.featureresult.parser.FeatureParser.parseString(FeatureParser.java:39)
+	at compiler.FeatureResultCompiler$.parseAndCompile(FeatureResultCompiler.scala:43)
+
+Mit: []
+Hiba: java.lang.NullPointerException
+	at compiler.FeatureResultCompiler$.c(FeatureResultCompiler.scala:126)
+	at compiler.FeatureResultCompiler$.compile(FeatureResultCompiler.scala:69)
+	at compiler.FeatureResultCompiler$.parseAndCompile(FeatureResultCompiler.scala:44)
+Mit: 3004498500
+Hiba: java.lang.RuntimeException: Error during cypher parse, the first error was: For input string: "3004498500"
+
+	at ingraph.cucumber.featureresult.parser.FeatureParser.validateAndThrowError(FeatureParser.java:69)
+	at ingraph.cucumber.featureresult.parser.FeatureParser.parseString(FeatureParser.java:39)
+	at compiler.FeatureResultCompiler$.parseAndCompile(FeatureResultCompiler.scala:43)
+
+2. Comparability.feature megnézése
+
+Hiba: org.neo4j.graphdb.QueryExecutionException: Don't know how to compare that. Left: 0 (Long); Right: "x" (String)
+
+3. Property count közösen kidebugolni
+
+4. Relationship property-k listázása
