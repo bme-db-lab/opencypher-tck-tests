@@ -1,8 +1,13 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
+env:
+  global:
+  - GH_REF=github.com/bme-db-lab/opencypher-tck-tests
+  - secure: oRqEQxtgF2IBjiJpb1dY+tEIf3uMmSuvv+D5T9/Xel1em3FpJxFIoV7rx08eSyZq0GRkT7C90cxHFppm37oRy7wpmY4zaHnhGncvQ0oKXVea+5Pj/XbubvF5o8HW3kJMORLL8bqcbi2veDW5GkD3SY+F0HrfNAAI6GEFabIfmZ4VjTpF43eTeD2TD2f4y3bbNB+MHlKZNj6myifrjyTXECO27ZUFdIcQHUY7gbrdtZ+EM4dIzmEgfzu8N5O48ZBF70LgjjMbh87hZyLQTo87LLxdPt8OhCYmJvj+MLeSfhRpNbdhYsXOVkAl3dxIT+BTAfeVyFUXeRr891MbQ/B2d9qFzpSfZBk1mJhlG1hedYTQIUklH2/p0pyxw6kjXSX7FyUP/FRsyRKeWrF4TAx2DXQ+xNssGUOf1fxM3lK1kqxwGEAyH94q6K6QtqmfHRCCXGjHQO/iZTOG2PI+M91grDEtGYFox77H0JoDw4h4r9N59vpdAQXvK7Q1tfh73MfahWiBfb+ZM+2Gz0J0Uh4CSdr2zQh5lT2N24346123o93XCGhl2aDN+aVcxsGFscWqq0VjufKRgY0eFXjE0Vb+mzt4Ry9iHOGiwCinmJIOoYpxEZHaVIr60PlCXV3gSDWTEB0EHULoRlob/jyTUYe11kxIqFFANy/9CK4WwNnfAPQ=
 script:
-  - ./gradlew build -x test
+- ./gradlew build -x test
+- ./deploy.sh
 notifications:
   slack: ftsrg:1cgKhTwTbPgsK0MdAJBtYKTT
   email: false
