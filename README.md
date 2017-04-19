@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/bme-db-lab/opencypher-tck-tests.svg?token=dduaCwDzExdmU27AvBiK&branch=master)](https://travis-ci.com/bme-db-lab/opencypher-tck-tests)
 
-[Lastest test outputs](https://bme-db-lab.github.io/opencypher-tck-tests/feature-overview.html)
+[Latest test outputs](https://bme-db-lab.github.io/opencypher-tck-tests/feature-overview.html)
 
 ## Contributor's guide
 
@@ -19,7 +19,7 @@ Install the following dependencies:
 * [Scala plug-in](https://plugins.jetbrains.com/idea/plugin/1347-scala).
 * [Xtend plug-in](https://plugins.jetbrains.com/idea/plugin/8073-xtend-support). If the built-in installer does not work, download the `org.eclipse.xtend.idea-2.10.0.zip` and install it manually using the [install plugin from disk](https://www.jetbrains.com/help/idea/2016.3/installing-plugin-from-disk.html) feature.
 
-Import the repostitory as a Gradle project. If you previously imported the project, go to the Gradle view and update the project.
+Import the repository as a Gradle project. If you previously imported the project, go to the Gradle view and update the project.
 
 ### Eclipse
 
