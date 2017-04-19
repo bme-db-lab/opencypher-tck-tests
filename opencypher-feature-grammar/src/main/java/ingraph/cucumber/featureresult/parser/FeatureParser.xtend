@@ -35,7 +35,6 @@ class FeatureParser {
                 seenError = true
                 firstError = issue.message
             }
-            println(issue.message)
         }
         if (seenError) {
             throw new RuntimeException('''Error during cypher parse, the first error was: «firstError»''')
