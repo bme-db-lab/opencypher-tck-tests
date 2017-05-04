@@ -37,6 +37,7 @@ bin/
 target/
 out/
 xtend-gen/
-xtext-gen/
+#we commit generated Xtext code as it does not changes very often 
+#xtext-gen/
 .cache*
 generated/
