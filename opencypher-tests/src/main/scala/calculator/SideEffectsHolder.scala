@@ -12,6 +12,15 @@ class SideEffectsHolder(val session: Session) {
   val sideEffectsMap = new mutable.HashMap[String, mutable.Buffer[Record]]()
   val sideEffectsQueryMap = new mutable.HashMap[String, (String)]()
 
+  /*
+  -properties (before modification - after modification) - MATCH (n)
+UNWIND keys(n) AS propertyKey
+RETURN propertyKey
+  +properties (after modification - before modification) - MATCH (n)
+UNWIND keys(n) AS key
+WITH properties(n) AS properties, key
+RETURN key, properties[key] AS value
+   */
   def init() = {
       sideEffectsQueryMap += "nodes" -> "MATCH (n) RETURN n"
       sideEffectsQueryMap += "relationships" -> "MATCH ()-[r]-() RETURN DISTINCT r"
