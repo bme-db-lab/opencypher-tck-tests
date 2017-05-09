@@ -21,9 +21,13 @@ object QueryCalculator {
     session.beginTransaction()
     val sessionResult = session.run(query)
     val unProcessedQueryResultsBuffer = sessionResult.list().asScala
-    if (unProcessedQueryResultsBuffer.nonEmpty) {
+    /*if (unProcessedQueryResultsBuffer.nonEmpty) {
       unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
+    }*/
+    if(sessionResult.keys().asScala.nonEmpty){
+      sessionResult.keys().asScala.foreach(queryResultsBuffer += _)
     }
+
     unProcessedQueryResultsBuffer.foreach(_.values().asScala.foreach(value => resultElementToStringBuffer(value, queryResultsBuffer)))
 
     DatabaseResult(queryResultsBuffer, sideEffectsHolder.calculateDifference())
