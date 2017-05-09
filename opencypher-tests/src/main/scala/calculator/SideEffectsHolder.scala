@@ -11,23 +11,17 @@ import scala.collection.mutable
 class SideEffectsHolder(val session: Session) {
   val sideEffectsMap = new mutable.HashMap[String, mutable.Buffer[Record]]()
   val sideEffectsQueryMap = new mutable.HashMap[String, (String)]()
+  val propertySideEffectsQueryMap = new mutable.HashMap[String, (String)]()
 
-  /*
-  -properties (before modification - after modification) - MATCH (n)
-UNWIND keys(n) AS propertyKey
-RETURN propertyKey
-  +properties (after modification - before modification) - MATCH (n)
-UNWIND keys(n) AS key
-WITH properties(n) AS properties, key
-RETURN key, properties[key] AS value
-   */
   def init() = {
-      sideEffectsQueryMap += "nodes" -> "MATCH (n) RETURN n"
-      sideEffectsQueryMap += "relationships" -> "MATCH ()-[r]-() RETURN DISTINCT r"
-      sideEffectsQueryMap += "labels" -> "MATCH (n) UNWIND labels(n) AS label RETURN label"
-      sideEffectsQueryMap += "properties" -> "MATCH (n) UNWIND keys(n) AS key RETURN key"
-      session.beginTransaction()
-      sideEffectsQueryMap.foreach(x => sideEffectsMap += (x._1 -> session.run(x._2).list().asScala))
+    sideEffectsQueryMap += "nodes" -> "MATCH (n) RETURN n"
+    sideEffectsQueryMap += "relationships" -> "MATCH ()-[r]-() RETURN DISTINCT r"
+    sideEffectsQueryMap += "labels" -> "MATCH (n) UNWIND labels(n) AS label RETURN label"
+    propertySideEffectsQueryMap += "+properties" -> "MATCH (n) UNWIND keys(n) AS key RETURN key UNION MATCH ()-[r]->() UNWIND keys(r) AS key RETURN key"
+    propertySideEffectsQueryMap += "-properties" -> "MATCH (n) UNWIND keys(n) AS key WITH properties(n) AS properties, key RETURN key, properties[key] AS value UNION MATCH ()-[r]->() UNWIND keys(r) AS key WITH properties(r) AS properties, key RETURN key, properties[key] AS value"
+    session.beginTransaction()
+    propertySideEffectsQueryMap.foreach(x => sideEffectsMap += (x._1 -> session.run(x._2).list().asScala))
+    sideEffectsQueryMap.foreach(x => sideEffectsMap += (x._1 -> session.run(x._2).list().asScala))
   }
 
   def calculateDifference(): mutable.Map[String, Int] = {
@@ -35,6 +29,17 @@ RETURN key, properties[key] AS value
     var positiveEffectsMap = new mutable.HashMap[String, Int]()
     var negativeEffectsMap = new mutable.HashMap[String, Int]()
     session.beginTransaction()
+
+    propertySideEffectsQueryMap.foreach(x => newSideEffectsMap += (x._1 -> session.run(x._2).list().asScala))
+    newSideEffectsMap("+properties").diff(sideEffectsMap("+properties")).size match {
+      case y if y != 0 => positiveEffectsMap += ("+properties" -> y)
+      case _ =>
+    }
+    sideEffectsMap("-properties").diff(newSideEffectsMap("-properties")).size match {
+      case y if y != 0 => negativeEffectsMap += ("-properties" -> y)
+      case _ =>
+    }
+
     sideEffectsQueryMap.foreach(x => newSideEffectsMap += (x._1 -> session.run(x._2).list().asScala))
     newSideEffectsMap.foreach(x => {
       newSideEffectsMap(x._1).diff(sideEffectsMap(x._1)).size match {
