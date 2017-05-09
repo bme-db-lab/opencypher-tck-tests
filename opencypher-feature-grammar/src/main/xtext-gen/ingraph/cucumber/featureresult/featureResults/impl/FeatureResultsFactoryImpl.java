@@ -9,6 +9,7 @@ import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FeatureValue;
+import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.Label;
@@ -101,6 +102,7 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
       case FeatureResultsPackage.DIRECTED_RELATIONSHIP: return createDirectedRelationship();
       case FeatureResultsPackage.FORWARDS_RELATIONSHIP: return createForwardsRelationship();
       case FeatureResultsPackage.BACKWARDS_RELATIONSHIP: return createBackwardsRelationship();
+      case FeatureResultsPackage.FLOATING_POINT: return createFloatingPoint();
       case FeatureResultsPackage.BOOL: return createBool();
       case FeatureResultsPackage.NULL_VALUE: return createNullValue();
       case FeatureResultsPackage.LIST: return createList();
@@ -239,6 +241,17 @@ public class FeatureResultsFactoryImpl extends EFactoryImpl implements FeatureRe
   {
     BackwardsRelationshipImpl backwardsRelationship = new BackwardsRelationshipImpl();
     return backwardsRelationship;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FloatingPoint createFloatingPoint()
+  {
+    FloatingPointImpl floatingPoint = new FloatingPointImpl();
+    return floatingPoint;
   }
 
   /**

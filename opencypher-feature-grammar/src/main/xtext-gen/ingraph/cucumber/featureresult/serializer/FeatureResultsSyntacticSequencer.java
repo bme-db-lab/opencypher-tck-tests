@@ -26,9 +26,19 @@ public class FeatureResultsSyntacticSequencer extends AbstractSyntacticSequencer
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getINFINITYRule())
+			return getINFINITYToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * terminal INFINITY : '-'? 'Inf';
+	 */
+	protected String getINFINITYToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "Inf";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

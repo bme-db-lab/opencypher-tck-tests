@@ -9,6 +9,7 @@ import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsFactory;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FeatureValue;
+import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.Label;
@@ -121,6 +122,13 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * @generated
    */
   private EClass backwardsRelationshipEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass floatingPointEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -488,6 +496,36 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getFloatingPoint()
+  {
+    return floatingPointEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatingPoint_Value()
+  {
+    return (EAttribute)floatingPointEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatingPoint_IsInfinity()
+  {
+    return (EAttribute)floatingPointEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBool()
   {
     return boolEClass;
@@ -794,6 +832,10 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
 
     backwardsRelationshipEClass = createEClass(BACKWARDS_RELATIONSHIP);
 
+    floatingPointEClass = createEClass(FLOATING_POINT);
+    createEAttribute(floatingPointEClass, FLOATING_POINT__VALUE);
+    createEAttribute(floatingPointEClass, FLOATING_POINT__IS_INFINITY);
+
     boolEClass = createEClass(BOOL);
     createEAttribute(boolEClass, BOOL__VALUE);
 
@@ -873,6 +915,7 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     pathBodyEClass.getESuperTypes().add(this.getPath());
     forwardsRelationshipEClass.getESuperTypes().add(this.getDirectedRelationship());
     backwardsRelationshipEClass.getESuperTypes().add(this.getDirectedRelationship());
+    floatingPointEClass.getESuperTypes().add(this.getFeatureValue());
     boolEClass.getESuperTypes().add(this.getFeatureValue());
     nullValueEClass.getESuperTypes().add(this.getFeatureValue());
     listEClass.getESuperTypes().add(this.getFeatureValue());
@@ -912,6 +955,10 @@ public class FeatureResultsPackageImpl extends EPackageImpl implements FeatureRe
     initEClass(forwardsRelationshipEClass, ForwardsRelationship.class, "ForwardsRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(backwardsRelationshipEClass, BackwardsRelationship.class, "BackwardsRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(floatingPointEClass, FloatingPoint.class, "FloatingPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFloatingPoint_Value(), ecorePackage.getEBigDecimal(), "value", null, 0, 1, FloatingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFloatingPoint_IsInfinity(), ecorePackage.getEBoolean(), "isInfinity", null, 0, 1, FloatingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolEClass, Bool.class, "Bool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBool_Value(), ecorePackage.getEString(), "value", null, 0, 1, Bool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

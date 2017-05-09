@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import ingraph.cucumber.featureresult.featureResults.BackwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
+import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.Label;
@@ -52,6 +53,9 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 				return; 
 			case FeatureResultsPackage.BOOL:
 				sequence_Bool(context, (Bool) semanticObject); 
+				return; 
+			case FeatureResultsPackage.FLOATING_POINT:
+				sequence_FloatingPoint(context, (FloatingPoint) semanticObject); 
 				return; 
 			case FeatureResultsPackage.FORWARDS_RELATIONSHIP:
 				sequence_ForwardsRelationship(context, (ForwardsRelationship) semanticObject); 
@@ -133,6 +137,21 @@ public class FeatureResultsSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     (value='true' | value='false')
 	 */
 	protected void sequence_Bool(ISerializationContext context, Bool semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureValue returns FloatingPoint
+	 *     FloatingPoint returns FloatingPoint
+	 *     ListElement returns FloatingPoint
+	 *     PropertyValue returns FloatingPoint
+	 *
+	 * Constraint:
+	 *     (value=FLOAT | isInfinity?=INFINITY)
+	 */
+	protected void sequence_FloatingPoint(ISerializationContext context, FloatingPoint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

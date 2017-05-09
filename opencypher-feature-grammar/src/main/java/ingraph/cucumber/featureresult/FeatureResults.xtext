@@ -1,6 +1,7 @@
 grammar ingraph.cucumber.featureresult.FeatureResults with org.eclipse.xtext.common.Terminals hidden(WS)
 
 generate featureResults "http://www.cucumber.ingraph/featureresult/FeatureResults"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 /*
  * value : node
@@ -20,7 +21,7 @@ FeatureValue : Node
 	    | Relationship
 	    | Path
 	    | Integer
-	    //| FloatingPoint
+	    | FloatingPoint
 	    | MyString
 	    | Bool
 	    | NullValue
@@ -77,11 +78,47 @@ ForwardsRelationship : {ForwardsRelationship} '-' relationshipDesc=RelationshipD
  */
 BackwardsRelationship : {BackwardsRelationship} '<-' relationshipDesc=RelationshipDesc '-' ;
 
+// TODO: add exponent handling (e.g. 1E2)
+/*
+ * FLOAT_LITERAL : '-'? FLOAT_REPR ;
+ *
+ * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+ *            | '.' DIGIT+ EXPONENTPART?
+ *            | DIGIT EXPONENTPART
+ *            | DIGIT+ EXPONENTPART?
+ *            ;
+ * 
+ */
 FloatingPoint:
-  ( INT // TODO
-  | INFINITY
+  ( value = FLOAT // 
+  | isInfinity ?= INFINITY
   )
 ;
+
+/*
+ * FLOAT_LITERAL : '-'? FLOAT_REPR ;
+ *
+ * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+ *            | '.' DIGIT+ EXPONENTPART?
+ *            | DIGIT EXPONENTPART
+ *            | DIGIT+ EXPONENTPART?
+ *            ;
+ */
+terminal FLOAT returns ecore::EBigDecimal: INT? '.' INT;
+
+//SMTAtomicTerm: SMTIntLiteral | SMTBoolLiteral | SMTRealLiteral;
+//SMTIntLiteral: value=INT;
+//BOOLEANTERMINAL returns ecore::EBoolean: 'true' | 'false';
+//SMTBoolLiteral: value=BOOLEANTERMINAL;
+//SMTRealLiteral: value=REAL;
+
+/*
+ * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
+ */
+EXPONENTPART :  ('E' | 'e') ('+' | '-')? INT ;
+
+
+
 
 /*
  * bool : 'true'
@@ -200,21 +237,6 @@ Integer:
  * INFINITY : '-'? 'Inf' ;
  */
 terminal INFINITY : '-'? 'Inf';
-
-/*
- * FLOAT_LITERAL : '-'? FLOAT_REPR ;
- *
- * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
- *            | '.' DIGIT+ EXPONENTPART?
- *            | DIGIT EXPONENTPART
- *            | DIGIT+ EXPONENTPART?
- *            ;
- */
-
-/*
- * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
- */
-EXPONENTPART :  ('E' | 'e') ('+' | '-')? INT ;
 
 //SYMBOLIC_NAME : IDENTIFIER ;
 SYMBOLIC_NAME :

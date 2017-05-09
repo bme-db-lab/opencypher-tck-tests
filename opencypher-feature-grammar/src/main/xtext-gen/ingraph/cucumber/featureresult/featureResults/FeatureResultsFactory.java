@@ -123,6 +123,15 @@ public interface FeatureResultsFactory extends EFactory
   BackwardsRelationship createBackwardsRelationship();
 
   /**
+   * Returns a new object of class '<em>Floating Point</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Floating Point</em>'.
+   * @generated
+   */
+  FloatingPoint createFloatingPoint();
+
+  /**
    * Returns a new object of class '<em>Bool</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

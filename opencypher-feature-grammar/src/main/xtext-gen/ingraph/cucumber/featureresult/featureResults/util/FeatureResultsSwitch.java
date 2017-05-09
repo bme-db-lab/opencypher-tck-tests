@@ -8,6 +8,7 @@ import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FeatureValue;
+import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.Label;
@@ -196,6 +197,16 @@ public class FeatureResultsSwitch<T> extends Switch<T>
         BackwardsRelationship backwardsRelationship = (BackwardsRelationship)theEObject;
         T result = caseBackwardsRelationship(backwardsRelationship);
         if (result == null) result = caseDirectedRelationship(backwardsRelationship);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FeatureResultsPackage.FLOATING_POINT:
+      {
+        FloatingPoint floatingPoint = (FloatingPoint)theEObject;
+        T result = caseFloatingPoint(floatingPoint);
+        if (result == null) result = caseFeatureValue(floatingPoint);
+        if (result == null) result = caseListElement(floatingPoint);
+        if (result == null) result = casePropertyValue(floatingPoint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -495,6 +506,22 @@ public class FeatureResultsSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBackwardsRelationship(BackwardsRelationship object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Floating Point</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Floating Point</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFloatingPoint(FloatingPoint object)
   {
     return null;
   }

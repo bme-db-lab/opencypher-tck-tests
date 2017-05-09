@@ -65,7 +65,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getListElement()
    * @generated
    */
-  int LIST_ELEMENT = 15;
+  int LIST_ELEMENT = 16;
 
   /**
    * The number of structural features of the '<em>List Element</em>' class.
@@ -385,6 +385,43 @@ public interface FeatureResultsPackage extends EPackage
   int BACKWARDS_RELATIONSHIP_FEATURE_COUNT = DIRECTED_RELATIONSHIP_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.FloatingPointImpl <em>Floating Point</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see ingraph.cucumber.featureresult.featureResults.impl.FloatingPointImpl
+   * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getFloatingPoint()
+   * @generated
+   */
+  int FLOATING_POINT = 11;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FLOATING_POINT__VALUE = FEATURE_VALUE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Is Infinity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FLOATING_POINT__IS_INFINITY = FEATURE_VALUE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Floating Point</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FLOATING_POINT_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link ingraph.cucumber.featureresult.featureResults.impl.BoolImpl <em>Bool</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -392,7 +429,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 11;
+  int BOOL = 12;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -420,7 +457,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getNullValue()
    * @generated
    */
-  int NULL_VALUE = 12;
+  int NULL_VALUE = 13;
 
   /**
    * The number of structural features of the '<em>Null Value</em>' class.
@@ -439,7 +476,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getList()
    * @generated
    */
-  int LIST = 13;
+  int LIST = 14;
 
   /**
    * The feature id for the '<em><b>List Contents</b></em>' containment reference.
@@ -467,7 +504,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getListContents()
    * @generated
    */
-  int LIST_CONTENTS = 14;
+  int LIST_CONTENTS = 15;
 
   /**
    * The feature id for the '<em><b>List Contents</b></em>' containment reference list.
@@ -495,7 +532,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMap()
    * @generated
    */
-  int MAP = 16;
+  int MAP = 17;
 
   /**
    * The number of structural features of the '<em>Map</em>' class.
@@ -514,7 +551,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getPropertyMap()
    * @generated
    */
-  int PROPERTY_MAP = 17;
+  int PROPERTY_MAP = 18;
 
   /**
    * The feature id for the '<em><b>Map Contents</b></em>' containment reference.
@@ -542,7 +579,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMapContents()
    * @generated
    */
-  int MAP_CONTENTS = 18;
+  int MAP_CONTENTS = 19;
 
   /**
    * The feature id for the '<em><b>Key Value Pairs</b></em>' containment reference list.
@@ -570,7 +607,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getKeyValuePair()
    * @generated
    */
-  int KEY_VALUE_PAIR = 19;
+  int KEY_VALUE_PAIR = 20;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -607,7 +644,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getPropertyValue()
    * @generated
    */
-  int PROPERTY_VALUE = 20;
+  int PROPERTY_VALUE = 21;
 
   /**
    * The number of structural features of the '<em>Property Value</em>' class.
@@ -626,7 +663,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getRelationshipType()
    * @generated
    */
-  int RELATIONSHIP_TYPE = 21;
+  int RELATIONSHIP_TYPE = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -654,7 +691,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getLabel()
    * @generated
    */
-  int LABEL = 22;
+  int LABEL = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -682,7 +719,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getInteger()
    * @generated
    */
-  int INTEGER = 23;
+  int INTEGER = 24;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -710,7 +747,7 @@ public interface FeatureResultsPackage extends EPackage
    * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getMyString()
    * @generated
    */
-  int MY_STRING = 24;
+  int MY_STRING = 25;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -939,6 +976,38 @@ public interface FeatureResultsPackage extends EPackage
    * @generated
    */
   EClass getBackwardsRelationship();
+
+  /**
+   * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.FloatingPoint <em>Floating Point</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Floating Point</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.FloatingPoint
+   * @generated
+   */
+  EClass getFloatingPoint();
+
+  /**
+   * Returns the meta object for the attribute '{@link ingraph.cucumber.featureresult.featureResults.FloatingPoint#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.FloatingPoint#getValue()
+   * @see #getFloatingPoint()
+   * @generated
+   */
+  EAttribute getFloatingPoint_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link ingraph.cucumber.featureresult.featureResults.FloatingPoint#isIsInfinity <em>Is Infinity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Infinity</em>'.
+   * @see ingraph.cucumber.featureresult.featureResults.FloatingPoint#isIsInfinity()
+   * @see #getFloatingPoint()
+   * @generated
+   */
+  EAttribute getFloatingPoint_IsInfinity();
 
   /**
    * Returns the meta object for class '{@link ingraph.cucumber.featureresult.featureResults.Bool <em>Bool</em>}'.
@@ -1405,6 +1474,32 @@ public interface FeatureResultsPackage extends EPackage
      * @generated
      */
     EClass BACKWARDS_RELATIONSHIP = eINSTANCE.getBackwardsRelationship();
+
+    /**
+     * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.FloatingPointImpl <em>Floating Point</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see ingraph.cucumber.featureresult.featureResults.impl.FloatingPointImpl
+     * @see ingraph.cucumber.featureresult.featureResults.impl.FeatureResultsPackageImpl#getFloatingPoint()
+     * @generated
+     */
+    EClass FLOATING_POINT = eINSTANCE.getFloatingPoint();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FLOATING_POINT__VALUE = eINSTANCE.getFloatingPoint_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Is Infinity</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FLOATING_POINT__IS_INFINITY = eINSTANCE.getFloatingPoint_IsInfinity();
 
     /**
      * The meta object literal for the '{@link ingraph.cucumber.featureresult.featureResults.impl.BoolImpl <em>Bool</em>}' class.

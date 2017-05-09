@@ -113,47 +113,56 @@ ruleFeatureValue returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureValueAccess().getMyStringParserRuleCall_4());
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getFloatingPointParserRuleCall_4());
 		}
-		this_MyString_4=ruleMyString
+		this_FloatingPoint_4=ruleFloatingPoint
 		{
-			$current = $this_MyString_4.current;
+			$current = $this_FloatingPoint_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureValueAccess().getBoolParserRuleCall_5());
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getMyStringParserRuleCall_5());
 		}
-		this_Bool_5=ruleBool
+		this_MyString_5=ruleMyString
 		{
-			$current = $this_Bool_5.current;
+			$current = $this_MyString_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureValueAccess().getNullValueParserRuleCall_6());
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getBoolParserRuleCall_6());
 		}
-		this_NullValue_6=ruleNullValue
+		this_Bool_6=ruleBool
 		{
-			$current = $this_NullValue_6.current;
+			$current = $this_Bool_6.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureValueAccess().getListParserRuleCall_7());
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getNullValueParserRuleCall_7());
 		}
-		this_List_7=ruleList
+		this_NullValue_7=ruleNullValue
 		{
-			$current = $this_List_7.current;
+			$current = $this_NullValue_7.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureValueAccess().getMapParserRuleCall_8());
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getListParserRuleCall_8());
 		}
-		this_Map_8=ruleMap
+		this_List_8=ruleList
 		{
-			$current = $this_Map_8.current;
+			$current = $this_List_8.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureValueAccess().getMapParserRuleCall_9());
+		}
+		this_Map_9=ruleMap
+		{
+			$current = $this_Map_9.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -648,6 +657,62 @@ ruleBackwardsRelationship returns [EObject current=null]
 		{
 			newLeafNode(otherlv_3, grammarAccess.getBackwardsRelationshipAccess().getHyphenMinusKeyword_3());
 		}
+	)
+;
+
+// Entry rule entryRuleFloatingPoint
+entryRuleFloatingPoint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFloatingPointRule()); }
+	iv_ruleFloatingPoint=ruleFloatingPoint
+	{ $current=$iv_ruleFloatingPoint.current; }
+	EOF;
+
+// Rule FloatingPoint
+ruleFloatingPoint returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_value_0_0=RULE_FLOAT
+				{
+					newLeafNode(lv_value_0_0, grammarAccess.getFloatingPointAccess().getValueFLOATTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFloatingPointRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_0_0,
+						"ingraph.cucumber.featureresult.FeatureResults.FLOAT");
+				}
+			)
+		)
+		    |
+		(
+			(
+				lv_isInfinity_1_0=RULE_INFINITY
+				{
+					newLeafNode(lv_isInfinity_1_0, grammarAccess.getFloatingPointAccess().getIsInfinityINFINITYTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFloatingPointRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"isInfinity",
+						true,
+						"ingraph.cucumber.featureresult.FeatureResults.INFINITY");
+				}
+			)
+		)
 	)
 ;
 
@@ -1360,6 +1425,8 @@ ruleMyString returns [EObject current=null]
 		)
 	)
 ;
+
+RULE_FLOAT : RULE_INT? '.' RULE_INT;
 
 RULE_INFINITY : '-'? 'Inf';
 

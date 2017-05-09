@@ -8,6 +8,7 @@ import ingraph.cucumber.featureresult.featureResults.Bool;
 import ingraph.cucumber.featureresult.featureResults.DirectedRelationship;
 import ingraph.cucumber.featureresult.featureResults.FeatureResultsPackage;
 import ingraph.cucumber.featureresult.featureResults.FeatureValue;
+import ingraph.cucumber.featureresult.featureResults.FloatingPoint;
 import ingraph.cucumber.featureresult.featureResults.ForwardsRelationship;
 import ingraph.cucumber.featureresult.featureResults.KeyValuePair;
 import ingraph.cucumber.featureresult.featureResults.Label;
@@ -153,6 +154,11 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
       public Adapter caseBackwardsRelationship(BackwardsRelationship object)
       {
         return createBackwardsRelationshipAdapter();
+      }
+      @Override
+      public Adapter caseFloatingPoint(FloatingPoint object)
+      {
+        return createFloatingPointAdapter();
       }
       @Override
       public Adapter caseBool(Bool object)
@@ -407,6 +413,21 @@ public class FeatureResultsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBackwardsRelationshipAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link ingraph.cucumber.featureresult.featureResults.FloatingPoint <em>Floating Point</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see ingraph.cucumber.featureresult.featureResults.FloatingPoint
+   * @generated
+   */
+  public Adapter createFloatingPointAdapter()
   {
     return null;
   }

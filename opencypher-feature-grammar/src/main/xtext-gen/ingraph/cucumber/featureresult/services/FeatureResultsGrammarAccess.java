@@ -30,11 +30,12 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPathParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cIntegerParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cMyStringParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cBoolParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cNullValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cListParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cMapParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cFloatingPointParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cMyStringParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cBoolParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cNullValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cListParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cMapParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		/// *
 		// * value : node
@@ -54,7 +55,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//	| Relationship
 		//	| Path
 		//	| Integer
-		//	//| FloatingPoint
+		//	| FloatingPoint
 		//	| MyString
 		//	| Bool
 		//	| NullValue
@@ -62,8 +63,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//	| Map;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Node | Relationship | Path | Integer //| FloatingPoint
-		//| MyString | Bool | NullValue | List | Map
+		//Node | Relationship | Path | Integer | FloatingPoint | MyString | Bool | NullValue | List | Map
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Node
@@ -78,20 +78,23 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//Integer
 		public RuleCall getIntegerParserRuleCall_3() { return cIntegerParserRuleCall_3; }
 		
+		//FloatingPoint
+		public RuleCall getFloatingPointParserRuleCall_4() { return cFloatingPointParserRuleCall_4; }
+		
 		//MyString
-		public RuleCall getMyStringParserRuleCall_4() { return cMyStringParserRuleCall_4; }
+		public RuleCall getMyStringParserRuleCall_5() { return cMyStringParserRuleCall_5; }
 		
 		//Bool
-		public RuleCall getBoolParserRuleCall_5() { return cBoolParserRuleCall_5; }
+		public RuleCall getBoolParserRuleCall_6() { return cBoolParserRuleCall_6; }
 		
 		//NullValue
-		public RuleCall getNullValueParserRuleCall_6() { return cNullValueParserRuleCall_6; }
+		public RuleCall getNullValueParserRuleCall_7() { return cNullValueParserRuleCall_7; }
 		
 		//List
-		public RuleCall getListParserRuleCall_7() { return cListParserRuleCall_7; }
+		public RuleCall getListParserRuleCall_8() { return cListParserRuleCall_8; }
 		
 		//Map
-		public RuleCall getMapParserRuleCall_8() { return cMapParserRuleCall_8; }
+		public RuleCall getMapParserRuleCall_9() { return cMapParserRuleCall_9; }
 	}
 	public class NodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Node");
@@ -376,23 +379,84 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	public class FloatingPointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.FloatingPoint");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINFINITYTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValueFLOATTerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final Assignment cIsInfinityAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cIsInfinityINFINITYTerminalRuleCall_1_0 = (RuleCall)cIsInfinityAssignment_1.eContents().get(0);
 		
+		////FLOAT_LITERAL : '-'? FLOAT_REPR ;
+		////
+		////FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+		////           | '.' DIGIT+ EXPONENTPART?
+		////           | DIGIT EXPONENTPART
+		////           | DIGIT+ EXPONENTPART?
+		////           ;
 		//FloatingPoint:
-		//	INT // TODO
-		//	| INFINITY;
+		//	value=FLOAT // 
+		//	| isInfinity?=INFINITY;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//INT // TODO
-		//| INFINITY
+		//value=FLOAT // 
+		//| isInfinity?=INFINITY
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		//value=FLOAT
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
+		
+		//FLOAT
+		public RuleCall getValueFLOATTerminalRuleCall_0_0() { return cValueFLOATTerminalRuleCall_0_0; }
+		
+		//isInfinity?=INFINITY
+		public Assignment getIsInfinityAssignment_1() { return cIsInfinityAssignment_1; }
 		
 		//INFINITY
-		public RuleCall getINFINITYTerminalRuleCall_1() { return cINFINITYTerminalRuleCall_1; }
+		public RuleCall getIsInfinityINFINITYTerminalRuleCall_1_0() { return cIsInfinityINFINITYTerminalRuleCall_1_0; }
+	}
+	public class EXPONENTPARTElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.EXPONENTPART");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cEKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cEKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		////SMTAtomicTerm: SMTIntLiteral | SMTBoolLiteral | SMTRealLiteral;
+		////SMTIntLiteral: value=INT;
+		////BOOLEANTERMINAL returns ecore::EBoolean: 'true' | 'false';
+		////SMTBoolLiteral: value=BOOLEANTERMINAL;
+		////SMTRealLiteral: value=REAL;
+		/// *
+		// * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
+		// * / EXPONENTPART:
+		//	('E' | 'e') ('+' | '-')? INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//('E' | 'e') ('+' | '-')? INT
+		public Group getGroup() { return cGroup; }
+		
+		//('E' | 'e')
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//'E'
+		public Keyword getEKeyword_0_0() { return cEKeyword_0_0; }
+		
+		//'e'
+		public Keyword getEKeyword_0_1() { return cEKeyword_0_1; }
+		
+		//('+' | '-')?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'+'
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_1_1() { return cHyphenMinusKeyword_1_1; }
+		
+		//INT
+		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
 	}
 	public class BoolElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.Bool");
@@ -780,55 +844,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
-	public class EXPONENTPARTElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.EXPONENTPART");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Keyword cEKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
-		private final Keyword cEKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		
-		/// *
-		// * FLOAT_LITERAL : '-'? FLOAT_REPR ;
-		// *
-		// * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
-		// *            | '.' DIGIT+ EXPONENTPART?
-		// *            | DIGIT EXPONENTPART
-		// *            | DIGIT+ EXPONENTPART?
-		// *            ;
-		// * / / *
-		// * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
-		// * / EXPONENTPART:
-		//	('E' | 'e') ('+' | '-')? INT;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//('E' | 'e') ('+' | '-')? INT
-		public Group getGroup() { return cGroup; }
-		
-		//('E' | 'e')
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
-		//'E'
-		public Keyword getEKeyword_0_0() { return cEKeyword_0_0; }
-		
-		//'e'
-		public Keyword getEKeyword_0_1() { return cEKeyword_0_1; }
-		
-		//('+' | '-')?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//'+'
-		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
-		
-		//'-'
-		public Keyword getHyphenMinusKeyword_1_1() { return cHyphenMinusKeyword_1_1; }
-		
-		//INT
-		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
-	}
 	public class SYMBOLIC_NAMEElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.SYMBOLIC_NAME");
 		private final RuleCall cIDENTIFIERTerminalRuleCall = (RuleCall)rule.eContents().get(1);
@@ -875,6 +890,8 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	private final ForwardsRelationshipElements pForwardsRelationship;
 	private final BackwardsRelationshipElements pBackwardsRelationship;
 	private final FloatingPointElements pFloatingPoint;
+	private final TerminalRule tFLOAT;
+	private final EXPONENTPARTElements pEXPONENTPART;
 	private final BoolElements pBool;
 	private final NullValueElements pNullValue;
 	private final ListElements pList;
@@ -892,7 +909,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	private final LabelNameElements pLabelName;
 	private final IntegerElements pInteger;
 	private final TerminalRule tINFINITY;
-	private final EXPONENTPARTElements pEXPONENTPART;
 	private final SYMBOLIC_NAMEElements pSYMBOLIC_NAME;
 	private final TerminalRule tIDENTIFIER;
 	private final MyStringElements pMyString;
@@ -921,6 +937,8 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pForwardsRelationship = new ForwardsRelationshipElements();
 		this.pBackwardsRelationship = new BackwardsRelationshipElements();
 		this.pFloatingPoint = new FloatingPointElements();
+		this.tFLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.FLOAT");
+		this.pEXPONENTPART = new EXPONENTPARTElements();
 		this.pBool = new BoolElements();
 		this.pNullValue = new NullValueElements();
 		this.pList = new ListElements();
@@ -938,7 +956,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pLabelName = new LabelNameElements();
 		this.pInteger = new IntegerElements();
 		this.tINFINITY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.INFINITY");
-		this.pEXPONENTPART = new EXPONENTPARTElements();
 		this.pSYMBOLIC_NAME = new SYMBOLIC_NAMEElements();
 		this.tIDENTIFIER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ingraph.cucumber.featureresult.FeatureResults.IDENTIFIER");
 		this.pMyString = new MyStringElements();
@@ -992,7 +1009,7 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	//	| Relationship
 	//	| Path
 	//	| Integer
-	//	//| FloatingPoint
+	//	| FloatingPoint
 	//	| MyString
 	//	| Bool
 	//	| NullValue
@@ -1124,15 +1141,45 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		return getBackwardsRelationshipAccess().getRule();
 	}
 	
+	////FLOAT_LITERAL : '-'? FLOAT_REPR ;
+	////
+	////FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+	////           | '.' DIGIT+ EXPONENTPART?
+	////           | DIGIT EXPONENTPART
+	////           | DIGIT+ EXPONENTPART?
+	////           ;
 	//FloatingPoint:
-	//	INT // TODO
-	//	| INFINITY;
+	//	value=FLOAT // 
+	//	| isInfinity?=INFINITY;
 	public FloatingPointElements getFloatingPointAccess() {
 		return pFloatingPoint;
 	}
 	
 	public ParserRule getFloatingPointRule() {
 		return getFloatingPointAccess().getRule();
+	}
+	
+	//terminal FLOAT returns ecore::EBigDecimal:
+	//	INT? '.' INT;
+	public TerminalRule getFLOATRule() {
+		return tFLOAT;
+	}
+	
+	////SMTAtomicTerm: SMTIntLiteral | SMTBoolLiteral | SMTRealLiteral;
+	////SMTIntLiteral: value=INT;
+	////BOOLEANTERMINAL returns ecore::EBoolean: 'true' | 'false';
+	////SMTBoolLiteral: value=BOOLEANTERMINAL;
+	////SMTRealLiteral: value=REAL;
+	/// *
+	// * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
+	// * / EXPONENTPART:
+	//	('E' | 'e') ('+' | '-')? INT;
+	public EXPONENTPARTElements getEXPONENTPARTAccess() {
+		return pEXPONENTPART;
+	}
+	
+	public ParserRule getEXPONENTPARTRule() {
+		return getEXPONENTPARTAccess().getRule();
 	}
 	
 	/// *
@@ -1345,26 +1392,6 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 	//	'-'? 'Inf';
 	public TerminalRule getINFINITYRule() {
 		return tINFINITY;
-	}
-	
-	/// *
-	// * FLOAT_LITERAL : '-'? FLOAT_REPR ;
-	// *
-	// * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
-	// *            | '.' DIGIT+ EXPONENTPART?
-	// *            | DIGIT EXPONENTPART
-	// *            | DIGIT+ EXPONENTPART?
-	// *            ;
-	// * / / *
-	// * EXPONENTPART :  ('E' | 'e') ('+' | '-')? DIGIT+ ; // this allows 'E06' as well - this might be intentional
-	// * / EXPONENTPART:
-	//	('E' | 'e') ('+' | '-')? INT;
-	public EXPONENTPARTElements getEXPONENTPARTAccess() {
-		return pEXPONENTPART;
-	}
-	
-	public ParserRule getEXPONENTPARTRule() {
-		return getEXPONENTPARTAccess().getRule();
 	}
 	
 	////SYMBOLIC_NAME : IDENTIFIER ;
