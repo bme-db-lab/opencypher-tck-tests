@@ -22,8 +22,9 @@ class FeatureResultsParsingTest{
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			(:Label {name: 'hello'})
+			.2E2
 		''')
+		println(result)
 		Assert.assertNotNull(result)
 	}
 
