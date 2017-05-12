@@ -1,4 +1,5 @@
-rootProject.name = 'opencypher-cucumber-tests'
+rootProject.name = 'opencypher-tck-tests'
 
+include ':opencypher-cucumber-tests'
+include ':opencypher-embedded-driver'
 include ':opencypher-feature-grammar'
-include ':opencypher-tests'

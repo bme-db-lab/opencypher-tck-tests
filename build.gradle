@@ -7,7 +7,6 @@ subprojects {
   configurations.all { exclude group: 'asm' }
 
   repositories {
-    mavenLocal()
     jcenter()
     maven { url 'http://docs.inf.mit.bme.hu/ingraph-deps' }
   }
@@ -16,6 +15,7 @@ subprojects {
 ext {
   cucumberVersion = '1.2.4'
   neo4jVersion = '3.1.1'
+  neo4jDriverVersion = '1.3.0'
   junitVersion = '4.12'
   scalaLongVersion = '2.11.8'
   scalaShortVersion = '2.11'
