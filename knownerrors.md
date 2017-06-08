@@ -9,8 +9,19 @@
 `java.lang.RuntimeException: Error during cypher parse, the first error was: no viable alternative at input '-'`
 
 `java.lang.NullPointerException`
+### MatchingSelfRelationships
+Different result at Scenario: Counting directed self-relationships
+Expected: 1
+Actual: 2
 ### MergeIntoAcceptance
+Different result at Scenario: Null-setting one property with ON CREATE
+Expected: []
+Actual: 
 `java.lang.NullPointerException`
+### MergeNodeAcceptance
+Different side effects at Scenario: Should be able to use properties from match in ON MATCH and ON CREATE
+Expected: + properties 2
+Actual: + properties 1
 ### OptionalMatchAcceptance
 `java.lang.NullPointerException`
 ### PatternComprehension
