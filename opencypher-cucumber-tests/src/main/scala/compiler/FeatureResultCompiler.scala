@@ -67,7 +67,6 @@ object FeatureResultCompiler {
       case x: Bool => c(x)
       case x: NullValue => c(x)
       case x: List => c(x)
-      case x: PropertyMap => c(x)
     }
   }
 

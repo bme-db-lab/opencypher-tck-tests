@@ -384,14 +384,17 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIsInfinityAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cIsInfinityINFINITYTerminalRuleCall_1_0 = (RuleCall)cIsInfinityAssignment_1.eContents().get(0);
 		
-		////FLOAT_LITERAL : '-'? FLOAT_REPR ;
-		////
-		////FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
-		////           | '.' DIGIT+ EXPONENTPART?
-		////           | DIGIT EXPONENTPART
-		////           | DIGIT+ EXPONENTPART?
-		////           ;
-		//FloatingPoint:
+		//// TODO: add exponent handling (e.g. 1E2)
+		/// *
+		// * FLOAT_LITERAL : '-'? FLOAT_REPR ;
+		// *
+		// * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+		// *            | '.' DIGIT+ EXPONENTPART?
+		// *            | DIGIT EXPONENTPART
+		// *            | DIGIT+ EXPONENTPART?
+		// *            ;
+		// * 
+		// * / FloatingPoint:
 		//	value=FLOAT // 
 		//	| isInfinity?=INFINITY;
 		@Override public ParserRule getRule() { return rule; }
@@ -1141,14 +1144,17 @@ public class FeatureResultsGrammarAccess extends AbstractGrammarElementFinder {
 		return getBackwardsRelationshipAccess().getRule();
 	}
 	
-	////FLOAT_LITERAL : '-'? FLOAT_REPR ;
-	////
-	////FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
-	////           | '.' DIGIT+ EXPONENTPART?
-	////           | DIGIT EXPONENTPART
-	////           | DIGIT+ EXPONENTPART?
-	////           ;
-	//FloatingPoint:
+	//// TODO: add exponent handling (e.g. 1E2)
+	/// *
+	// * FLOAT_LITERAL : '-'? FLOAT_REPR ;
+	// *
+	// * FLOAT_REPR : DIGIT+ '.' DIGIT+ EXPONENTPART?
+	// *            | '.' DIGIT+ EXPONENTPART?
+	// *            | DIGIT EXPONENTPART
+	// *            | DIGIT+ EXPONENTPART?
+	// *            ;
+	// * 
+	// * / FloatingPoint:
 	//	value=FLOAT // 
 	//	| isInfinity?=INFINITY;
 	public FloatingPointElements getFloatingPointAccess() {

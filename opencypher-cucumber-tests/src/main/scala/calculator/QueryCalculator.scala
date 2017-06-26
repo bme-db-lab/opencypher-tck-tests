@@ -2,8 +2,11 @@ package calculator
 
 import compiler.FeatureResultCompiler
 import cucumber.api.DataTable
+import org.neo4j.cypher.SyntaxException
 import org.neo4j.driver.internal.value._
 import org.neo4j.driver.v1.{Session, Value}
+import org.neo4j.graphdb.QueryExecutionException
+import org.neo4j.kernel.impl.query.QueryExecutionKernelException
 
 import scala.collection.mutable.ListBuffer
 import collection.JavaConverters._
@@ -15,22 +18,30 @@ object QueryCalculator {
 
 
   def calculateSideEffects(session: Session, query: String): DatabaseResult = {
-    lazy val sideEffectsHolder =  new SideEffectsHolder(session)
+
+    lazy val sideEffectsHolder = new SideEffectsHolder(session)
     sideEffectsHolder.init()
     lazy val queryResultsBuffer = ListBuffer[String]()
+    try {
     session.beginTransaction()
-    val sessionResult = session.run(query)
-    val unProcessedQueryResultsBuffer = sessionResult.list().asScala
-    /*if (unProcessedQueryResultsBuffer.nonEmpty) {
-      unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
-    }*/
-    if(sessionResult.keys().asScala.nonEmpty){
-      sessionResult.keys().asScala.foreach(queryResultsBuffer += _)
+
+      val sessionResult = session.run(query)
+
+      val unProcessedQueryResultsBuffer = sessionResult.list().asScala
+      /*if (unProcessedQueryResultsBuffer.nonEmpty) {
+        unProcessedQueryResultsBuffer.head.keys().asScala.foreach(x => queryResultsBuffer += x)
+      }*/
+      if (sessionResult.keys().asScala.nonEmpty) {
+        sessionResult.keys().asScala.foreach(queryResultsBuffer += _)
+      }
+
+      unProcessedQueryResultsBuffer.foreach(_.values().asScala.foreach(value => resultElementToStringBuffer(value, queryResultsBuffer)))
+    } catch {
+      case syntax: SyntaxException => return DatabaseResult(None, None, Some(syntax))
+      case queryExecution: QueryExecutionKernelException => return  DatabaseResult(None, None, Some(queryExecution))
+      case queryExecutionException: QueryExecutionException => return DatabaseResult(None, None, Some(queryExecutionException))
     }
-
-    unProcessedQueryResultsBuffer.foreach(_.values().asScala.foreach(value => resultElementToStringBuffer(value, queryResultsBuffer)))
-
-    DatabaseResult(queryResultsBuffer, sideEffectsHolder.calculateDifference())
+    DatabaseResult(Some(queryResultsBuffer), Some(sideEffectsHolder.calculateDifference()), None)
 
   }
 
@@ -44,26 +55,26 @@ object QueryCalculator {
         el.getCells.asScala.foreach(x => resultElementToStringBuffer(FeatureResultCompiler.parseAndCompile(x), expectedResult))
       }
     }
-//    println("EXPECTED RESULT: ")
-//    expectedResult.foreach(println)
-//    println("QUERY RESULT: ")
-//    result.queryResult.foreach(println)
+    //    println("EXPECTED RESULT: ")
+    //    expectedResult.foreach(println)
+    //    println("QUERY RESULT: ")
+    //    result.queryResult.foreach(println)
     //TODO megnezni, hogy miert igy kapom vissza a String-et : 'STRING'
-    expectedResult.map(_.replace("'", "")).intersect(result.queryResult).size == expectedResult.size
+    expectedResult.map(_.replace("'", "")).intersect(result.queryResult.get).size == expectedResult.size
   }
 
 
   def checkSideEffectsEquality(result: DatabaseResult, expectedResult: Option[DataTable]): Boolean = {
     val expectedResultMap = collection.mutable.Map[String, Int]()
-//    println("result: ")
-//    result.sideEffect.foreach(println)
+    //    println("result: ")
+    //    result.sideEffect.foreach(println)
     expectedResult match {
       case Some(x) =>
         x.raw().asScala.foreach(x =>
           expectedResultMap += (x.get(0) -> x.get(1).toInt)
         )
-//        println("expected result: ")
-//        expectedResultMap.foreach(println)
+        //        println("expected result: ")
+        //        expectedResultMap.foreach(println)
         result.sideEffect == expectedResultMap
       case None => result.sideEffect.isEmpty
     }

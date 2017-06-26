@@ -1,9 +1,11 @@
 package cucumber.steps
 
-import calculator.{DatabaseResult, QueryCalculator}
+import calculator.{DatabaseResult, ExceptionFinder, QueryCalculator}
 import cucumber.api.DataTable
 import cucumber.api.scala.{EN, ScalaDsl}
 import neo4j.driver.testkit.EmbeddedTestkitDriver
+import org.neo4j.cypher.{CypherTypeException, InvalidArgumentException, SyntaxException}
+
 
 /**
   * Created by Andras Zsamboki on 2017.02.23..
@@ -44,6 +46,18 @@ class CreateStepDefinitions extends ScalaDsl with EN {
     assert(QueryCalculator.checkResultEqualiy(result, dataTable))
   }
 
+  Then("""^a SyntaxError should be raised at compile time"""){ () =>
+    ExceptionFinder.findException(result.exception.get, classOf[SyntaxException])
+  }
+
+  Then("""^a ArgumentError should be raised at runtime:"""){ () =>
+    //// Write code here that turns the phrase above into concrete actions
+    ExceptionFinder.findException(result.exception.get, classOf[InvalidArgumentException])
+  }
+
+  Then("""^a TypeError should be raised at runtime:"""){ () =>
+    ExceptionFinder.findException(result.exception.get, classOf[CypherTypeException])
+  }
   When("""^executing control query:$"""){ (query:String) =>
     result = QueryCalculator.calculateSideEffects(driver.session, query)
   }
