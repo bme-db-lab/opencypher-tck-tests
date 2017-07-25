@@ -1,4 +1,4 @@
-# opencypher-cucumber-tests
+# opencypher-tck-tests
 
 [![Build Status](https://travis-ci.com/bme-db-lab/opencypher-tck-tests.svg?token=dduaCwDzExdmU27AvBiK&branch=master)](https://travis-ci.com/bme-db-lab/opencypher-tck-tests)
 
@@ -35,3 +35,7 @@ Install the following dependencies:
 1. Go to **Help** | **Eclipse Marketplace...** and install the **Buildship: Eclipse Plug-ins for Gradle** plug-in.
 
 Import the repository as a Gradle project. You might need to update the Gradle project: **right click** on the parent project and pick **Gradle** | **Refresh Gradle Project**.
+
+## License
+
+License pending.
